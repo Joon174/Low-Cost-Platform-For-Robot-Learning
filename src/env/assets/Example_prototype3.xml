@@ -62,7 +62,7 @@
 				<body name = "Servo_Guide_1"  pos = "3 -17.25 21.5" quat = "0.7038514 -0.0677732 0.0677732 0.7038514">
 					<geom type = "mesh" mesh = "ServoLinkage"/>
 					<joint name = "SG_J_1" pos = "33 0 7.5"/> <!-- Joint for SG and Mount -->
-					<body name = "MiddleLink_1" pos = "-45.5 -5 43" quat = "0.9366722 0 0.3502074 0">
+					<body name = "MiddleLink_1" pos = "-45.5 -4 43" quat = "0.9366722 0 0.3502074 0">
 						<geom name = "ML_1" type = "mesh" mesh = "MiddleLinkage"/>
 						<joint name = "ML_Joint_1" pos = "62.4 2 7.5"/>
 						<body name = "EndEffector_1" pos = "105.5 -5 -72.5" quat ="-0.4617486 0 0.8870108 0">
@@ -75,116 +75,183 @@
 					<geom  type = "mesh" mesh = "LinkageGuide"/>
 					<joint name = "NG_Joint_1" pos = "53 2 7.5"/> <!-- Joint for NG and MD_L -->
 				</body>
-				<!-- <body name = "LinkCAM_1" pos = "13.5 -26 75.5" quat = "0 0.7071068 0.7071068 0">
-					<geom type = "mesh" mesh = "LinkageCAM"/>
-					<body name = "LinkCAM_m_1" pos = "-27.5 10 47" quat = "0 0.9396926 0 -0.3420201">
-						<geom type = "mesh" mesh = "LinkageCAM_m"/>
-					</body>
-				</body> -->
-			</body>
-			<!-- Uncomment this to have the rest of the strcuture available
-			<body name = "ServoMount_1" pos = "-30.2 70.625 -40.8" quat = "-0.7071068 0 0 0.7071068">
-				<geom type = "mesh" mesh = "ServoMount"/>
-				<body name = "Servo_Guide_1"  pos = "3 -17.25 21.5" quat = "0.7038514 -0.0677732 0.0677732 0.7038514">
-					<geom type = "mesh" mesh = "ServoLinkage"/>
-					<joint name = "SG_J_1" pos = "33 0 7.5"/>
-					<joint pos = "7 0 7.5"/> 
-				</body>
-				<body name = "NormalGuide_1"  pos = "-2 27.1 66.6" quat = "-0.6724985 -0.218508 -0.218508 0.6724985">
-					<geom  type = "mesh" mesh = "LinkageGuide"/>
-					<joint pos = "7.5 2 7.5"/> 
-					<joint pos = "52.5 2 7.5"/>
-				</body>
 				<body name = "LinkCAM_1" pos = "13.5 -26 75.5" quat = "0 0.7071068 0.7071068 0">
 					<geom type = "mesh" mesh = "LinkageCAM"/>
-					<body name = "LinkCAM_m_1" pos = "-27.5 10 47" quat = "0 0.9396926 0 -0.3420201">
+					<body name = "LinkCAM_m_1" pos = "-27 8 47" quat = "0 0.9396926 0 -0.3420201">
 						<geom type = "mesh" mesh = "LinkageCAM_m"/>
 					</body>
 				</body>
-				<body name = "MiddleLink_1" pos = "0 -9.5 17" quat = "-0.6408564 0.2988362 0.2988362 0.6408564">
-					<geom name = "ML_1" type = "mesh" mesh = "MiddleLinkage"/>
-					<joint pos = "2.6 2 7.5"/>
-					<joint pos = "20.6 2 7.5"/>
-					<joint pos = "62.4 2 7.5"/>
-					<body name = "EndEffector_1" pos = "0 5 -95" quat ="0.8870108 0 -0.4617486 0">
-						<geom name = "EE_1" type = "mesh" mesh = "EndEffector"/>
-					</body>
-				</body> 
 			</body>
+			<!-- Leg 2 -->
+			<body name = "ServoMount_2" pos = "7.6 -15.4 -40.8" quat = "-0.9659258 0 0 0.258819">
+				<geom type = "mesh" mesh = "ServoMount"/>
+				<body name = "Servo_Guide_2"  pos = "3 -17.25 21.5" quat = "0.7038514 -0.0677732 0.0677732 0.7038514">
+					<geom type = "mesh" mesh = "ServoLinkage"/>
+					<joint name = "SG_J_2" pos = "33 0 7.5"/> <!-- Joint for SG and Mount -->
+					<body name = "MiddleLink_2" pos = "-45.5 -4 43" quat = "0.9366722 0 0.3502074 0">
+						<geom name = "ML_2" type = "mesh" mesh = "MiddleLinkage"/>
+						<joint name = "ML_Joint_2" pos = "62.4 2 7.5"/>
+						<body name = "EndEffector_2" pos = "105.5 -5 -72.5" quat ="-0.4617486 0 0.8870108 0">
+							<geom name = "EE_2" type = "mesh" mesh = "EndEffector"/>
+							<joint name = "EE_Joint_2" pos = "121.25 2 33.5"/>
+						</body>
+					</body> 
+				</body>
+				<body name = "NormalGuide_2"  pos = "3 -22 31" quat = "0.6724985 0.218508 -0.218508 0.6724985">
+					<geom  type = "mesh" mesh = "LinkageGuide"/>
+					<joint name = "NG_Joint_2" pos = "53 2 7.5"/> <!-- Joint for NG and MD_L -->
+				</body>
+				<body name = "LinkCAM_2" pos = "13.5 -26 75.5" quat = "0 0.7071068 0.7071068 0">
+					<geom type = "mesh" mesh = "LinkageCAM"/>
+					<body name = "LinkCAM_m_2" pos = "-27 8 47" quat = "0 0.9396926 0 -0.3420201">
+						<geom type = "mesh" mesh = "LinkageCAM_m"/>
+					</body>
+				</body>
+			</body>
+			<!-- Leg 3 -->
 			<body name = "ServoMount_3" pos = "101.1 -25.8 -40.8" axisangle = "0 0 1 0.523599">
-				<geom class = "LinkageGuides" mesh = "ServoMount"/>
-				<geom name = "Servo_Guide_3" type = "mesh" mesh = "ServoLinkage" pos = "3 -18 23" quat = "0.7010574 -0.092296 0.092296 0.7010574"/>
-				<geom name = "NormalGuide_3" type = "mesh" mesh = "LinkageGuide" pos = "-1 27 66.5" quat = "-0.6743797 -0.2126311 -0.2126311 0.6743797"/>
-					<body name = "LinkCAM_3" pos = "14 -26 28" quat = "0.5 0.5 0.5 0.5">
-					<geom type = "mesh" mesh = "LinkageCAM" />
-					<body name = "LinkCAM_m_3" pos = "61.5 60.5 9" quat = "0 -0.4617486 0.8870108 0">
+				<geom type = "mesh" mesh = "ServoMount"/>
+				<body name = "Servo_Guide_3"  pos = "3 -17.25 21.5" quat = "0.7038514 -0.0677732 0.0677732 0.7038514">
+					<geom type = "mesh" mesh = "ServoLinkage"/>
+					<joint name = "SG_J_3" pos = "33 0 7.5"/> <!-- Joint for SG and Mount -->
+					<body name = "MiddleLink_3" pos = "-45.5 -4 43" quat = "0.9366722 0 0.3502074 0">
+						<geom name = "ML_3" type = "mesh" mesh = "MiddleLinkage"/>
+						<joint name = "ML_Joint_3" pos = "62.4 2 7.5"/>
+						<body name = "EndEffector_3" pos = "105.5 -5 -72.5" quat ="-0.4617486 0 0.8870108 0">
+							<geom name = "EE_3" type = "mesh" mesh = "EndEffector"/>
+							<joint name = "EE_Joint_3" pos = "121.25 2 33.5"/>
+						</body>
+					</body> 
+				</body>
+				<body name = "NormalGuide_3"  pos = "3 -22 31" quat = "0.6724985 0.218508 -0.218508 0.6724985">
+					<geom  type = "mesh" mesh = "LinkageGuide"/>
+					<joint name = "NG_Joint_3" pos = "53 2 7.5"/> <!-- Joint for NG and MD_L -->
+				</body>
+				<body name = "LinkCAM_3" pos = "13.5 -26 75.5" quat = "0 0.7071068 0.7071068 0">
+					<geom type = "mesh" mesh = "LinkageCAM"/>
+					<body name = "LinkCAM_m_3" pos = "-27 8 47" quat = "0 0.9396926 0 -0.3420201">
 						<geom type = "mesh" mesh = "LinkageCAM_m"/>
 					</body>
 				</body>
-				<body name = "MiddleLink_3" pos = "0 -10 17.5" quat = "-0.6408564 0.2988362 0.2988362 0.6408564">
-					<geom name = "ML_3" type = "mesh" mesh = "MiddleLinkage"/>
-					<body name = "EndEffector_3" pos = "-42 5 -50" quat ="0.976296 0 -0.2164396 0">
-						<geom name = "EE_3" type = "mesh" mesh = "EndEffector"/>
-					</body>
-				</body>
 			</body>
+			<!-- Leg 4 -->
 			<body name = "ServoMount_4" pos = "156.7 50 -40.8" axisangle = "0 0 1 1.57">
-				<geom class = "LinkageGuides" mesh = "ServoMount"/>
-				<geom name = "Servo_Guide_4" type = "mesh" mesh = "ServoLinkage" pos = "3 -18 23" quat = "0.7010574 -0.092296 0.092296 0.7010574"/>
-				<geom name = "NormalGuide_4" type = "mesh" mesh = "LinkageGuide" pos = "-1 27 66.5" quat = "-0.6743797 -0.2126311 -0.2126311 0.6743797"/>
-				<body name = "LinkCAM_4" pos = "14 -26 28" quat = "0.5 0.5 0.5 0.5">
-					<geom type = "mesh" mesh = "LinkageCAM" />
-					<body name = "LinkCAM_m_4" pos = "61.5 60.5 9" quat = "0 -0.4617486 0.8870108 0">
+				<geom type = "mesh" mesh = "ServoMount"/>
+				<body name = "Servo_Guide_4"  pos = "3 -17.25 21.5" quat = "0.7038514 -0.0677732 0.0677732 0.7038514">
+					<geom type = "mesh" mesh = "ServoLinkage"/>
+					<joint name = "SG_J_4" pos = "33 0 7.5"/> <!-- Joint for SG and Mount -->
+					<body name = "MiddleLink_4" pos = "-45.5 -4 43" quat = "0.9366722 0 0.3502074 0">
+						<geom name = "ML_4" type = "mesh" mesh = "MiddleLinkage"/>
+						<joint name = "ML_Joint_4" pos = "62.4 2 7.5"/>
+						<body name = "EndEffector_4" pos = "105.5 -5 -72.5" quat ="-0.4617486 0 0.8870108 0">
+							<geom name = "EE_4" type = "mesh" mesh = "EndEffector"/>
+							<joint name = "EE_Joint_4" pos = "121.25 2 33.5"/>
+						</body>
+					</body> 
+				</body>
+				<body name = "NormalGuide_4"  pos = "3 -22 31" quat = "0.6724985 0.218508 -0.218508 0.6724985">
+					<geom  type = "mesh" mesh = "LinkageGuide"/>
+					<joint name = "NG_Joint_4" pos = "53 2 7.5"/> <!-- Joint for NG and MD_L -->
+				</body>
+				<body name = "LinkCAM_4" pos = "13.5 -26 75.5" quat = "0 0.7071068 0.7071068 0">
+					<geom type = "mesh" mesh = "LinkageCAM"/>
+					<body name = "LinkCAM_m_4" pos = "-27 8 47" quat = "0 0.9396926 0 -0.3420201">
 						<geom type = "mesh" mesh = "LinkageCAM_m"/>
 					</body>
 				</body>
-				<body name = "MiddleLink_4" pos = "0 -10 17.5" quat = "-0.6408564 0.2988362 0.2988362 0.6408564">
-					<body name = "EndEffector_4" pos = "-42 5 -50" quat ="0.976296 0 -0.2164396 0">
-						<geom name = "EE_4" type = "mesh" mesh = "EndEffector"/>
-					</body>
-				</body>
 			</body>
+			<!-- Leg 5 -->
 			<body name = "ServoMount_5" pos = "118.8 136 -40.8" axisangle = "0 0 1 2.61799">
-				<geom class = "LinkageGuides" mesh = "ServoMount"/>
-				<geom name = "Servo_Guide_5" type = "mesh" mesh = "ServoLinkage" pos = "3 -18 23" quat = "0.7010574 -0.092296 0.092296 0.7010574"/>
-				<geom name = "NormalGuide_5" type = "mesh" mesh = "LinkageGuide" pos = "-1 27 66.5" quat = "-0.6743797 -0.2126311 -0.2126311 0.6743797"/>
-				<body name = "LinkCAM_5" pos = "14 -26 28" quat = "0.5 0.5 0.5 0.5">
-					<geom type = "mesh" mesh = "LinkageCAM" />
-					<body name = "LinkCAM_m_5" pos = "61.5 60.5 9" quat = "0 -0.4617486 0.8870108 0">
-						<geom type = "mesh" mesh = "LinkageCAM_m"/>
-					</body>
+				<geom type = "mesh" mesh = "ServoMount"/>
+				<body name = "Servo_Guide_5"  pos = "3 -17.25 21.5" quat = "0.7038514 -0.0677732 0.0677732 0.7038514">
+					<geom type = "mesh" mesh = "ServoLinkage"/>
+					<joint name = "SG_J_5" pos = "33 0 7.5"/> <!-- Joint for SG and Mount -->
+					<body name = "MiddleLink_5" pos = "-45.5 -4 43" quat = "0.9366722 0 0.3502074 0">
+						<geom name = "ML_5" type = "mesh" mesh = "MiddleLinkage"/>
+						<joint name = "ML_Joint_5" pos = "62.4 2 7.5"/>
+						<body name = "EndEffector_5" pos = "105.5 -5 -72.5" quat ="-0.4617486 0 0.8870108 0">
+							<geom name = "EE_5" type = "mesh" mesh = "EndEffector"/>
+							<joint name = "EE_Joint_5" pos = "121.25 2 33.5"/>
+						</body>
+					</body> 
 				</body>
-				<body name = "MiddleLink_5" pos = "0 -10 17.5" quat = "-0.6408564 0.2988362 0.2988362 0.6408564">
-					<geom name = "ML_5" type = "mesh" mesh = "MiddleLinkage"/>
-					<body name = "EndEffector_5" pos = "-42 5 -50" quat ="0.976296 0 -0.2164396 0">
-						<geom name = "EE_5" type = "mesh" mesh = "EndEffector"/>
+				<body name = "NormalGuide_5"  pos = "3 -22 31" quat = "0.6724985 0.218508 -0.218508 0.6724985">
+					<geom  type = "mesh" mesh = "LinkageGuide"/>
+					<joint name = "NG_Joint_5" pos = "53 2 7.5"/> <!-- Joint for NG and MD_L -->
+				</body>
+				<body name = "LinkCAM_5" pos = "13.5 -26 75.5" quat = "0 0.7071068 0.7071068 0">
+					<geom type = "mesh" mesh = "LinkageCAM"/>
+					<body name = "LinkCAM_m_5" pos = "-27 8 47" quat = "0 0.9396926 0 -0.3420201">
+						<geom type = "mesh" mesh = "LinkageCAM_m"/>
 					</body>
 				</body>
 			</body>
+			<!-- Leg 6 -->
 			<body name = "ServoMount_6" pos = "25.5 146.5 -40.8" axisangle = "0 0 1 -2.61799">
-				<geom class = "LinkageGuides" mesh = "ServoMount"/>
-				<geom name = "Servo_Guide_6" type = "mesh" mesh = "ServoLinkage" pos = "3 -18 23" quat = "0.7010574 -0.092296 0.092296 0.7010574"/>
-				<geom name = "NormalGuide_6" type = "mesh" mesh = "LinkageGuide" pos = "-1 27 66.5" quat = "-0.6743797 -0.2126311 -0.2126311 0.6743797"/>
-				<body name = "LinkCAM_6" pos = "14 -26 28" quat = "0.5 0.5 0.5 0.5">
-					<geom type = "mesh" mesh = "LinkageCAM" />
-					<body name = "LinkCAM_m_6" pos = "61.5 60.5 9" quat = "0 -0.4617486 0.8870108 0">
+				<geom type = "mesh" mesh = "ServoMount"/>
+				<body name = "Servo_Guide_6"  pos = "3 -17.25 21.5" quat = "0.7038514 -0.0677732 0.0677732 0.7038514">
+					<geom type = "mesh" mesh = "ServoLinkage"/>
+					<joint name = "SG_J_6" pos = "33 0 7.5"/> <!-- Joint for SG and Mount -->
+					<body name = "MiddleLink_6" pos = "-45.5 -4 43" quat = "0.9366722 0 0.3502074 0">
+						<geom name = "ML_6" type = "mesh" mesh = "MiddleLinkage"/>
+						<joint name = "ML_Joint_6" pos = "62.4 2 7.5"/>
+						<body name = "EndEffector_6" pos = "105.5 -5 -72.5" quat ="-0.4617486 0 0.8870108 0">
+							<geom name = "EE_6" type = "mesh" mesh = "EndEffector"/>
+							<joint name = "EE_Joint_6" pos = "121.25 2 33.5"/>
+						</body>
+					</body> 
+				</body>
+				<body name = "NormalGuide_6"  pos = "3 -22 31" quat = "0.6724985 0.218508 -0.218508 0.6724985">
+					<geom  type = "mesh" mesh = "LinkageGuide"/>
+					<joint name = "NG_Joint_6" pos = "53 2 7.5"/> <!-- Joint for NG and MD_L -->
+				</body>
+				<body name = "LinkCAM_6" pos = "13.5 -26 75.5" quat = "0 0.7071068 0.7071068 0">
+					<geom type = "mesh" mesh = "LinkageCAM"/>
+					<body name = "LinkCAM_m_6" pos = "-27 8 47" quat = "0 0.9396926 0 -0.3420201">
 						<geom type = "mesh" mesh = "LinkageCAM_m"/>
 					</body>
 				</body>
-				<body name = "MiddleLink_6" pos = "0 -10 17.5" quat = "-0.6408564 0.2988362 0.2988362 0.6408564">
-					<geom name = "ML_6" type = "mesh" mesh = "MiddleLinkage"/>
-					<body name = "EndEffector_6" pos = "-42 5 -50" quat ="0.976296 0 -0.2164396 0">
-						<geom name = "EE_6" type = "mesh" mesh = "EndEffector"/>
-					</body>
-				</body>
-			</body> -->
+			</body>
 		</body>
 	</worldbody>
 	<equality>
-		<connect name = "connect1" body1 = "NormalGuide_1" body2 = "MiddleLink_1" anchor = "7.7 6 7.5"/>
+		<connect name = "NG_ML_C1_A" body1 = "NormalGuide_1" body2 = "MiddleLink_1" anchor = "7.7 2 7.5"/>
+		<connect name = "NG_ML_C1_B" body1 = "NormalGuide_1" body2 = "MiddleLink_1" anchor = "7.7 -2 7.5"/>
+		<connect name = "LCm_EE_C1_A" body1 = "LinkCAM_m_1" body2 = "EndEffector_1" anchor = "7.7 2 7.5"/>
+		<connect name = "LCm_EE_C1_B" body1 = "LinkCAM_m_1" body2 = "EndEffector_1" anchor = "7.7 0 7.5"/>
+		
+		<connect name = "NG_ML_C2_A" body1 = "NormalGuide_2" body2 = "MiddleLink_2" anchor = "7.7 2 7.5"/>
+		<connect name = "NG_ML_C2_B" body1 = "NormalGuide_2" body2 = "MiddleLink_2" anchor = "7.7 -2 7.5"/>
+		<connect name = "LCm_EE_C2_A" body1 = "LinkCAM_m_2" body2 = "EndEffector_2" anchor = "7.7 2 7.5"/>
+		<connect name = "LCm_EE_C2_B" body1 = "LinkCAM_m_2" body2 = "EndEffector_2" anchor = "7.7 0 7.5"/>
+		
+		<connect name = "NG_ML_C3_A" body1 = "NormalGuide_3" body2 = "MiddleLink_3" anchor = "7.7 2 7.5"/>
+		<connect name = "NG_ML_C3_B" body1 = "NormalGuide_3" body2 = "MiddleLink_3" anchor = "7.7 -2 7.5"/>
+		<connect name = "LCm_EE_C3_A" body1 = "LinkCAM_m_3" body2 = "EndEffector_3" anchor = "7.7 2 7.5"/>
+		<connect name = "LCm_EE_C3_B" body1 = "LinkCAM_m_3" body2 = "EndEffector_3" anchor = "7.7 0 7.5"/>
+		
+		<connect name = "NG_ML_C4_A" body1 = "NormalGuide_4" body2 = "MiddleLink_4" anchor = "7.7 2 7.5"/>
+		<connect name = "NG_ML_C4_B" body1 = "NormalGuide_4" body2 = "MiddleLink_4" anchor = "7.7 -2 7.5"/>
+		<connect name = "LCm_EE_C4_A" body1 = "LinkCAM_m_4" body2 = "EndEffector_4" anchor = "7.7 2 7.5"/>
+		<connect name = "LCm_EE_C4_B" body1 = "LinkCAM_m_4" body2 = "EndEffector_4" anchor = "7.7 0 7.5"/>
+		
+		<connect name = "NG_ML_C5_A" body1 = "NormalGuide_5" body2 = "MiddleLink_5" anchor = "7.7 2 7.5"/>
+		<connect name = "NG_ML_C5_B" body1 = "NormalGuide_5" body2 = "MiddleLink_5" anchor = "7.7 -2 7.5"/>
+		<connect name = "LCm_EE_C5_A" body1 = "LinkCAM_m_5" body2 = "EndEffector_5" anchor = "7.7 2 7.5"/>
+		<connect name = "LCm_EE_C5_B" body1 = "LinkCAM_m_5" body2 = "EndEffector_5" anchor = "7.7 0 7.5"/>
+		
+		<connect name = "NG_ML_C6_A" body1 = "NormalGuide_6" body2 = "MiddleLink_6" anchor = "7.7 2 7.5"/>
+		<connect name = "NG_ML_C6_B" body1 = "NormalGuide_6" body2 = "MiddleLink_6" anchor = "7.7 -2 7.5"/>
+		<connect name = "LCm_EE_C6_A" body1 = "LinkCAM_m_6" body2 = "EndEffector_6" anchor = "7.7 2 7.5"/>
+		<connect name = "LCm_EE_C6_B" body1 = "LinkCAM_m_6" body2 = "EndEffector_6" anchor = "7.7 0 7.5"/>
 	</equality>
 	<!-- Motor Specifitaion and definitions here: -->
 	<actuator>
 	    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="SG_J_1" gear="150"/>
+		<motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="SG_J_2" gear="150"/>
+		<motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="SG_J_3" gear="150"/>
+		<motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="SG_J_4" gear="150"/>
+		<motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="SG_J_5" gear="150"/>
+		<motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="SG_J_6" gear="150"/>
 	</actuator> 
 </mujoco>
