@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.5.1-0-g916b5db  Build Version: 1.5.7152.31018
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="Prototype3">
+  <link
+    name="ChasisBase">
+    <inertial>
+      <origin
+        xyz="-2.93737256740201E-13 -1.34994793121734E-12 0.0103435923517205"
+        rpy="0 0 0" />
+      <mass
+        value="0.066859469825452" />
+      <inertia
+        ixx="7.76642951745106E-05"
+        ixy="3.31460932919553E-17"
+        ixz="-6.75985932837596E-18"
+        iyy="7.76642951714579E-05"
+        iyz="-3.10119639741514E-17"
+        izz="0.000150722179517806" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Prototype3/meshes/ChasisBase.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Prototype3/meshes/ChasisBase.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="ServoMount">
+    <inertial>
+      <origin
+        xyz="-0.0415224354812167 0.00208761514709732 -0.0372203299884433"
+        rpy="0 0 0" />
+      <mass
+        value="0.0331192203234856" />
+      <inertia
+        ixx="8.37167908353603E-06"
+        ixy="-8.42053414054577E-08"
+        ixz="-1.19144766952316E-06"
+        iyy="1.81834627691983E-05"
+        iyz="-6.01272301780878E-08"
+        izz="1.12828824327499E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Prototype3/meshes/ServoMount.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.796078431372549 0.823529411764706 0.937254901960784 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Prototype3/meshes/ServoMount.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="X"
+    type="fixed">
+    <origin
+      xyz="0.045001 0.081944 0.04"
+      rpy="1.0472 -1.5708 0" />
+    <parent
+      link="ChasisBase" />
+    <child
+      link="ServoMount" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="ServoGuide">
+    <inertial>
+      <origin
+        xyz="-0.0200331952950772 0.00200000000000003 -0.00750000000008827"
+        rpy="0 0 0" />
+      <mass
+        value="0.00198743362938564" />
+      <inertia
+        ixx="4.3132853730431E-08"
+        ixy="-1.40620704134015E-22"
+        ixz="-1.38205274706814E-18"
+        iyy="2.7637082433057E-07"
+        iyz="9.92616735063633E-24"
+        izz="2.38537793611834E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Prototype3/meshes/ServoGuide.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Prototype3/meshes/ServoGuide.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="X1"
+    type="fixed">
+    <origin
+      xyz="-0.052323 0.00821 -0.024796"
+      rpy="-3.1416 1.3799 -3.1416" />
+    <parent
+      link="ServoMount" />
+    <child
+      link="ServoGuide" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Middleink">
+    <inertial>
+      <origin
+        xyz="-0.0327773731059033 0.00225261079454074 -0.00749999999992382"
+        rpy="0 0 0" />
+      <mass
+        value="0.00423572685741874" />
+      <inertia
+        ixx="8.52427378576088E-08"
+        ixy="-1.76913362454925E-08"
+        ixz="-2.14653368957511E-22"
+        iyy="1.67636399153387E-06"
+        iyz="1.05879118406788E-22"
+        izz="1.61021730920572E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Prototype3/meshes/Middleink.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Prototype3/meshes/Middleink.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="X2"
+    type="fixed">
+    <origin
+      xyz="-0.022345 -0.004 -0.0068002"
+      rpy="0 0.71319 0" />
+    <parent
+      link="ServoGuide" />
+    <child
+      link="Middleink" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="EndEff1">
+    <inertial>
+      <origin
+        xyz="-0.0599862097180723 0.00192255925875102 -0.00570691143784613"
+        rpy="0 0 0" />
+      <mass
+        value="0.00718227776356807" />
+      <inertia
+        ixx="3.42130159166484E-07"
+        ixy="2.91372577191204E-08"
+        ixz="7.15235329191219E-07"
+        iyy="9.275841581772E-06"
+        iyz="-9.97317496978348E-10"
+        izz="8.95706179848326E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Prototype3/meshes/EndEff1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Prototype3/meshes/EndEff1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="X3"
+    type="fixed">
+    <origin
+      xyz="-0.060493 0 0.0030058"
+      rpy="0 -0.97159 -3.1416" />
+    <parent
+      link="Middleink" />
+    <child
+      link="EndEff1" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="NormalGuide">
+    <inertial>
+      <origin
+        xyz="0.0546253256392317 0.0781938393871435 0.0143033150394089"
+        rpy="0 0 0" />
+      <mass
+        value="0.00320628318530718" />
+      <inertia
+        ixx="7.68926035820425E-07"
+        ixy="-2.47254436458625E-07"
+        ixz="1.87128238770225E-07"
+        iyy="4.83421204924999E-07"
+        iyz="3.24115617080906E-07"
+        izz="5.79559750285014E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Prototype3/meshes/NormalGuide.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Prototype3/meshes/NormalGuide.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="X4"
+    type="continuous">
+    <origin
+      xyz="-0.04 0.002 -0.093466"
+      rpy="1.5708 -0.5236 1.5708" />
+    <parent
+      link="ServoMount" />
+    <child
+      link="NormalGuide" />
+    <axis
+      xyz="0.86603 -0.5 0" />
+  </joint>
+  <link
+    name="MiddleLink1">
+    <inertial>
+      <origin
+        xyz="-0.00717737310578931 0.00446261079454173 -5.6621374255883E-15"
+        rpy="0 0 0" />
+      <mass
+        value="0.00423572685741874" />
+      <inertia
+        ixx="8.52427378576087E-08"
+        ixy="-1.76913362454927E-08"
+        ixz="5.49976838290992E-18"
+        iyy="1.67636399153387E-06"
+        iyz="6.35804106032759E-20"
+        izz="1.61021730920572E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Prototype3/meshes/MiddleLink1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Prototype3/meshes/MiddleLink1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="X5"
+    type="continuous">
+    <origin
+      xyz="0.056813 0.098403 0.00071871"
+      rpy="0 0.90406 -2.0944" />
+    <parent
+      link="NormalGuide" />
+    <child
+      link="MiddleLink1" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  <link
+    name="Link1">
+    <inertial>
+      <origin
+        xyz="-0.0274659007967475 -0.010387726120942 0.0414001657903223"
+        rpy="0 0 0" />
+      <mass
+        value="0.00289090545790533" />
+      <inertia
+        ixx="7.67623426442665E-08"
+        ixy="-7.91339639081434E-09"
+        ixz="-9.45776434829672E-08"
+        iyy="6.13151501391733E-07"
+        iyz="-1.52901590336398E-09"
+        izz="5.47973198095764E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Prototype3/meshes/Link1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Prototype3/meshes/Link1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="X6"
+    type="fixed">
+    <origin
+      xyz="-0.0583588989435086 0.00820999999999988 -0.0165"
+      rpy="-3.14159265358979 1.37992970103738 -3.14159265358979" />
+    <parent
+      link="ServoMount" />
+    <child
+      link="Link1" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="LinkFloat">
+    <inertial>
+      <origin
+        xyz="-0.0267659390777113 -0.013435466568413 -2.49522624784504E-14"
+        rpy="0 0 0" />
+      <mass
+        value="0.00398250530814923" />
+      <inertia
+        ixx="8.84221294803347E-08"
+        ixy="5.56275668066796E-08"
+        ixz="-5.65791538986271E-22"
+        iyy="1.24026781415467E-06"
+        iyz="-2.64697796016969E-23"
+        izz="1.19189326297345E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Prototype3/meshes/LinkFloat.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Prototype3/meshes/LinkFloat.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="X7"
+    type="continuous">
+    <origin
+      xyz="-0.0428679238628529 0 0.038424207421879"
+      rpy="0 -0.888168022785252 0" />
+    <parent
+      link="Link1" />
+    <child
+      link="LinkFloat" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  <link
+    name="EndEff">
+    <inertial>
+      <origin
+        xyz="-0.0199862097179121 0.00592255925874981 0.00179308856192947"
+        rpy="0 0 0" />
+      <mass
+        value="0.00718227776356806" />
+      <inertia
+        ixx="3.42130159157022E-07"
+        ixy="2.9137257719121E-08"
+        ixz="7.1523532913424E-07"
+        iyy="9.275841581772E-06"
+        iyz="-9.9731749678586E-10"
+        izz="8.95706179849272E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Prototype3/meshes/EndEff.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Prototype3/meshes/EndEff.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="X8"
+    type="continuous">
+    <origin
+      xyz="-0.0448000000000953 0 0"
+      rpy="-3.14159265358979 -0.568640506712369 0" />
+    <parent
+      link="LinkFloat" />
+    <child
+      link="EndEff" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+</robot>

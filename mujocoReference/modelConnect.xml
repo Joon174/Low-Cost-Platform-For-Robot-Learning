@@ -1,0 +1,74 @@
+<mujoco model='humanTest'>
+    <compiler angle="degree" inertiafromgeom='auto'/>
+
+	<default>
+		<joint limited='true' damping='1' armature='1'/>
+        <geom contype='3' conaffinity='1' condim='1' rgba='0.8 0.6 .4 1'
+        	margin="0.001" solref=".02 1" solimp=".8 .8 .01" material="geom"/>
+        <motor ctrlrange='-40 40' ctrllimited='true'/>
+    </default>
+
+    <option timestep='0.01' iterations="50" tolerance="1e-10" solver="Newton" jacobian="dense" cone="elliptic"/>
+
+    <size nstack="1000000"/>
+
+    <visual>
+        <global offwidth="600" offheight="800"/>
+    </visual>
+	
+	<asset>
+		<texture type='skybox' builtin='gradient' width='100' height='100' rgb1='.4 .6 .8' 
+            rgb2='0 0 0'/>  
+        <texture name='texgeom' type='cube' builtin='flat' mark='cross' width='127' height='1278' 
+            rgb1='0.8 0.6 0.4' rgb2='0.8 0.6 0.4' markrgb='1 1 1'/>  
+        <texture name='texplane' type='2d' builtin='checker' rgb1='.2 .3 .4' rgb2='.1 0.15 0.2' 
+            width='100' height='100'/>  
+        <material name='MatPlane' reflectance='0' texture='texplane' texrepeat='1 1' texuniform='true'/>
+        <material name='geom' texture='texgeom' texuniform='true'/>
+    </asset>
+
+    <worldbody>
+		<geom name='floor' pos='0 0 0' size='5 5 0.125' type='plane' material='MatPlane' condim='3'/>
+		<light mode = 'track' directional='true' diffuse='.8 .8 .8' specular='0.3 0.3 0.3' pos='0 0 2.0' dir='0 0 -1'/>
+		
+		<body name='pelvis'>
+			<freejoint name='rootOnPelvis'/>
+			<geom name='g_pelvis' type='capsule' fromto='0 -0.2 1.1 0 0.2 1.1' size='0.05'/>
+		</body>
+		
+		<body name='Lfoot' pos='0 0.2 0.05'>
+			<freejoint name='LrootOnFoot'/>
+			<geom name='g_Lfoot' type='capsule' fromto='0 0 0 0.2 0 0' size='0.05'/>
+			<body name = 'Lshank' pos='0 0 0.05'>
+				<joint name="Lankle" type = 'hinge' axis = '0 1 0' range = '-100 100'/>
+				<geom name='g_Lshank' type='capsule' fromto='0 0 0 0 0 0.5' size='0.05'/>
+				<body name='Lthigh' pos='0 0 0.5'>
+				<joint name="Lknee" type = 'hinge' pos='0 0 0' axis = '0 -1 0' range = '-5 150'/>
+				<geom name='g_Lthigh' type='capsule' fromto = '0 0 0 0 0 0.5' size='0.05'/>
+				</body>
+			</body>
+		</body>
+		
+		<body name='Rfoot' pos='0 -0.2 0.05'>
+			<freejoint name='RrootOnFoot'/>
+			<geom name='g_Rfoot' type='capsule' fromto='0 0 0 0.2 0 0' size='0.05'/>
+			<body name = 'Rshank' pos='0 0 0.05'>
+				<joint name="Rankle" type = 'hinge' axis = '0 1 0' range = '-100 100'/>
+				<geom name='g_Rshank' type='capsule' fromto='0 0 0 0 0 0.5' size='0.05'/>
+				<body name = 'Rthigh' pos='0 0 0.5'>
+				<joint name="Rknee" type = 'hinge' pos='0 0 0' axis = '0 -1 0' range = '-5 150'/>
+				<geom name='g_Rthigh' type='capsule' fromto = '0 0 0 0 0 0.5' size='0.05'/>
+				</body>
+			</body>
+		</body>
+		
+	</worldbody>
+	
+	<equality>
+	<connect name='Lhip1' body1='Lthigh' body2='pelvis' anchor='0 0.025 0.5'/>
+	<connect name='Lhip2' body1='Lthigh' body2='pelvis' anchor='0 -0.025 0.5'/>
+	<connect name='Rhip1' body1='Rthigh' body2='pelvis' anchor='0 0.025 0.5'/>
+	<connect name='Rhip2' body1='Rthigh' body2='pelvis' anchor='0 -0.025 0.5'/>
+	</equality>
+
+</mujoco>

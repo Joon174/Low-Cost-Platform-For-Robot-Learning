@@ -55,23 +55,25 @@
 			Distances: mm, mass: grams, rotational unit: radian						-->
 		<body name = "Prototype_3_Chasis" pos = "0 0 100">
 			<geom type = "mesh" mesh = "ChasisBase"/>
+			<joint armature="0" damping="0" limited="false" margin="0.01" name="root" pos="0 0 0" type="free"/>
+			<!-- @todo Add Intertial properties and mass -->
 			<body name = "ServoMount_1" pos = "-30.2 70.625 -40.8" quat = "-0.7071068 0 0 0.7071068">
 				<geom type = "mesh" mesh = "ServoMount"/>
 				<body name = "Servo_Guide_1"  pos = "3 -17.25 21.5" quat = "0.7038514 -0.0677732 0.0677732 0.7038514">
 					<geom type = "mesh" mesh = "ServoLinkage"/>
 					<joint name = "SG_J_1" pos = "33 0 7.5"/> <!-- Joint for SG and Mount -->
-					<body name = "MiddleLink_1" pos = "8.5 3 -3" quat = "0 0.3338069 0 0.9426415">
+					<body name = "MiddleLink_1" pos = "-45.5 -5 43" quat = "0.9366722 0 0.3502074 0">
 						<geom name = "ML_1" type = "mesh" mesh = "MiddleLinkage"/>
-						<joint pos = "7.60 2 7.5"/>
-						<body name = "EndEffector_1" pos = "0 5 -95" quat ="0.8870108 0 -0.4617486 0">
+						<joint name = "ML_Joint_1" pos = "62.4 2 7.5"/>
+						<body name = "EndEffector_1" pos = "105.5 -5 -72.5" quat ="-0.4617486 0 0.8870108 0">
 							<geom name = "EE_1" type = "mesh" mesh = "EndEffector"/>
-							<joint pos = "118.60 2 7.5"/>
+							<joint name = "EE_Joint_1" pos = "121.25 2 33.5"/>
 						</body>
 					</body> 
 				</body>
 				<body name = "NormalGuide_1"  pos = "3 -22 31" quat = "0.6724985 0.218508 -0.218508 0.6724985">
 					<geom  type = "mesh" mesh = "LinkageGuide"/>
-					<joint pos = "52.5 2 7.5"/> <!-- Joint for NG and MD_L -->
+					<joint name = "NG_Joint_1" pos = "53 2 7.5"/> <!-- Joint for NG and MD_L -->
 				</body>
 				<!-- <body name = "LinkCAM_1" pos = "13.5 -26 75.5" quat = "0 0.7071068 0.7071068 0">
 					<geom type = "mesh" mesh = "LinkageCAM"/>
@@ -179,11 +181,10 @@
 		</body>
 	</worldbody>
 	<equality>
-		<connect body1 = "NormalGuide_1" body2 = "" anchor = "0 0 0"/>
+		<connect name = "connect1" body1 = "NormalGuide_1" body2 = "MiddleLink_1" anchor = "7.7 6 7.5"/>
 	</equality>
 	<!-- Motor Specifitaion and definitions here: -->
 	<actuator>
 	    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="SG_J_1" gear="150"/>
 	</actuator> 
-	
 </mujoco>
