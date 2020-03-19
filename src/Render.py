@@ -1,25 +1,16 @@
-from mujoco_py import load_model_from_xml, MjSim, MjViewer
-import math
-import os
+import gym
 
-MODEL_XML= """ 
-<?xml version="1.0"	?>
-<mujoco model = "Spider Model">
-	<default class="main">
-		<geom rgba="1 0 0 1"/>
-		<default class="sub">
-			<geom rgba = "0 1 0 1"/>
-		</default>
-	</default>
-	
-	<worldbody>
-		<geom type="box"/>
-		<body childclass="sub">
-			<geom type="ellipsoid"/>
-			<geom type="sphere" rgba="0 0 1 0"/>
-			<geom type="cylinder" class="main"/>
-		</geom>
-	</worldbody>
-</mujoco>
+gym.envs.register(
+	id = 'QUEEN-v1',
+	entry_point = 'env.envRegister:QUEENv1',
+	max_episode_steps = 1000,
+	reward_threshold = 4800.0,
+)
 
-"""
+env = gym.make('QUEEN-v1')
+env.reset()
+while True:
+	env.render()
+	action = env.action_space.sample()
+	env.step(action)
+	print(action)
