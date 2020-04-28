@@ -1,5 +1,0 @@
-#include "CPPuTest.h"
-
-TEST()
-{
-}

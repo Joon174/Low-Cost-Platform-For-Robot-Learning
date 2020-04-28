@@ -1,3 +1,6 @@
+## @package train.py
+#  @brief Contains a PPO Agent to train an agent to learn to follow a certain trajectory.
+
 import gym
 import numpy as np
 from gym import wrappers
@@ -9,4 +12,4 @@ import signal
 from time import sleep
 import matplotlib.pyplot as plt
 
-class 
+## Create an instance of the class pls
