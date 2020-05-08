@@ -1,0 +1,6 @@
+README.md
+LowCostPlatform.egg-info/PKG-INFO
+LowCostPlatform.egg-info/SOURCES.txt
+LowCostPlatform.egg-info/dependency_links.txt
+LowCostPlatform.egg-info/requires.txt
+LowCostPlatform.egg-info/top_level.txt

@@ -61,7 +61,7 @@
 		<geom name='floor' material="floor_mat" pos='0 0 0' size='10 10 10'  type='plane' />
 		
 		<!-- QUEEN Robot -->
-		<body name = "QUEEN_Chasis" pos = "0 0 1.5" quat = "0 0 0 1">
+		<body name = "QUEEN_Chasis" pos = "0 0 0.29" quat = "0 0 -0.1132032 0.9935719">
 			<geom type = "mesh" mesh = "ChasisBase"/>
 			<inertial pos = "0 0 0" mass = "0.06677" diaginertia = "0.007751589 0.015043022 0.007751589"/>
 			<joint armature="0" damping="0" limited="false" margin="0.01" name="root" pos="0 0 0" type="free"/>
