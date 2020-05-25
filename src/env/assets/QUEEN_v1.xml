@@ -63,12 +63,12 @@
 		<!-- QUEEN Robot -->
 		<body name = "QUEEN_Chasis" pos = "0 0 1.5" quat = "0 0 0 1">
 			<geom type = "mesh" mesh = "ChasisBase"/>
-			<inertial pos = "0 0 0" mass = "0.06677" diaginertia = "0.007751589 0.015043022 0.007751589"/>
+			<inertial pos = "0 0 0" mass = "1" diaginertia = "0.007751589 0.015043022 0.007751589"/>
 			<joint armature="0" damping="0" limited="false" margin="0.01" name="root" pos="0 0 0" type="free"/>
 			<!-- LEG 1 -->
 			<body name = "ServoMount_LEG1" pos = "0.7775 0.30 -0.305" quat = "0 0 0 1">
 				<geom type = "mesh" mesh = "ServoMount"/>
-				<inertial pos = "0 0 0" mass = "0.04476" diaginertia = "0.00972502 0.03012071 0.03375679"/>
+				<inertial pos = "0 0 0" mass = "0.62476" diaginertia = "0.00972502 0.03012071 0.03375679"/>
 				<body name = "ServoLink1_LEG1" pos = "-0.04 0.345 0.36" quat = "0.5 0.5 0.5 0.5">
 					<geom type = "mesh" mesh = "ServoLink"/>
 					<inertial pos = "0 0 0" mass = "0.00229" diaginertia = "0.00003682 0.00040776 0.00043909" />
