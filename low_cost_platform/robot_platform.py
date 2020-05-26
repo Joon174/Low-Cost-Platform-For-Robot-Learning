@@ -2,7 +2,7 @@
 
 # import all API packages for kernel operation:
 from include.control_interface import ServoControl, MPU6050Control, PiCameraControl
-from incude.event_thread_handler import ThreadEvent
+from include.event_thread_handler import ThreadEvent
 
 class RobotPlatform(ServoControl, MPU6050Control, PiCameraControl, ThreadEvent):
     def __init__(self, servo_output_pins):

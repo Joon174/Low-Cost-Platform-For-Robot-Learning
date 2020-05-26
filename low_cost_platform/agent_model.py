@@ -9,10 +9,10 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 # import custom interface script for the agent
-from control_interface import RobotPlatform
-from envrionment import KernelAPI
+from robot_platform import RobotPlatform
+#from environment import KernelAPI
 
-class Agent(RobotPlatform, KernelAPI):
+class Agent(RobotPlatform):
     def __init__(self, model):
         super(Agent, self).__init__()
         RobotPlatform.__init__(self, servo_control_pins)

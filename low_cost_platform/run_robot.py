@@ -2,7 +2,7 @@
 #
 import os
 import torch
-from control_interface import RobotPlatform
+from robot_platform import RobotPlatform
 from agent_model import Agent
 
 #---------------------------

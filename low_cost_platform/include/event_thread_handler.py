@@ -6,7 +6,7 @@ import threading
 
 # todo: Research into methods of calling threads based on a dictionary style
 class ThreadEvent(threading.Thread):
-    def __init__(self, action_space, time_delay=0.001):
+    def __init__(self, action_space, time_delay=0.005):
         super(ThreadEvent, self).__init__()
         self.__flag = threading.Event()
         self.__flag.set()

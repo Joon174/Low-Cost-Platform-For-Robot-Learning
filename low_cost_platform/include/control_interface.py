@@ -3,12 +3,14 @@
 
 # packages for processing
 import numpy as np
+import math
 import cv2
 
 # packages for kernel operations
 import wiringpi
 import picamera
 from PIL import Image
+from kalman_filter import Kalman
 
 class ServoControl:
     def __init__(self, servo_pins_list):
@@ -55,6 +57,14 @@ class MPU6050Control:
                   }
         self.device = self._initConnection()
         self._initMPU()
+        self.dt = 0.1 #Threaded at 100ms
+        self.kalman_X = Kalman()
+        self.kalman_Y = Kalman()
+        self._initPosition()
+        self.kalman_X.setAngle(self.roll)
+        self.kalman_Y.setAngle(self.pitch)
+        self.kalmanAngleX = 0
+        self.kalmanAngleY = 0
         
     def _initConnection(self):
         try:
@@ -76,6 +86,9 @@ class MPU6050Control:
         except AttributeError:
             print("Cannot write to config registers. Exiting...\n")
             exit(0)
+            
+    def _initPosition(self):
+        self.getPlatformAngle()
     
     # MPU6050 Sensor methods:
     def _readData8bit(self, register_name):
@@ -96,34 +109,46 @@ class MPU6050Control:
     def _writeData16bit(self, register_name, data):
         return wiringpi.wiringPiI2CWriteReg16(self.device, self.registers[register_name], data)
     
-    def getAccData(self):
-        acc_x = self._readData16bit("ACCEL_XOUT_H")/16384
-        acc_y = self._readData16bit("ACCEL_YOUT_H")/16384
-        acc_z = self._readData16bit("ACCEL_ZOUT_H")/16384
-        
-        return filtered_acc_x, filtered_acc_y, filtered_acc_z
+    def _getAccData(self):
+        self.acc_x = self._readData16bit("ACCEL_XOUT_H")/16384
+        self.acc_y = self._readData16bit("ACCEL_YOUT_H")/16384
+        self.acc_z = self._readData16bit("ACCEL_ZOUT_H")/16384
     
-    def getGyroData(self):
-        gyro_x = self._readData16bit("GYRO_XOUT_H")/131
-        gyro_y = self._readData16bit("GYRO_YOUT_H")/131
-        gyro_z = self._readData16bit("GYRO_ZOUT_H")/131
-        
-        return filtered_gyro_x, filtered_gyro_y, filtered_gyro_z
+    def _getGyroData(self):
+        self.gyro_x = self._readData16bit("GYRO_XOUT_H")/131
+        self.gyro_y = self._readData16bit("GYRO_YOUT_H")/131
+        self.gyro_z = self._readData16bit("GYRO_ZOUT_H")/131
     
-    def kalmanFilter(self, data):
-        # todo: Implement Kalman Filter with Code
+    def kalmanFilter(self):
+        filteredData = kf_update(self.roll_list)
         return filteredData
     
-    def platformAngle(self):
-        # todo: Implement code to extract angle of platform
-        return
-    def platformVelocity(self):
-        # todo: Implement code to extract velocity of platform
-        return
-    def platformAcceleration(self):
-        # todo: Implement code to extract acceleration of platform
-        return
+    def getplatformAngle(self):
+        self.roll = math.atan2(self.acc_y, self.acc_z)
+        self.pitch = math.atan(-self.acc_x/math.sqrt((self.acc_y**2)+(self.acc_z**2)))
+    
+    def processAngle(self):
+        if((self.pitch < -90 and self.kalAngleY >90) or (self.pitch > 90 and self.kalAngleY < -90)):
+            self.kalmanY.setAngle(self.pitch)
+            self.kalAngleY   = self.pitch
+            self.gyroYAngle  = self.pitch
+        else:
+            kalAngleY = kalmanY.getAngle(pitch,gyroYRate,dt)
 
+        if(abs(kalAngleY)>90):
+            self.gyro_x  = -self.gyro_x
+            kalAngleX = kalmanX.getAngle(roll,gyroXRate,dt)
+
+        self.gyroXAngle = self.gyro_x*self.dt
+        self.gyroYAngle = self.gyro_y*self.dt
+        
+        if (self.gyroXAngle < -180) or (self.gyroXAngle > 180):
+            self.gyroXAngle = kalAngleX
+        if (self.gyroYAngle < -180) or (self.gyroYAngle > 180):
+            self.gyroYAngle = kalAngleY
+        
+        return kalAngleX, kalAngleY
+        
 class PiCameraControl:
     def __init__(self, camera_resolution):
         super(PiCameraControl, self).__init__(camera_resolution)
@@ -139,7 +164,7 @@ class PiCameraControl:
             print("Could not start the camera, please check the connections. Exiting.\n")
             print("Tip:\t You may need to initialize the camera using raspi-config.\n")
             exit(0)
-    # todo: Verify that the function works and it can indeed capture images and feed to network.
+    # todo: Verify capture images and feed to network.
     def captureImage(self):
         return self.camera.capture(self.image, 'rgb')
         
