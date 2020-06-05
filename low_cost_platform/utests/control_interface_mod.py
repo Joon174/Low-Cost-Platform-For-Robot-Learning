@@ -13,7 +13,8 @@ from PIL import Image
 class ServoControl:
     def __init__(self):
         super(ServoControl, self).__init__()
-        self._init_pos_signal = 1100;
+        self._init_pos_signal = 1100
+        self._emulateAgentAction = 1750
 
     def _initServo(self, servo, pinNumber):
         self.servo = servo
@@ -27,3 +28,4 @@ class ServoControl:
         elif pwmSignal > servo.max_width:
             pwmSignal = servo.max_width
         return pwmSignal
+    

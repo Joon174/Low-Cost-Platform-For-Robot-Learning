@@ -18,6 +18,9 @@ class ServoControl:
         self.output = 1
         self.input = 0
         self._servo_pins = servo_pins_list
+        self.servo_pos = 0
+        self._servo_pwm_min = 550
+        self._servo_pwm_max = 3000
         self._init_pos_signal = 11;
         self._init_servos()
 
@@ -26,17 +29,27 @@ class ServoControl:
             wiringpi.pinMode(self._servo_pins[i], self.output)
             wiringpi.softPwmCreate(self._servo_pins[i], 0, 200)
             wiringpi.softPwmWrite(self._servo_pins[i], self._init_pos_signal)
-        return
+    
+    def _init_servo_pos(self):
+        for i in range(len(self._servo_pins)):
+            wiringpi.softPwmCreate(self._servo_pins[i], 0, 200)
+            wiringpi.softPwmWrite(self._servo_pins[i], self._init_pos_signal)        
     
     ## Motor Functions
     def _actuate_Motor(self, servo_num, signal):
-        wiringpi.softPwmWrite(self._servo_pins[servo_num], TEST_SIGNAL)
+        self.servo_pos = signal
+        wiringpi.softPwmWrite(self._servo_pins[servo_num], signal)
         wiringpi.delay(1)
-        return
             
-    def moveMotor(self, signal_pwm):
-        self._actuate_Motor(signal_pwm)
-        return
+    def moveMotor(self, servo_num, signal_pwm):
+        self._actuate_Motor(servo_num, signal_pwm)
+    
+    # Returns Sensor in radians 
+    def readSensor(self):
+        deltaIn = self.servo_pos - self._servo_pwn_min
+        rangeIn = self._servo_pwm_max - self._servo_pwm_min
+        rangeOut = 3.1459
+        return (deltaIn * rangeOut) / rangeIn
 
 class MPU6050Control:
     def __init__(self):
@@ -120,7 +133,7 @@ class MPU6050Control:
         self.gyro_z = self._readData16bit("GYRO_ZOUT_H")/131
     
     def kalmanFilter(self):
-        filteredData = kf_update(self.roll_list)
+        #filteredData = kf_update(self.roll_list)
         return filteredData
     
     def getplatformAngle(self):

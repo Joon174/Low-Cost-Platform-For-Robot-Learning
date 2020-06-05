@@ -13,15 +13,11 @@ from robot_platform import RobotPlatform
 #from environment import KernelAPI
 
 class Agent(RobotPlatform):
-    def __init__(self, model):
+    def __init__(self, model_architecture, servo_control_pins):
         super(Agent, self).__init__()
-        RobotPlatform.__init__(self, servo_control_pins)
-        self.model = nn.Sequential(nn.Linear(4, 128),
-                                   nn.ReLU(),
-                                   nn.Linear(128, 128),
-                                   nn.ReLU(),
-                                   nn.Linear(128, 1)
-                                   )
+        self.model = model_architecture
+        self.robot = RobotPlatform.__init__(self, servo_control_pins)
+        self.done = False
     def _initRobotPlatform(self):
         self._init_servos()
         self._init_MPU()
@@ -29,15 +25,11 @@ class Agent(RobotPlatform):
     
     def loadModel(path, file_name):
         model_path = os.path.join(os.getcwd(), path, file_name)    
-        model = torch.load(model_path)
-        return model
+        self.model = torch.load(model_path)
     
-    def train(self):
-        return
-    
-    def validate(self):
-        return
-        
-    def test(self):
-        # Init Pos signal is defined as such:
-        init_pos_signal = 9
+    def evaluate(self):
+        self.robot.reset()
+        while not done:
+            position = self.robot.readSensor("S3003")
+            action = self.model(position)
+            next_state, reward, done, info = self.robot.step(servo_pin, signal)
