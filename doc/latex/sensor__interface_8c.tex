@@ -1,0 +1,38 @@
+\hypertarget{sensor__interface_8c}{}\doxysection{C\+:/\+Users/dell/git/\+Low-\/\+Cost-\/\+Platform/\+Raspberry\+Pi\+Scripts/sensor\+\_\+interface/src/sensor\+\_\+interface.c File Reference}
+\label{sensor__interface_8c}\index{C:/Users/dell/git/Low-\/Cost-\/Platform/RaspberryPiScripts/sensor\_interface/src/sensor\_interface.c@{C:/Users/dell/git/Low-\/Cost-\/Platform/RaspberryPiScripts/sensor\_interface/src/sensor\_interface.c}}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{sensor__interface_8c_a6a26d06d2f863deedd849612a6c2a4e4}{M\+P\+U6050\+\_\+\+A\+D\+D\+R\+E\+SS}}~0x68
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{sensor__interface_8c_a9712063f2bb3bd15d85b6d6114eb4845}{init\+I2C}} (uint8\+\_\+t $\ast$comm\+Pin)
+\item 
+struct int \mbox{\hyperlink{sensor__interface_8c_a5cfd6aed27706958c6a8273a5c1ddd02}{read\+I\+MU}} (uint8\+\_\+t $\ast$sensor\+Pin, uint8\+\_\+t $\ast$sensor\+Value)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{sensor__interface_8c_a6a26d06d2f863deedd849612a6c2a4e4}\label{sensor__interface_8c_a6a26d06d2f863deedd849612a6c2a4e4}} 
+\index{sensor\_interface.c@{sensor\_interface.c}!MPU6050\_ADDRESS@{MPU6050\_ADDRESS}}
+\index{MPU6050\_ADDRESS@{MPU6050\_ADDRESS}!sensor\_interface.c@{sensor\_interface.c}}
+\doxysubsubsection{\texorpdfstring{MPU6050\_ADDRESS}{MPU6050\_ADDRESS}}
+{\footnotesize\ttfamily \#define M\+P\+U6050\+\_\+\+A\+D\+D\+R\+E\+SS~0x68}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{sensor__interface_8c_a9712063f2bb3bd15d85b6d6114eb4845}\label{sensor__interface_8c_a9712063f2bb3bd15d85b6d6114eb4845}} 
+\index{sensor\_interface.c@{sensor\_interface.c}!initI2C@{initI2C}}
+\index{initI2C@{initI2C}!sensor\_interface.c@{sensor\_interface.c}}
+\doxysubsubsection{\texorpdfstring{initI2C()}{initI2C()}}
+{\footnotesize\ttfamily int init\+I2C (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{comm\+Pin }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{sensor__interface_8c_a5cfd6aed27706958c6a8273a5c1ddd02}\label{sensor__interface_8c_a5cfd6aed27706958c6a8273a5c1ddd02}} 
+\index{sensor\_interface.c@{sensor\_interface.c}!readIMU@{readIMU}}
+\index{readIMU@{readIMU}!sensor\_interface.c@{sensor\_interface.c}}
+\doxysubsubsection{\texorpdfstring{readIMU()}{readIMU()}}
+{\footnotesize\ttfamily struct int read\+I\+MU (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{sensor\+Pin,  }\item[{uint8\+\_\+t $\ast$}]{sensor\+Value }\end{DoxyParamCaption})}
+

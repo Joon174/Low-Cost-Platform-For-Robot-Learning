@@ -175,16 +175,21 @@ class ActorCritic(nn.Module):
         self.critic = nn.Sequential(
             nn.Linear(num_inputs, hidden_size),
             nn.ReLU(),
+            nn.Linear(hidden_size, hidden_size),
+            nn.ReLU(),
             nn.Linear(hidden_size, 1)
         )
         
         self.actor = nn.Sequential(
             nn.Linear(num_inputs, hidden_size),
             nn.ReLU(),
-            nn.Linear(hidden_size, num_outputs),
+            nn.Linear(hidden_size, hidden_size),
+            nn.ReLU(),
+            nn.Linear(hidden_size, num_outputs)
         )
         self.log_std = nn.Parameter(torch.ones(1, num_outputs) * std)
         self.apply(init_weights)
+        self.optimizer = 0
 
     def forward(self, x):
         value = self.critic(x)
@@ -202,7 +207,7 @@ class ActorCritic(nn.Module):
             rand_ids = np.random.randint(0, batch_size, mini_batch_size)
             yield states[rand_ids, :], actions[rand_ids, :], log_probs[rand_ids, :], returns[rand_ids, :], advantage[rand_ids, :]
 
-    def ppo_update(self, ppo_epochs, mini_batch_size, states, actions, log_probs, returns, advantages, clip_param=0.2):
+    def ppo_update(self, ppo_epochs, mini_batch_size, states, actions, log_probs, returns, advantages, clip_param=0.4):
         for _ in range(ppo_epochs):
             for state, action, old_log_probs, return_, advantage in self.ppo_iter(mini_batch_size, states, actions, log_probs, returns, advantages):
                 dist, value = self.forward(state)

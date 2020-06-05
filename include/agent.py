@@ -83,18 +83,23 @@ class Agent:
     #  Method for Testing the model against the single instance of the environment. This will allow the model to be verified
     #  if trained properly. User can validate the performance of the model by calling this function and pass the environment
     #  and model through it.
-    def test_env(self, env, model, vis=False):
+    def test_env(self, env, model, vis=False, plot=False):
         state = env.reset()
         if vis: env.render()
         done = False
         total_reward = 0
+        time_step = 0
         while not done:
             state = torch.cuda.FloatTensor(state).unsqueeze(0)
             dist, _ = model(state)
-            next_state, reward, done, _ = env.step(dist.sample().cpu().numpy()[0])
+            next_state, reward, done, info = env.step(dist.sample().cpu().numpy()[0])
             state = next_state
+            if plot:
+                self.debugger.plotValues(time_step, [info['Model Leg Pos (radians)'], info['Target Leg Pos (radians)']])
             if vis: env.render()
             total_reward += reward
+            time_step += 1
+        self.debugger.showPlot()
         print("Test Reward: {0}".format(total_reward))
         return total_reward
 
@@ -103,10 +108,17 @@ class Agent:
     #  model architecture in addition to the weights.
     #  @param directory Folder the model will be saved to
     #  @param file_name Name of the file which the model will be saved. 
-    def saveWeights(self, directory, file_name):
+    def saveWeights(self, directory, file_name, model):
         if file_name is None:
             file_name = "proof_of_concept_model.pt"
         if directory is None:
             directory = "modelWeights" 
         model_path = os.path.join(os.getcwd(), directory, file_name).replace("\\", "/")
-        torch.save(self.model, model_path)
+        torch.save(model, model_path)
+
+    def plotResults(self, results):
+        plt.figure(figsize=(12,8))
+        plt.plot(results, label='Rewards')
+        plt.xlabel('Frames')
+        plt.ylabel('Rewards')
+        plt.show()

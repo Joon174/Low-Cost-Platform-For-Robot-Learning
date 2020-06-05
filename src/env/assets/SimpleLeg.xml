@@ -96,7 +96,7 @@
 				</body>
 				<body name = "ServoHornMount_LEG1" pos = "0.45 0.86 0.53" quat = "-0.4055798 -0.579228 0.4055798 0.579228">
 					<geom type = "mesh" mesh = "ServoHornMount"/>
-					<joint name = "SG1_HM_1" pos = "0.38 0.075 0"/>
+					<joint name = "SG1_HM_1" pos = "0.38 0.075 0" damping = "100"/>
 					<body name = "ServoHornLink_LEG1" pos = "0.34 -0.32 0.1" quat = "0 0 1 0">
 						<geom type = "mesh" mesh = "ServoHornLink"/>
 					</body>
@@ -115,6 +115,6 @@
 	
 	<!-- Actuators -->
 	<actuator>
-		<motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="SG1_HM_1" gear="480"/>
+		<motor ctrllimited="true" ctrlrange="-5.0 5.0" joint="SG1_HM_1" gear="480"/>
 	</actuator>
 </mujoco>

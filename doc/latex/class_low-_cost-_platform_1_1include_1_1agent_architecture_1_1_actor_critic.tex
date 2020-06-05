@@ -1,0 +1,127 @@
+\hypertarget{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_actor_critic}{}\doxysection{Low-\/\+Cost-\/\+Platform.include.\+agent\+Architecture.\+Actor\+Critic Class Reference}
+\label{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_actor_critic}\index{Low-\/Cost-\/Platform.include.agentArchitecture.ActorCritic@{Low-\/Cost-\/Platform.include.agentArchitecture.ActorCritic}}
+
+
+Actor Crtiic A Linear Model with the Actor-\/\+Crtitc (A2C) architecture.  
+
+
+Inheritance diagram for Low-\/\+Cost-\/\+Platform.include.\+agent\+Architecture.\+Actor\+Critic\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_actor_critic}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_actor_critic_a9ac29ec811b6b4868fe1982a50e8f1ba}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, env, hidden\+\_\+size=256, std=0.\+0)
+\item 
+def \mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_actor_critic_a776ba8c513ffba55371ac92c00b6809f}{forward}} (self, x)
+\item 
+def \mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_actor_critic_a47b7d0ddfbf48b32cd04cc7078e7f12e}{get\+Optimizer}} (self, \mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_actor_critic_a971e3ee3b0133aa33809dece12422f07}{optimizer}})
+\item 
+def \mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_actor_critic_ae0ec67a0f49638d2c64988fe6d0a9644}{ppo\+\_\+iter}} (self, mini\+\_\+batch\+\_\+size, states, actions, log\+\_\+probs, returns, advantage)
+\item 
+def \mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_actor_critic_a957db02abfac63aa28367a61091c73d2}{ppo\+\_\+update}} (self, ppo\+\_\+epochs, mini\+\_\+batch\+\_\+size, states, actions, log\+\_\+probs, returns, advantages, clip\+\_\+param=0.\+2)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_actor_critic_a214830402f4d86933f65ada1f44e4f95}{critic}}
+\item 
+\mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_actor_critic_a857d31aff35768dce1e3e4b1cd00a1a9}{actor}}
+\item 
+\mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_actor_critic_a4e3a5565f636a29310bee45609d58959}{log\+\_\+std}}
+\item 
+\mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_actor_critic_a971e3ee3b0133aa33809dece12422f07}{optimizer}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Actor Crtiic A Linear Model with the Actor-\/\+Crtitc (A2C) architecture. 
+
+This model can be modified using the XX tool \begin{DoxyAuthor}{Author}
+\+: Joon You Tan 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+\+: 20-\/May-\/2020 
+\end{DoxyDate}
+\begin{DoxyNote}{Note}
+The following is the default architecture for this agent\+: 
+
+Layer 1\+: Linear, (in\+\_\+channels = environment = 128) -\/$>$ Re\+LU 
+
+Layer 2\+: Linear, (in\+\_\+channels = 128, out\+\_\+channels = 128) 
+
+Layer 3\+: Linear, (in\+\_\+channels = 128, out\+\_\+channels = number of actions available for agent) 
+
+The actions for this model are evaluated using the Epsilon Greedy Strategy 
+\end{DoxyNote}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_actor_critic_a9ac29ec811b6b4868fe1982a50e8f1ba}\label{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_actor_critic_a9ac29ec811b6b4868fe1982a50e8f1ba}} 
+\index{Low-\/Cost-\/Platform.include.agentArchitecture.ActorCritic@{Low-\/Cost-\/Platform.include.agentArchitecture.ActorCritic}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!Low-\/Cost-\/Platform.include.agentArchitecture.ActorCritic@{Low-\/Cost-\/Platform.include.agentArchitecture.ActorCritic}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def Low-\/Cost-\/Platform.\+include.\+agent\+Architecture.\+Actor\+Critic.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{env,  }\item[{}]{hidden\+\_\+size = {\ttfamily 256},  }\item[{}]{std = {\ttfamily 0.0} }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_actor_critic_a776ba8c513ffba55371ac92c00b6809f}\label{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_actor_critic_a776ba8c513ffba55371ac92c00b6809f}} 
+\index{Low-\/Cost-\/Platform.include.agentArchitecture.ActorCritic@{Low-\/Cost-\/Platform.include.agentArchitecture.ActorCritic}!forward@{forward}}
+\index{forward@{forward}!Low-\/Cost-\/Platform.include.agentArchitecture.ActorCritic@{Low-\/Cost-\/Platform.include.agentArchitecture.ActorCritic}}
+\doxysubsubsection{\texorpdfstring{forward()}{forward()}}
+{\footnotesize\ttfamily def Low-\/Cost-\/Platform.\+include.\+agent\+Architecture.\+Actor\+Critic.\+forward (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{x }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_actor_critic_a47b7d0ddfbf48b32cd04cc7078e7f12e}\label{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_actor_critic_a47b7d0ddfbf48b32cd04cc7078e7f12e}} 
+\index{Low-\/Cost-\/Platform.include.agentArchitecture.ActorCritic@{Low-\/Cost-\/Platform.include.agentArchitecture.ActorCritic}!getOptimizer@{getOptimizer}}
+\index{getOptimizer@{getOptimizer}!Low-\/Cost-\/Platform.include.agentArchitecture.ActorCritic@{Low-\/Cost-\/Platform.include.agentArchitecture.ActorCritic}}
+\doxysubsubsection{\texorpdfstring{getOptimizer()}{getOptimizer()}}
+{\footnotesize\ttfamily def Low-\/Cost-\/Platform.\+include.\+agent\+Architecture.\+Actor\+Critic.\+get\+Optimizer (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{optimizer }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_actor_critic_ae0ec67a0f49638d2c64988fe6d0a9644}\label{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_actor_critic_ae0ec67a0f49638d2c64988fe6d0a9644}} 
+\index{Low-\/Cost-\/Platform.include.agentArchitecture.ActorCritic@{Low-\/Cost-\/Platform.include.agentArchitecture.ActorCritic}!ppo\_iter@{ppo\_iter}}
+\index{ppo\_iter@{ppo\_iter}!Low-\/Cost-\/Platform.include.agentArchitecture.ActorCritic@{Low-\/Cost-\/Platform.include.agentArchitecture.ActorCritic}}
+\doxysubsubsection{\texorpdfstring{ppo\_iter()}{ppo\_iter()}}
+{\footnotesize\ttfamily def Low-\/Cost-\/Platform.\+include.\+agent\+Architecture.\+Actor\+Critic.\+ppo\+\_\+iter (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{mini\+\_\+batch\+\_\+size,  }\item[{}]{states,  }\item[{}]{actions,  }\item[{}]{log\+\_\+probs,  }\item[{}]{returns,  }\item[{}]{advantage }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_actor_critic_a957db02abfac63aa28367a61091c73d2}\label{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_actor_critic_a957db02abfac63aa28367a61091c73d2}} 
+\index{Low-\/Cost-\/Platform.include.agentArchitecture.ActorCritic@{Low-\/Cost-\/Platform.include.agentArchitecture.ActorCritic}!ppo\_update@{ppo\_update}}
+\index{ppo\_update@{ppo\_update}!Low-\/Cost-\/Platform.include.agentArchitecture.ActorCritic@{Low-\/Cost-\/Platform.include.agentArchitecture.ActorCritic}}
+\doxysubsubsection{\texorpdfstring{ppo\_update()}{ppo\_update()}}
+{\footnotesize\ttfamily def Low-\/Cost-\/Platform.\+include.\+agent\+Architecture.\+Actor\+Critic.\+ppo\+\_\+update (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{ppo\+\_\+epochs,  }\item[{}]{mini\+\_\+batch\+\_\+size,  }\item[{}]{states,  }\item[{}]{actions,  }\item[{}]{log\+\_\+probs,  }\item[{}]{returns,  }\item[{}]{advantages,  }\item[{}]{clip\+\_\+param = {\ttfamily 0.2} }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_actor_critic_a857d31aff35768dce1e3e4b1cd00a1a9}\label{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_actor_critic_a857d31aff35768dce1e3e4b1cd00a1a9}} 
+\index{Low-\/Cost-\/Platform.include.agentArchitecture.ActorCritic@{Low-\/Cost-\/Platform.include.agentArchitecture.ActorCritic}!actor@{actor}}
+\index{actor@{actor}!Low-\/Cost-\/Platform.include.agentArchitecture.ActorCritic@{Low-\/Cost-\/Platform.include.agentArchitecture.ActorCritic}}
+\doxysubsubsection{\texorpdfstring{actor}{actor}}
+{\footnotesize\ttfamily Low-\/Cost-\/Platform.\+include.\+agent\+Architecture.\+Actor\+Critic.\+actor}
+
+\mbox{\Hypertarget{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_actor_critic_a214830402f4d86933f65ada1f44e4f95}\label{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_actor_critic_a214830402f4d86933f65ada1f44e4f95}} 
+\index{Low-\/Cost-\/Platform.include.agentArchitecture.ActorCritic@{Low-\/Cost-\/Platform.include.agentArchitecture.ActorCritic}!critic@{critic}}
+\index{critic@{critic}!Low-\/Cost-\/Platform.include.agentArchitecture.ActorCritic@{Low-\/Cost-\/Platform.include.agentArchitecture.ActorCritic}}
+\doxysubsubsection{\texorpdfstring{critic}{critic}}
+{\footnotesize\ttfamily Low-\/Cost-\/Platform.\+include.\+agent\+Architecture.\+Actor\+Critic.\+critic}
+
+\mbox{\Hypertarget{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_actor_critic_a4e3a5565f636a29310bee45609d58959}\label{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_actor_critic_a4e3a5565f636a29310bee45609d58959}} 
+\index{Low-\/Cost-\/Platform.include.agentArchitecture.ActorCritic@{Low-\/Cost-\/Platform.include.agentArchitecture.ActorCritic}!log\_std@{log\_std}}
+\index{log\_std@{log\_std}!Low-\/Cost-\/Platform.include.agentArchitecture.ActorCritic@{Low-\/Cost-\/Platform.include.agentArchitecture.ActorCritic}}
+\doxysubsubsection{\texorpdfstring{log\_std}{log\_std}}
+{\footnotesize\ttfamily Low-\/Cost-\/Platform.\+include.\+agent\+Architecture.\+Actor\+Critic.\+log\+\_\+std}
+
+\mbox{\Hypertarget{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_actor_critic_a971e3ee3b0133aa33809dece12422f07}\label{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_actor_critic_a971e3ee3b0133aa33809dece12422f07}} 
+\index{Low-\/Cost-\/Platform.include.agentArchitecture.ActorCritic@{Low-\/Cost-\/Platform.include.agentArchitecture.ActorCritic}!optimizer@{optimizer}}
+\index{optimizer@{optimizer}!Low-\/Cost-\/Platform.include.agentArchitecture.ActorCritic@{Low-\/Cost-\/Platform.include.agentArchitecture.ActorCritic}}
+\doxysubsubsection{\texorpdfstring{optimizer}{optimizer}}
+{\footnotesize\ttfamily Low-\/Cost-\/Platform.\+include.\+agent\+Architecture.\+Actor\+Critic.\+optimizer}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dell/git/\+Low-\/\+Cost-\/\+Platform/include/\mbox{\hyperlink{agent_architecture_8py}{agent\+Architecture.\+py}}\end{DoxyCompactItemize}

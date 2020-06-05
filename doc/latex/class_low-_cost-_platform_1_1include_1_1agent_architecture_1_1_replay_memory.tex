@@ -1,0 +1,127 @@
+\hypertarget{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_replay_memory}{}\doxysection{Low-\/\+Cost-\/\+Platform.include.\+agent\+Architecture.\+Replay\+Memory Class Reference}
+\label{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_replay_memory}\index{Low-\/Cost-\/Platform.include.agentArchitecture.ReplayMemory@{Low-\/Cost-\/Platform.include.agentArchitecture.ReplayMemory}}
+
+
+Replay Memory.  
+
+
+Inheritance diagram for Low-\/\+Cost-\/\+Platform.include.\+agent\+Architecture.\+Replay\+Memory\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_replay_memory}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_replay_memory_a1de0c1f15e5a18b77f209213082cc564}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_replay_memory_a2509bb2fd3575eb87fa616eb61113218}{memory\+\_\+size}})
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_replay_memory_a5734e5f877b28db9b87ede885dd062ea}{sample\+\_\+batch}} (self, batch\+\_\+size=32)
+\begin{DoxyCompactList}\small\item\em sample\+\_\+batch Extracts out batch\+\_\+size number of random tuples from the queue. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_replay_memory_ad2c3a62664255c9102e4e668686603b0}{append}} (self, state, action, reward, done, next\+\_\+state)
+\begin{DoxyCompactList}\small\item\em append \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_replay_memory_affea62f81d883aec9e66ab5c54e229be}{\+\_\+\+\_\+len\+\_\+\+\_\+}} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_replay_memory_a2509bb2fd3575eb87fa616eb61113218}{memory\+\_\+size}}
+\item 
+\mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_replay_memory_af7af5d031d5b29e1aed7fd02986de431}{replay\+\_\+memory}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Replay Memory. 
+
+\+: Stores the Tuples Agent observes from the environment \begin{DoxyAuthor}{Author}
+\+: Joon You Tan 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+\+: 8-\/May-\/2020 
+\end{DoxyDate}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_replay_memory_a1de0c1f15e5a18b77f209213082cc564}\label{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_replay_memory_a1de0c1f15e5a18b77f209213082cc564}} 
+\index{Low-\/Cost-\/Platform.include.agentArchitecture.ReplayMemory@{Low-\/Cost-\/Platform.include.agentArchitecture.ReplayMemory}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!Low-\/Cost-\/Platform.include.agentArchitecture.ReplayMemory@{Low-\/Cost-\/Platform.include.agentArchitecture.ReplayMemory}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def Low-\/Cost-\/Platform.\+include.\+agent\+Architecture.\+Replay\+Memory.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{memory\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em memory\+\_\+size} & Arguement to create a double-\/ended queue of that size. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_replay_memory_affea62f81d883aec9e66ab5c54e229be}\label{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_replay_memory_affea62f81d883aec9e66ab5c54e229be}} 
+\index{Low-\/Cost-\/Platform.include.agentArchitecture.ReplayMemory@{Low-\/Cost-\/Platform.include.agentArchitecture.ReplayMemory}!\_\_len\_\_@{\_\_len\_\_}}
+\index{\_\_len\_\_@{\_\_len\_\_}!Low-\/Cost-\/Platform.include.agentArchitecture.ReplayMemory@{Low-\/Cost-\/Platform.include.agentArchitecture.ReplayMemory}}
+\doxysubsubsection{\texorpdfstring{\_\_len\_\_()}{\_\_len\_\_()}}
+{\footnotesize\ttfamily def Low-\/Cost-\/Platform.\+include.\+agent\+Architecture.\+Replay\+Memory.\+\_\+\+\_\+len\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_replay_memory_ad2c3a62664255c9102e4e668686603b0}\label{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_replay_memory_ad2c3a62664255c9102e4e668686603b0}} 
+\index{Low-\/Cost-\/Platform.include.agentArchitecture.ReplayMemory@{Low-\/Cost-\/Platform.include.agentArchitecture.ReplayMemory}!append@{append}}
+\index{append@{append}!Low-\/Cost-\/Platform.include.agentArchitecture.ReplayMemory@{Low-\/Cost-\/Platform.include.agentArchitecture.ReplayMemory}}
+\doxysubsubsection{\texorpdfstring{append()}{append()}}
+{\footnotesize\ttfamily def Low-\/Cost-\/Platform.\+include.\+agent\+Architecture.\+Replay\+Memory.\+append (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{state,  }\item[{}]{action,  }\item[{}]{reward,  }\item[{}]{done,  }\item[{}]{next\+\_\+state }\end{DoxyParamCaption})}
+
+
+
+append 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & Current environment state observed by the agent \\
+\hline
+{\em action} & Action taken by agent in that state \\
+\hline
+{\em reward} & Reward returned to agent \\
+\hline
+{\em done} & Indicator if the current episode is complete \\
+\hline
+{\em next\+\_\+state} & Expected state which agent will be observing next \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_replay_memory_a5734e5f877b28db9b87ede885dd062ea}\label{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_replay_memory_a5734e5f877b28db9b87ede885dd062ea}} 
+\index{Low-\/Cost-\/Platform.include.agentArchitecture.ReplayMemory@{Low-\/Cost-\/Platform.include.agentArchitecture.ReplayMemory}!sample\_batch@{sample\_batch}}
+\index{sample\_batch@{sample\_batch}!Low-\/Cost-\/Platform.include.agentArchitecture.ReplayMemory@{Low-\/Cost-\/Platform.include.agentArchitecture.ReplayMemory}}
+\doxysubsubsection{\texorpdfstring{sample\_batch()}{sample\_batch()}}
+{\footnotesize\ttfamily def Low-\/Cost-\/Platform.\+include.\+agent\+Architecture.\+Replay\+Memory.\+sample\+\_\+batch (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{batch\+\_\+size = {\ttfamily 32} }\end{DoxyParamCaption})}
+
+
+
+sample\+\_\+batch Extracts out batch\+\_\+size number of random tuples from the queue. 
+
+batch\+\_\+size is default to be 32. 
+\begin{DoxyParams}{Parameters}
+{\em batch\+\_\+size} & Number of samples to extract from the queue for processing \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_replay_memory_a2509bb2fd3575eb87fa616eb61113218}\label{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_replay_memory_a2509bb2fd3575eb87fa616eb61113218}} 
+\index{Low-\/Cost-\/Platform.include.agentArchitecture.ReplayMemory@{Low-\/Cost-\/Platform.include.agentArchitecture.ReplayMemory}!memory\_size@{memory\_size}}
+\index{memory\_size@{memory\_size}!Low-\/Cost-\/Platform.include.agentArchitecture.ReplayMemory@{Low-\/Cost-\/Platform.include.agentArchitecture.ReplayMemory}}
+\doxysubsubsection{\texorpdfstring{memory\_size}{memory\_size}}
+{\footnotesize\ttfamily Low-\/Cost-\/Platform.\+include.\+agent\+Architecture.\+Replay\+Memory.\+memory\+\_\+size}
+
+\mbox{\Hypertarget{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_replay_memory_af7af5d031d5b29e1aed7fd02986de431}\label{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_replay_memory_af7af5d031d5b29e1aed7fd02986de431}} 
+\index{Low-\/Cost-\/Platform.include.agentArchitecture.ReplayMemory@{Low-\/Cost-\/Platform.include.agentArchitecture.ReplayMemory}!replay\_memory@{replay\_memory}}
+\index{replay\_memory@{replay\_memory}!Low-\/Cost-\/Platform.include.agentArchitecture.ReplayMemory@{Low-\/Cost-\/Platform.include.agentArchitecture.ReplayMemory}}
+\doxysubsubsection{\texorpdfstring{replay\_memory}{replay\_memory}}
+{\footnotesize\ttfamily Low-\/Cost-\/Platform.\+include.\+agent\+Architecture.\+Replay\+Memory.\+replay\+\_\+memory}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dell/git/\+Low-\/\+Cost-\/\+Platform/include/\mbox{\hyperlink{agent_architecture_8py}{agent\+Architecture.\+py}}\end{DoxyCompactItemize}

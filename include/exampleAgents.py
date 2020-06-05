@@ -72,13 +72,13 @@ class DQNAgent(Agent):
 ## PPOAgent
 #  @brief Example PPO Agent; inherited properties from the Agent parent class
 class PPOAgent(Agent):
-    def __init__(self, envs, env, batch_size=5, config_file="include/config.txt"):
+    def __init__(self, envs, env, batch_size=512, config_file="include/config.txt"):
         Agent.__init__(self)
         self.config_params = self._getParameters(config_file)
         self.env = env
         self.envs = envs
         self.model = ActorCritic(self.envs).cuda()
-        self.optimizer = optim.Adam(self.model.parameters(), lr=self.config_params["DDQN"]["lr"])
+        self.optimizer = optim.Adam(self.model.parameters(), lr=self.config_params["PPO"]["l_r"])
         self.model.getOptimizer(self.optimizer)
         self.max_frames = self.config_params["PPO"]["m_f"]
         self.num_steps = self.config_params["PPO"]["n_s"]
@@ -97,7 +97,6 @@ class PPOAgent(Agent):
             rewards = []
             masks = []
             entropy = 0
-
             for _ in range(self.num_steps):
                 state = torch.cuda.FloatTensor(state)
                 dist, value = self.model(state)
@@ -118,7 +117,6 @@ class PPOAgent(Agent):
                 
                 state = next_state
                 self.frame_idx += 1
-                
                 if self.frame_idx % 1000 == 0:
                     test_reward = np.mean([self.test_env(self.env, self.model) for _ in range(10)])
                     self.test_rewards.append(test_reward)
@@ -134,6 +132,6 @@ class PPOAgent(Agent):
             states = torch.cat(states)
             actions = torch.cat(actions)
             advantage = returns - values
-            
             self.model.ppo_update(self.ppo_epochs, self.batch_size, states, actions, log_probs, returns, advantage)
-        self.saveWeights(directory = r"modelWeights", file_name = r"proof_of_concept_model_PPO.pt")
+        self.plotResults(self.test_rewards)
+        self.saveWeights(directory = r"modelWeights", file_name = r"proof_of_concept_model_PPO.pt", model=self.model)

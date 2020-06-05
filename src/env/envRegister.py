@@ -33,7 +33,7 @@ class ProofOfConceptModel(mujoco_env.MujocoEnv, utils.EzPickle):
         file_path = os.path.join(os.path.dirname(__file__), 'assets', 'SimpleLeg.xml')
         utils.EzPickle.__init__(self)
 
-        self._target_leg_pos = []
+        self._target_leg_pos = [0, 1, 2]
         self._idx = 0
         self._healthy_reward = healthy_reward
         self._terminate_when_unhealthy = terminate_when_unhealthy
@@ -62,33 +62,21 @@ class ProofOfConceptModel(mujoco_env.MujocoEnv, utils.EzPickle):
     def _get_current_target(self):
         return self._target_leg_pos[self._idx]
 
-    def quat_to_euler(self, quat_array):
-        t_0 = +2.0 * (quat_array[3] * quat_array[0] + quat_array[1] * quat_array[2])
-        t_1 = +1.0 - 2.0 * (quat_array[0] * quat_array[0] + quat_array[1] * quat_array[1])
-        yaw = math.atan2(t_0, t_1)
-
-        t_2 = +2.0 * (quat_array[3] * quat_array[1] - quat_array[2] * quat_array[0])
-        t_2 = +1.0 if t_2 > +1.0 else t_2
-        t_2 = -1.0 if t_2 < -1.0 else t_2
-        pitch = math.asin(t_2)
-
-        t_3 = +2.0 * (quat_array[3] * quat_array[2] + quat_array[0] * quat_array[1])
-        t_4 = +1.0 - 2.0 * (quat_array[1] * quat_array[1] + quat_array[2] * quat_array[2])
-        roll = math.atan2(t_3, t_4)
-
-        return yaw, pitch, roll
+    def _get_next_target(self):
+        if (self._idx + 1) <= len(self._target_leg_pos):
+            state =  self._target_leg_pos[self._idx+1]
+        else:
+            state = self._target_leg_pos[self._idx]
+        return state
 
     # Methods for envrionment interaction
     def step(self, action):
         self.do_simulation(action, self.frame_skip)
+        pitch_rad = self.sim.data.qpos[5]
         # Extract the angle value
-        quat_servo_mount = self.data.get_body_xquat("ServoHornMount_LEG1")[:4].copy()
-        _, pitch_rad, _ = self.quat_to_euler(quat_servo_mount)
         target = self._get_current_target()
-        accuracy_reward = abs(target) - abs(pitch_rad)
-        rewards = -abs(accuracy_reward)
-        if(pitch_rad > -0.5):
-            rewards -= 10000
+        self.accuracy = target - pitch_rad
+        rewards = -self.accuracy**2
 
         observation = self._get_obs()
         info = {'Model Leg Pos (radians)': pitch_rad,
@@ -97,14 +85,16 @@ class ProofOfConceptModel(mujoco_env.MujocoEnv, utils.EzPickle):
                 'Reward yielded': rewards
                 }
         self._idx += 1
-        done = self._idx > (np.shape(self._target_leg_pos)[0] - 1)
-
+        done = self._idx >= (np.shape(self._target_leg_pos)[0] - 1)
+        # if (pitch_rad > 0.056 or pitch_rad < -0.79):
+        #     rewards -= 100
         return observation, rewards, done, info   
 
     def _get_obs(self):
         return np.concatenate([
-            self.sim.data.qpos.flat[2:].copy(),
-            self.sim.data.qvel.flat.copy()
+            self.sim.data.qpos.flat[5:].copy(),
+            [self._get_current_target(), self._get_next_target()],
+            self.sim.data.qvel.flat[5:].copy()
         ])
 
     def reset_model(self):
@@ -156,63 +146,37 @@ class LowCostPlatform(mujoco_env.MujocoEnv, utils.EzPickle):
                 else False)
         return done
 
-    # Methods for calcualtions on model joint angle 
-    def add_trajectory(self, list_of_angles):
-        self._target_leg_pos = list_of_angles
-
-    def _get_current_target(self):
-        return self._target_leg_pos[self._idx]
-
-    def quat_to_euler(self, quat_array):
-        t_0 = +2.0 * (quat_array[3] * quat_array[0] + quat_array[1] * quat_array[2])
-        t_1 = +1.0 - 2.0 * (quat_array[0] * quat_array[0] + quat_array[1] * quat_array[1])
-        yaw = math.atan2(t_0, t_1)
-
-        t_2 = +2.0 * (quat_array[3] * quat_array[1] - quat_array[2] * quat_array[0])
-        t_2 = +1.0 if t_2 > +1.0 else t_2
-        t_2 = -1.0 if t_2 < -1.0 else t_2
-        pitch = math.asin(t_2)
-
-        t_3 = +2.0 * (quat_array[3] * quat_array[2] + quat_array[0] * quat_array[1])
-        t_4 = +1.0 - 2.0 * (quat_array[1] * quat_array[1] + quat_array[2] * quat_array[2])
-        roll = math.atan2(t_3, t_4)
-
-        return yaw, pitch, roll
-
     # Methods for envrionment interaction
     def step(self, action):
+	    #Carry out one step of action
+        xy_position_before = self.get_body_com("QUEEN_Chasis")[:2].copy()
         self.do_simulation(action, self.frame_skip)
-        # Extract the angle value
-        quat_servo_mount = self.data.get_body_xquat("ServoHornMount_LEG1")[:4].copy()
-        _, pitch_rad, _ = self.quat_to_euler(quat_servo_mount)
-        target = self._get_current_target()
-        accuracy_reward = abs(target) - abs(pitch_rad)
-        rewards = -accuracy_reward
-        if(pitch_rad > -0.5):
-            rewards -= 10000
+        xy_position_after = self.get_body_com("QUEEN_Chasis")[:2].copy()
 
+        xy_velocity = (xy_position_after - xy_position_before) / self.dt
+        x_velocity, y_velocity = xy_velocity
+
+        rewards = x_velocity	
+        done = False
         observation = self._get_obs()
-        info = {'Model Leg Pos (radians)': pitch_rad,
-                'Target Leg Pos (radians)': target,
-                'Time step': self.dt,
-                'Reward yielded': rewards
+        info = {'Rewards': rewards,
+                'X_velocity': x_velocity,
+                'Y_velocity': y_velocity
                 }
-        self._idx += 1
-        done = self._idx > (np.shape(self._target_leg_pos)[0] - 1)
 
-        return observation, rewards, done, info   
+        return observation, rewards, done, info
 
     def _get_obs(self):
         return np.concatenate([
-            self.sim.data.qpos.flat[2:].copy(),
-            self.sim.data.qvel.flat.copy()
+            self.sim.data.qpos.flat[1:],
+            self.sim.data.qvel.flat
         ])
 
     def reset_model(self):
         qpos = self.init_qpos + self.np_random.uniform(low=-.1, high=.1, size=self.model.nq)
         qvel = self.init_qvel + self.np_random.randn(self.model.nv) * .1
         self.set_state(qpos, qvel)
-        self._idx = 0
         return self._get_obs()
 
     def viewer_setup(self):
+        self.viewer.cam.distance = 5

@@ -1,0 +1,134 @@
+\hypertarget{namespace_low-_cost-_platform_1_1render}{}\doxysection{Low-\/\+Cost-\/\+Platform.render Namespace Reference}
+\label{namespace_low-_cost-_platform_1_1render}\index{Low-\/Cost-\/Platform.render@{Low-\/Cost-\/Platform.render}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_a3f963b79b99849571cbc876b960a2dde}{make\+\_\+env}} (env\+\_\+name, \mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_affa8ea9b4585acdd8abf98724d2aed7f}{trajectory\+\_\+angles}})
+\begin{DoxyCompactList}\small\item\em make\+\_\+env A simple function utilising Open\+Ai\textquotesingle{}s Baseline code for creating multiple environments for multiprocessing. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_aef937d96e3dff3a702172364b123ff84}{id}}
+\begin{DoxyCompactList}\small\item\em Environment Registration To register custom environments to the Open\+AI Gym\textquotesingle{}s package, the registration kit from the Gym package is utilised. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_aa7d3534d237fef9e48bc0db0bddfe428}{entry\+\_\+point}}
+\item 
+\mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_acd160382e1639524eeec8a1c6b9e233d}{max\+\_\+episode\+\_\+steps}}
+\item 
+\mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_a762a05cb8cbd87684cc715167be5c174}{reward\+\_\+threshold}}
+\item 
+tuple \mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_af5136fe2af3d2d66a5f8c34f426dec4c}{servo\+\_\+range\+\_\+radians}} = (-\/0.\+5, -\/1.\+5)
+\item 
+int \mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_a3045a88b2a6bf6be6728a840e37d3b7a}{total\+\_\+time\+\_\+steps}} = 100
+\item 
+\mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_a506f0d6bdf02f61e6bccf3aeab5c9ffe}{front}} = np.\+linspace(\mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_af5136fe2af3d2d66a5f8c34f426dec4c}{servo\+\_\+range\+\_\+radians}}\mbox{[}0\mbox{]}, \mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_af5136fe2af3d2d66a5f8c34f426dec4c}{servo\+\_\+range\+\_\+radians}}\mbox{[}1\mbox{]}, \mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_a3045a88b2a6bf6be6728a840e37d3b7a}{total\+\_\+time\+\_\+steps}})
+\item 
+\mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_a7f201cec0aa1616f91b99ae122651ce1}{back}} = np.\+linspace(\mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_af5136fe2af3d2d66a5f8c34f426dec4c}{servo\+\_\+range\+\_\+radians}}\mbox{[}1\mbox{]}, \mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_af5136fe2af3d2d66a5f8c34f426dec4c}{servo\+\_\+range\+\_\+radians}}\mbox{[}0\mbox{]}, \mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_a3045a88b2a6bf6be6728a840e37d3b7a}{total\+\_\+time\+\_\+steps}})
+\item 
+\mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_affa8ea9b4585acdd8abf98724d2aed7f}{trajectory\+\_\+angles}} = np.\+concatenate(\mbox{[}\mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_a506f0d6bdf02f61e6bccf3aeab5c9ffe}{front}}, \mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_a7f201cec0aa1616f91b99ae122651ce1}{back}}, \mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_a506f0d6bdf02f61e6bccf3aeab5c9ffe}{front}}, \mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_a7f201cec0aa1616f91b99ae122651ce1}{back}}, \mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_a506f0d6bdf02f61e6bccf3aeab5c9ffe}{front}}, \mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_a7f201cec0aa1616f91b99ae122651ce1}{back}}\mbox{]})
+\item 
+int \mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_a31cd9e97409ae3f3761086a6d352cc79}{num\+\_\+envs}} = 16
+\item 
+list \mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_a9c4c466cda0ebed45650dac1ffb33d18}{envs}} = \mbox{[}\mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_a3f963b79b99849571cbc876b960a2dde}{make\+\_\+env}}(\textquotesingle{}Proof\+Of\+Concept\+Model-\/v0\textquotesingle{}, \mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_affa8ea9b4585acdd8abf98724d2aed7f}{trajectory\+\_\+angles}}) for i in range(\mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_a31cd9e97409ae3f3761086a6d352cc79}{num\+\_\+envs}})\mbox{]}
+\item 
+\mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_aeda28ee44a56d26e1cb6f60d0305fc19}{env}} = gym.\+make(\textquotesingle{}Proof\+Of\+Concept\+Model-\/v0\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_ab0b45e844736ff4d5b87f34f9f2b5901}{sample\+\_\+agent}} = \mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1example_agents_1_1_d_q_n_agent}{D\+Q\+N\+Agent}}(\mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_aeda28ee44a56d26e1cb6f60d0305fc19}{env}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespace_low-_cost-_platform_1_1render_a3f963b79b99849571cbc876b960a2dde}\label{namespace_low-_cost-_platform_1_1render_a3f963b79b99849571cbc876b960a2dde}} 
+\index{Low-\/Cost-\/Platform.render@{Low-\/Cost-\/Platform.render}!make\_env@{make\_env}}
+\index{make\_env@{make\_env}!Low-\/Cost-\/Platform.render@{Low-\/Cost-\/Platform.render}}
+\doxysubsubsection{\texorpdfstring{make\_env()}{make\_env()}}
+{\footnotesize\ttfamily def Low-\/Cost-\/Platform.\+render.\+make\+\_\+env (\begin{DoxyParamCaption}\item[{}]{env\+\_\+name,  }\item[{}]{trajectory\+\_\+angles }\end{DoxyParamCaption})}
+
+
+
+make\+\_\+env A simple function utilising Open\+Ai\textquotesingle{}s Baseline code for creating multiple environments for multiprocessing. 
+
+(view common file for link to original folder) 
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{namespace_low-_cost-_platform_1_1render_a7f201cec0aa1616f91b99ae122651ce1}\label{namespace_low-_cost-_platform_1_1render_a7f201cec0aa1616f91b99ae122651ce1}} 
+\index{Low-\/Cost-\/Platform.render@{Low-\/Cost-\/Platform.render}!back@{back}}
+\index{back@{back}!Low-\/Cost-\/Platform.render@{Low-\/Cost-\/Platform.render}}
+\doxysubsubsection{\texorpdfstring{back}{back}}
+{\footnotesize\ttfamily Low-\/Cost-\/Platform.\+render.\+back = np.\+linspace(\mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_af5136fe2af3d2d66a5f8c34f426dec4c}{servo\+\_\+range\+\_\+radians}}\mbox{[}1\mbox{]}, \mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_af5136fe2af3d2d66a5f8c34f426dec4c}{servo\+\_\+range\+\_\+radians}}\mbox{[}0\mbox{]}, \mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_a3045a88b2a6bf6be6728a840e37d3b7a}{total\+\_\+time\+\_\+steps}})}
+
+\mbox{\Hypertarget{namespace_low-_cost-_platform_1_1render_aa7d3534d237fef9e48bc0db0bddfe428}\label{namespace_low-_cost-_platform_1_1render_aa7d3534d237fef9e48bc0db0bddfe428}} 
+\index{Low-\/Cost-\/Platform.render@{Low-\/Cost-\/Platform.render}!entry\_point@{entry\_point}}
+\index{entry\_point@{entry\_point}!Low-\/Cost-\/Platform.render@{Low-\/Cost-\/Platform.render}}
+\doxysubsubsection{\texorpdfstring{entry\_point}{entry\_point}}
+{\footnotesize\ttfamily Low-\/Cost-\/Platform.\+render.\+entry\+\_\+point}
+
+\mbox{\Hypertarget{namespace_low-_cost-_platform_1_1render_aeda28ee44a56d26e1cb6f60d0305fc19}\label{namespace_low-_cost-_platform_1_1render_aeda28ee44a56d26e1cb6f60d0305fc19}} 
+\index{Low-\/Cost-\/Platform.render@{Low-\/Cost-\/Platform.render}!env@{env}}
+\index{env@{env}!Low-\/Cost-\/Platform.render@{Low-\/Cost-\/Platform.render}}
+\doxysubsubsection{\texorpdfstring{env}{env}}
+{\footnotesize\ttfamily Low-\/Cost-\/Platform.\+render.\+env = gym.\+make(\textquotesingle{}Proof\+Of\+Concept\+Model-\/v0\textquotesingle{})}
+
+\mbox{\Hypertarget{namespace_low-_cost-_platform_1_1render_a9c4c466cda0ebed45650dac1ffb33d18}\label{namespace_low-_cost-_platform_1_1render_a9c4c466cda0ebed45650dac1ffb33d18}} 
+\index{Low-\/Cost-\/Platform.render@{Low-\/Cost-\/Platform.render}!envs@{envs}}
+\index{envs@{envs}!Low-\/Cost-\/Platform.render@{Low-\/Cost-\/Platform.render}}
+\doxysubsubsection{\texorpdfstring{envs}{envs}}
+{\footnotesize\ttfamily Low-\/Cost-\/Platform.\+render.\+envs = \mbox{[}\mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_a3f963b79b99849571cbc876b960a2dde}{make\+\_\+env}}(\textquotesingle{}Proof\+Of\+Concept\+Model-\/v0\textquotesingle{}, \mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_affa8ea9b4585acdd8abf98724d2aed7f}{trajectory\+\_\+angles}}) for i in range(\mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_a31cd9e97409ae3f3761086a6d352cc79}{num\+\_\+envs}})\mbox{]}}
+
+\mbox{\Hypertarget{namespace_low-_cost-_platform_1_1render_a506f0d6bdf02f61e6bccf3aeab5c9ffe}\label{namespace_low-_cost-_platform_1_1render_a506f0d6bdf02f61e6bccf3aeab5c9ffe}} 
+\index{Low-\/Cost-\/Platform.render@{Low-\/Cost-\/Platform.render}!front@{front}}
+\index{front@{front}!Low-\/Cost-\/Platform.render@{Low-\/Cost-\/Platform.render}}
+\doxysubsubsection{\texorpdfstring{front}{front}}
+{\footnotesize\ttfamily Low-\/Cost-\/Platform.\+render.\+front = np.\+linspace(\mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_af5136fe2af3d2d66a5f8c34f426dec4c}{servo\+\_\+range\+\_\+radians}}\mbox{[}0\mbox{]}, \mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_af5136fe2af3d2d66a5f8c34f426dec4c}{servo\+\_\+range\+\_\+radians}}\mbox{[}1\mbox{]}, \mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_a3045a88b2a6bf6be6728a840e37d3b7a}{total\+\_\+time\+\_\+steps}})}
+
+\mbox{\Hypertarget{namespace_low-_cost-_platform_1_1render_aef937d96e3dff3a702172364b123ff84}\label{namespace_low-_cost-_platform_1_1render_aef937d96e3dff3a702172364b123ff84}} 
+\index{Low-\/Cost-\/Platform.render@{Low-\/Cost-\/Platform.render}!id@{id}}
+\index{id@{id}!Low-\/Cost-\/Platform.render@{Low-\/Cost-\/Platform.render}}
+\doxysubsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily Low-\/Cost-\/Platform.\+render.\+id}
+
+
+
+Environment Registration To register custom environments to the Open\+AI Gym\textquotesingle{}s package, the registration kit from the Gym package is utilised. 
+
+Refer to the documentation of Open\+AI Gym\textquotesingle{}s git repository for information on the process and parameters used for initialisation. \mbox{\Hypertarget{namespace_low-_cost-_platform_1_1render_acd160382e1639524eeec8a1c6b9e233d}\label{namespace_low-_cost-_platform_1_1render_acd160382e1639524eeec8a1c6b9e233d}} 
+\index{Low-\/Cost-\/Platform.render@{Low-\/Cost-\/Platform.render}!max\_episode\_steps@{max\_episode\_steps}}
+\index{max\_episode\_steps@{max\_episode\_steps}!Low-\/Cost-\/Platform.render@{Low-\/Cost-\/Platform.render}}
+\doxysubsubsection{\texorpdfstring{max\_episode\_steps}{max\_episode\_steps}}
+{\footnotesize\ttfamily Low-\/Cost-\/Platform.\+render.\+max\+\_\+episode\+\_\+steps}
+
+\mbox{\Hypertarget{namespace_low-_cost-_platform_1_1render_a31cd9e97409ae3f3761086a6d352cc79}\label{namespace_low-_cost-_platform_1_1render_a31cd9e97409ae3f3761086a6d352cc79}} 
+\index{Low-\/Cost-\/Platform.render@{Low-\/Cost-\/Platform.render}!num\_envs@{num\_envs}}
+\index{num\_envs@{num\_envs}!Low-\/Cost-\/Platform.render@{Low-\/Cost-\/Platform.render}}
+\doxysubsubsection{\texorpdfstring{num\_envs}{num\_envs}}
+{\footnotesize\ttfamily int Low-\/Cost-\/Platform.\+render.\+num\+\_\+envs = 16}
+
+\mbox{\Hypertarget{namespace_low-_cost-_platform_1_1render_a762a05cb8cbd87684cc715167be5c174}\label{namespace_low-_cost-_platform_1_1render_a762a05cb8cbd87684cc715167be5c174}} 
+\index{Low-\/Cost-\/Platform.render@{Low-\/Cost-\/Platform.render}!reward\_threshold@{reward\_threshold}}
+\index{reward\_threshold@{reward\_threshold}!Low-\/Cost-\/Platform.render@{Low-\/Cost-\/Platform.render}}
+\doxysubsubsection{\texorpdfstring{reward\_threshold}{reward\_threshold}}
+{\footnotesize\ttfamily Low-\/Cost-\/Platform.\+render.\+reward\+\_\+threshold}
+
+\mbox{\Hypertarget{namespace_low-_cost-_platform_1_1render_ab0b45e844736ff4d5b87f34f9f2b5901}\label{namespace_low-_cost-_platform_1_1render_ab0b45e844736ff4d5b87f34f9f2b5901}} 
+\index{Low-\/Cost-\/Platform.render@{Low-\/Cost-\/Platform.render}!sample\_agent@{sample\_agent}}
+\index{sample\_agent@{sample\_agent}!Low-\/Cost-\/Platform.render@{Low-\/Cost-\/Platform.render}}
+\doxysubsubsection{\texorpdfstring{sample\_agent}{sample\_agent}}
+{\footnotesize\ttfamily Low-\/Cost-\/Platform.\+render.\+sample\+\_\+agent = \mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1example_agents_1_1_d_q_n_agent}{D\+Q\+N\+Agent}}(\mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_aeda28ee44a56d26e1cb6f60d0305fc19}{env}})}
+
+\mbox{\Hypertarget{namespace_low-_cost-_platform_1_1render_af5136fe2af3d2d66a5f8c34f426dec4c}\label{namespace_low-_cost-_platform_1_1render_af5136fe2af3d2d66a5f8c34f426dec4c}} 
+\index{Low-\/Cost-\/Platform.render@{Low-\/Cost-\/Platform.render}!servo\_range\_radians@{servo\_range\_radians}}
+\index{servo\_range\_radians@{servo\_range\_radians}!Low-\/Cost-\/Platform.render@{Low-\/Cost-\/Platform.render}}
+\doxysubsubsection{\texorpdfstring{servo\_range\_radians}{servo\_range\_radians}}
+{\footnotesize\ttfamily tuple Low-\/Cost-\/Platform.\+render.\+servo\+\_\+range\+\_\+radians = (-\/0.\+5, -\/1.\+5)}
+
+\mbox{\Hypertarget{namespace_low-_cost-_platform_1_1render_a3045a88b2a6bf6be6728a840e37d3b7a}\label{namespace_low-_cost-_platform_1_1render_a3045a88b2a6bf6be6728a840e37d3b7a}} 
+\index{Low-\/Cost-\/Platform.render@{Low-\/Cost-\/Platform.render}!total\_time\_steps@{total\_time\_steps}}
+\index{total\_time\_steps@{total\_time\_steps}!Low-\/Cost-\/Platform.render@{Low-\/Cost-\/Platform.render}}
+\doxysubsubsection{\texorpdfstring{total\_time\_steps}{total\_time\_steps}}
+{\footnotesize\ttfamily int Low-\/Cost-\/Platform.\+render.\+total\+\_\+time\+\_\+steps = 100}
+
+\mbox{\Hypertarget{namespace_low-_cost-_platform_1_1render_affa8ea9b4585acdd8abf98724d2aed7f}\label{namespace_low-_cost-_platform_1_1render_affa8ea9b4585acdd8abf98724d2aed7f}} 
+\index{Low-\/Cost-\/Platform.render@{Low-\/Cost-\/Platform.render}!trajectory\_angles@{trajectory\_angles}}
+\index{trajectory\_angles@{trajectory\_angles}!Low-\/Cost-\/Platform.render@{Low-\/Cost-\/Platform.render}}
+\doxysubsubsection{\texorpdfstring{trajectory\_angles}{trajectory\_angles}}
+{\footnotesize\ttfamily Low-\/Cost-\/Platform.\+render.\+trajectory\+\_\+angles = np.\+concatenate(\mbox{[}\mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_a506f0d6bdf02f61e6bccf3aeab5c9ffe}{front}}, \mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_a7f201cec0aa1616f91b99ae122651ce1}{back}}, \mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_a506f0d6bdf02f61e6bccf3aeab5c9ffe}{front}}, \mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_a7f201cec0aa1616f91b99ae122651ce1}{back}}, \mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_a506f0d6bdf02f61e6bccf3aeab5c9ffe}{front}}, \mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_a7f201cec0aa1616f91b99ae122651ce1}{back}}\mbox{]})}
+

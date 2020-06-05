@@ -1,0 +1,188 @@
+\hypertarget{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_d_q_n}{}\doxysection{Low-\/\+Cost-\/\+Platform.include.\+agent\+Architecture.\+D\+QN Class Reference}
+\label{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_d_q_n}\index{Low-\/Cost-\/Platform.include.agentArchitecture.DQN@{Low-\/Cost-\/Platform.include.agentArchitecture.DQN}}
+
+
+\mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_d_q_n}{D\+QN}} A Linear Model with the Deep Q-\/\+Network (\mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_d_q_n}{D\+QN}}) architecture.  
+
+
+Inheritance diagram for Low-\/\+Cost-\/\+Platform.include.\+agent\+Architecture.\+D\+QN\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_d_q_n}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_d_q_n_a3f6a1a4d65b024ea11865486b50c0c7b}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, env, memory\+\_\+size=5000)
+\begin{DoxyCompactList}\small\item\em Super Constructor. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_d_q_n_a6fd9e35d44f611de8b37e3da82f5ee20}{epsilon\+\_\+greed\+\_\+strat}} (self, time\+\_\+step)
+\item 
+def \mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_d_q_n_af188145de381cb022c9dd00b286c2bcf}{forward}} (self, x)
+\begin{DoxyCompactList}\small\item\em Model arguement handler. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_d_q_n_ab5b260bc159317254ef5f8c602ee7c2e}{get\+\_\+action}} (self, state, epsilon)
+\begin{DoxyCompactList}\small\item\em get\+\_\+action evaluates the action the agent based on Epsilon Greedy Strategy \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_d_q_n_a14dc7cf655205b470c5545264b92bcfb}{evaluate}} (self, state)
+\item 
+def \mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_d_q_n_a6fa63c00cb65eaa087e5b27ce4cd0d95}{get\+\_\+qvals}} (self, state)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_d_q_n_a0662d4173e4fea4f02eeb7a482a940ce}{experience}}
+\item 
+\mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_d_q_n_a4643eb564b2fad54dd94da324acfba41}{input\+\_\+dim}}
+\item 
+\mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_d_q_n_a469a35371ff2caf3bf7e91fa5305e8d4}{num\+\_\+actions}}
+\item 
+\mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_d_q_n_ab1a5bd35f5812b804b7140ef2d65248e}{epsilon\+\_\+start}}
+\item 
+\mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_d_q_n_a5d12387c858423d50730c51d9db323e5}{epsilon\+\_\+final}}
+\item 
+\mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_d_q_n_a477f7356a1742e009cb6ec36672ad421}{epsilon\+\_\+decay}}
+\item 
+\mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_d_q_n_a79e0bdb819e60071a08880fd99910448}{layers}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_d_q_n}{D\+QN}} A Linear Model with the Deep Q-\/\+Network (\mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_d_q_n}{D\+QN}}) architecture. 
+
+This model can be modified using the XX tool \begin{DoxyAuthor}{Author}
+\+: Joon You Tan 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+\+: 8-\/May-\/2020 
+\end{DoxyDate}
+\begin{DoxyNote}{Note}
+The following is the default architecture for this agent\+: 
+
+Layer 1\+: Linear, (in\+\_\+channels = environment = 128) -\/$>$ Re\+LU 
+
+Layer 2\+: Linear, (in\+\_\+channels = 128, out\+\_\+channels = 128) 
+
+Layer 3\+: Linear, (in\+\_\+channels = 128, out\+\_\+channels = number of actions available for agent) 
+
+The actions for this model are evaluated using the Epsilon Greedy Strategy 
+\end{DoxyNote}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_d_q_n_a3f6a1a4d65b024ea11865486b50c0c7b}\label{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_d_q_n_a3f6a1a4d65b024ea11865486b50c0c7b}} 
+\index{Low-\/Cost-\/Platform.include.agentArchitecture.DQN@{Low-\/Cost-\/Platform.include.agentArchitecture.DQN}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!Low-\/Cost-\/Platform.include.agentArchitecture.DQN@{Low-\/Cost-\/Platform.include.agentArchitecture.DQN}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def Low-\/Cost-\/Platform.\+include.\+agent\+Architecture.\+D\+Q\+N.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{env,  }\item[{}]{memory\+\_\+size = {\ttfamily 5000} }\end{DoxyParamCaption})}
+
+
+
+Super Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em } & env The environment in which the agent will be interacting with (must be gym compatible) \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_d_q_n_a6fd9e35d44f611de8b37e3da82f5ee20}\label{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_d_q_n_a6fd9e35d44f611de8b37e3da82f5ee20}} 
+\index{Low-\/Cost-\/Platform.include.agentArchitecture.DQN@{Low-\/Cost-\/Platform.include.agentArchitecture.DQN}!epsilon\_greed\_strat@{epsilon\_greed\_strat}}
+\index{epsilon\_greed\_strat@{epsilon\_greed\_strat}!Low-\/Cost-\/Platform.include.agentArchitecture.DQN@{Low-\/Cost-\/Platform.include.agentArchitecture.DQN}}
+\doxysubsubsection{\texorpdfstring{epsilon\_greed\_strat()}{epsilon\_greed\_strat()}}
+{\footnotesize\ttfamily def Low-\/Cost-\/Platform.\+include.\+agent\+Architecture.\+D\+Q\+N.\+epsilon\+\_\+greed\+\_\+strat (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{time\+\_\+step }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_d_q_n_a14dc7cf655205b470c5545264b92bcfb}\label{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_d_q_n_a14dc7cf655205b470c5545264b92bcfb}} 
+\index{Low-\/Cost-\/Platform.include.agentArchitecture.DQN@{Low-\/Cost-\/Platform.include.agentArchitecture.DQN}!evaluate@{evaluate}}
+\index{evaluate@{evaluate}!Low-\/Cost-\/Platform.include.agentArchitecture.DQN@{Low-\/Cost-\/Platform.include.agentArchitecture.DQN}}
+\doxysubsubsection{\texorpdfstring{evaluate()}{evaluate()}}
+{\footnotesize\ttfamily def Low-\/Cost-\/Platform.\+include.\+agent\+Architecture.\+D\+Q\+N.\+evaluate (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{state }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_d_q_n_af188145de381cb022c9dd00b286c2bcf}\label{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_d_q_n_af188145de381cb022c9dd00b286c2bcf}} 
+\index{Low-\/Cost-\/Platform.include.agentArchitecture.DQN@{Low-\/Cost-\/Platform.include.agentArchitecture.DQN}!forward@{forward}}
+\index{forward@{forward}!Low-\/Cost-\/Platform.include.agentArchitecture.DQN@{Low-\/Cost-\/Platform.include.agentArchitecture.DQN}}
+\doxysubsubsection{\texorpdfstring{forward()}{forward()}}
+{\footnotesize\ttfamily def Low-\/Cost-\/Platform.\+include.\+agent\+Architecture.\+D\+Q\+N.\+forward (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{x }\end{DoxyParamCaption})}
+
+
+
+Model arguement handler. 
+
+Passes the inputs into the agent\textquotesingle{}s Linear Model 
+\begin{DoxyParams}{Parameters}
+{\em x} & Input for the model. The data type will be dependent on the model architecture itself. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_d_q_n_ab5b260bc159317254ef5f8c602ee7c2e}\label{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_d_q_n_ab5b260bc159317254ef5f8c602ee7c2e}} 
+\index{Low-\/Cost-\/Platform.include.agentArchitecture.DQN@{Low-\/Cost-\/Platform.include.agentArchitecture.DQN}!get\_action@{get\_action}}
+\index{get\_action@{get\_action}!Low-\/Cost-\/Platform.include.agentArchitecture.DQN@{Low-\/Cost-\/Platform.include.agentArchitecture.DQN}}
+\doxysubsubsection{\texorpdfstring{get\_action()}{get\_action()}}
+{\footnotesize\ttfamily def Low-\/Cost-\/Platform.\+include.\+agent\+Architecture.\+D\+Q\+N.\+get\+\_\+action (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{state,  }\item[{}]{epsilon }\end{DoxyParamCaption})}
+
+
+
+get\+\_\+action evaluates the action the agent based on Epsilon Greedy Strategy 
+
+
+\begin{DoxyParams}{Parameters}
+{\em } & state Current state of the environment the agent is observing \\
+\hline
+{\em } & epsilon Current Epsilon value w.\+r.\+t. the Epsilon Greedy Strategy \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_d_q_n_a6fa63c00cb65eaa087e5b27ce4cd0d95}\label{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_d_q_n_a6fa63c00cb65eaa087e5b27ce4cd0d95}} 
+\index{Low-\/Cost-\/Platform.include.agentArchitecture.DQN@{Low-\/Cost-\/Platform.include.agentArchitecture.DQN}!get\_qvals@{get\_qvals}}
+\index{get\_qvals@{get\_qvals}!Low-\/Cost-\/Platform.include.agentArchitecture.DQN@{Low-\/Cost-\/Platform.include.agentArchitecture.DQN}}
+\doxysubsubsection{\texorpdfstring{get\_qvals()}{get\_qvals()}}
+{\footnotesize\ttfamily def Low-\/Cost-\/Platform.\+include.\+agent\+Architecture.\+D\+Q\+N.\+get\+\_\+qvals (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{state }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_d_q_n_a477f7356a1742e009cb6ec36672ad421}\label{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_d_q_n_a477f7356a1742e009cb6ec36672ad421}} 
+\index{Low-\/Cost-\/Platform.include.agentArchitecture.DQN@{Low-\/Cost-\/Platform.include.agentArchitecture.DQN}!epsilon\_decay@{epsilon\_decay}}
+\index{epsilon\_decay@{epsilon\_decay}!Low-\/Cost-\/Platform.include.agentArchitecture.DQN@{Low-\/Cost-\/Platform.include.agentArchitecture.DQN}}
+\doxysubsubsection{\texorpdfstring{epsilon\_decay}{epsilon\_decay}}
+{\footnotesize\ttfamily Low-\/Cost-\/Platform.\+include.\+agent\+Architecture.\+D\+Q\+N.\+epsilon\+\_\+decay}
+
+\mbox{\Hypertarget{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_d_q_n_a5d12387c858423d50730c51d9db323e5}\label{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_d_q_n_a5d12387c858423d50730c51d9db323e5}} 
+\index{Low-\/Cost-\/Platform.include.agentArchitecture.DQN@{Low-\/Cost-\/Platform.include.agentArchitecture.DQN}!epsilon\_final@{epsilon\_final}}
+\index{epsilon\_final@{epsilon\_final}!Low-\/Cost-\/Platform.include.agentArchitecture.DQN@{Low-\/Cost-\/Platform.include.agentArchitecture.DQN}}
+\doxysubsubsection{\texorpdfstring{epsilon\_final}{epsilon\_final}}
+{\footnotesize\ttfamily Low-\/Cost-\/Platform.\+include.\+agent\+Architecture.\+D\+Q\+N.\+epsilon\+\_\+final}
+
+\mbox{\Hypertarget{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_d_q_n_ab1a5bd35f5812b804b7140ef2d65248e}\label{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_d_q_n_ab1a5bd35f5812b804b7140ef2d65248e}} 
+\index{Low-\/Cost-\/Platform.include.agentArchitecture.DQN@{Low-\/Cost-\/Platform.include.agentArchitecture.DQN}!epsilon\_start@{epsilon\_start}}
+\index{epsilon\_start@{epsilon\_start}!Low-\/Cost-\/Platform.include.agentArchitecture.DQN@{Low-\/Cost-\/Platform.include.agentArchitecture.DQN}}
+\doxysubsubsection{\texorpdfstring{epsilon\_start}{epsilon\_start}}
+{\footnotesize\ttfamily Low-\/Cost-\/Platform.\+include.\+agent\+Architecture.\+D\+Q\+N.\+epsilon\+\_\+start}
+
+\mbox{\Hypertarget{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_d_q_n_a0662d4173e4fea4f02eeb7a482a940ce}\label{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_d_q_n_a0662d4173e4fea4f02eeb7a482a940ce}} 
+\index{Low-\/Cost-\/Platform.include.agentArchitecture.DQN@{Low-\/Cost-\/Platform.include.agentArchitecture.DQN}!experience@{experience}}
+\index{experience@{experience}!Low-\/Cost-\/Platform.include.agentArchitecture.DQN@{Low-\/Cost-\/Platform.include.agentArchitecture.DQN}}
+\doxysubsubsection{\texorpdfstring{experience}{experience}}
+{\footnotesize\ttfamily Low-\/Cost-\/Platform.\+include.\+agent\+Architecture.\+D\+Q\+N.\+experience}
+
+\mbox{\Hypertarget{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_d_q_n_a4643eb564b2fad54dd94da324acfba41}\label{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_d_q_n_a4643eb564b2fad54dd94da324acfba41}} 
+\index{Low-\/Cost-\/Platform.include.agentArchitecture.DQN@{Low-\/Cost-\/Platform.include.agentArchitecture.DQN}!input\_dim@{input\_dim}}
+\index{input\_dim@{input\_dim}!Low-\/Cost-\/Platform.include.agentArchitecture.DQN@{Low-\/Cost-\/Platform.include.agentArchitecture.DQN}}
+\doxysubsubsection{\texorpdfstring{input\_dim}{input\_dim}}
+{\footnotesize\ttfamily Low-\/Cost-\/Platform.\+include.\+agent\+Architecture.\+D\+Q\+N.\+input\+\_\+dim}
+
+\mbox{\Hypertarget{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_d_q_n_a79e0bdb819e60071a08880fd99910448}\label{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_d_q_n_a79e0bdb819e60071a08880fd99910448}} 
+\index{Low-\/Cost-\/Platform.include.agentArchitecture.DQN@{Low-\/Cost-\/Platform.include.agentArchitecture.DQN}!layers@{layers}}
+\index{layers@{layers}!Low-\/Cost-\/Platform.include.agentArchitecture.DQN@{Low-\/Cost-\/Platform.include.agentArchitecture.DQN}}
+\doxysubsubsection{\texorpdfstring{layers}{layers}}
+{\footnotesize\ttfamily Low-\/Cost-\/Platform.\+include.\+agent\+Architecture.\+D\+Q\+N.\+layers}
+
+\mbox{\Hypertarget{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_d_q_n_a469a35371ff2caf3bf7e91fa5305e8d4}\label{class_low-_cost-_platform_1_1include_1_1agent_architecture_1_1_d_q_n_a469a35371ff2caf3bf7e91fa5305e8d4}} 
+\index{Low-\/Cost-\/Platform.include.agentArchitecture.DQN@{Low-\/Cost-\/Platform.include.agentArchitecture.DQN}!num\_actions@{num\_actions}}
+\index{num\_actions@{num\_actions}!Low-\/Cost-\/Platform.include.agentArchitecture.DQN@{Low-\/Cost-\/Platform.include.agentArchitecture.DQN}}
+\doxysubsubsection{\texorpdfstring{num\_actions}{num\_actions}}
+{\footnotesize\ttfamily Low-\/Cost-\/Platform.\+include.\+agent\+Architecture.\+D\+Q\+N.\+num\+\_\+actions}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dell/git/\+Low-\/\+Cost-\/\+Platform/include/\mbox{\hyperlink{agent_architecture_8py}{agent\+Architecture.\+py}}\end{DoxyCompactItemize}

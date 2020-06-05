@@ -1,0 +1,145 @@
+\hypertarget{class_low-_cost-_platform_1_1include_1_1agent_1_1_agent}{}\doxysection{Low-\/\+Cost-\/\+Platform.include.\+agent.\+Agent Class Reference}
+\label{class_low-_cost-_platform_1_1include_1_1agent_1_1_agent}\index{Low-\/Cost-\/Platform.include.agent.Agent@{Low-\/Cost-\/Platform.include.agent.Agent}}
+
+
+\mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_1_1_agent}{Agent}} The Parent class which can be used to create instances of Agents using inheritance.  
+
+
+Inheritance diagram for Low-\/\+Cost-\/\+Platform.include.\+agent.\+Agent\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.712538cm]{class_low-_cost-_platform_1_1include_1_1agent_1_1_agent}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_1_1_agent_a2daee3c40a64cb5b71cbe2c4dff74844}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self)
+\begin{DoxyCompactList}\small\item\em Constructor Upon constructing the class, the \mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_1_1_agent}{Agent}} class will search for C\+U\+DA cores on the computer to determine if G\+PU compitation is possbile. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_1_1_agent_aab81ecedbe053cc32ce14a333afbf1cf}{test\+\_\+env}} (self, env, model, vis=False)
+\begin{DoxyCompactList}\small\item\em test\+\_\+env Method for Testing the model against the single instance of the environment. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_1_1_agent_a09724ef78b321cec4e9e22f8152e6d1c}{save\+Weights}} (self, directory, file\+\_\+name)
+\begin{DoxyCompactList}\small\item\em save\+Weights Method for saving weights of the model into the local directory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_1_1_agent_af81fe9b1192cb08215512c0dc0421c62}{debugger}}
+\item 
+\mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_1_1_agent_a0000a1a24fbd5cf46337080f57a77017}{frame\+\_\+idx}}
+\item 
+\mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_1_1_agent_abd4819eb122b5083c123230c04adc01a}{time\+\_\+step}}
+\item 
+\mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_1_1_agent_af2131d218ff168aaea16df08dc6d226c}{training}}
+\item 
+\mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_1_1_agent_a760ce823a975886cb747dff0c2a1b799}{rewards}}
+\item 
+\mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_1_1_agent_a46bc96d8828b0ff3a2f7c36cac243b12}{test\+\_\+rewards}}
+\item 
+\mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_1_1_agent_ae11e1229128b635400adcc234a2e975f}{ep\+\_\+num}}
+\item 
+\mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_1_1_agent_a257aee587c52141f4ef3bfec5a5f3d8e}{loss}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_1_1_agent}{Agent}} The Parent class which can be used to create instances of Agents using inheritance. 
+
+The class checks for C\+U\+DA cores to use for G\+PU computation and read J\+S\+ON files for the hyperparameters of the model. The class contains frequently used parameters in Reinforcecment Learning such as\+: rewards, loss, epoch number, time step and frame index. A \mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_1_1_debugger}{Debugger}} is instantiated in the class for debugging should the user feel the need to. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_low-_cost-_platform_1_1include_1_1agent_1_1_agent_a2daee3c40a64cb5b71cbe2c4dff74844}\label{class_low-_cost-_platform_1_1include_1_1agent_1_1_agent_a2daee3c40a64cb5b71cbe2c4dff74844}} 
+\index{Low-\/Cost-\/Platform.include.agent.Agent@{Low-\/Cost-\/Platform.include.agent.Agent}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!Low-\/Cost-\/Platform.include.agent.Agent@{Low-\/Cost-\/Platform.include.agent.Agent}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def Low-\/Cost-\/Platform.\+include.\+agent.\+Agent.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Constructor Upon constructing the class, the \mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_1_1_agent}{Agent}} class will search for C\+U\+DA cores on the computer to determine if G\+PU compitation is possbile. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_low-_cost-_platform_1_1include_1_1agent_1_1_agent_a09724ef78b321cec4e9e22f8152e6d1c}\label{class_low-_cost-_platform_1_1include_1_1agent_1_1_agent_a09724ef78b321cec4e9e22f8152e6d1c}} 
+\index{Low-\/Cost-\/Platform.include.agent.Agent@{Low-\/Cost-\/Platform.include.agent.Agent}!saveWeights@{saveWeights}}
+\index{saveWeights@{saveWeights}!Low-\/Cost-\/Platform.include.agent.Agent@{Low-\/Cost-\/Platform.include.agent.Agent}}
+\doxysubsubsection{\texorpdfstring{saveWeights()}{saveWeights()}}
+{\footnotesize\ttfamily def Low-\/Cost-\/Platform.\+include.\+agent.\+Agent.\+save\+Weights (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{directory,  }\item[{}]{file\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+save\+Weights Method for saving weights of the model into the local directory. 
+
+For unit testing, this function will save the entire model architecture in addition to the weights. 
+\begin{DoxyParams}{Parameters}
+{\em directory} & Folder the model will be saved to \\
+\hline
+{\em file\+\_\+name} & Name of the file which the model will be saved. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_low-_cost-_platform_1_1include_1_1agent_1_1_agent_aab81ecedbe053cc32ce14a333afbf1cf}\label{class_low-_cost-_platform_1_1include_1_1agent_1_1_agent_aab81ecedbe053cc32ce14a333afbf1cf}} 
+\index{Low-\/Cost-\/Platform.include.agent.Agent@{Low-\/Cost-\/Platform.include.agent.Agent}!test\_env@{test\_env}}
+\index{test\_env@{test\_env}!Low-\/Cost-\/Platform.include.agent.Agent@{Low-\/Cost-\/Platform.include.agent.Agent}}
+\doxysubsubsection{\texorpdfstring{test\_env()}{test\_env()}}
+{\footnotesize\ttfamily def Low-\/Cost-\/Platform.\+include.\+agent.\+Agent.\+test\+\_\+env (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{env,  }\item[{}]{model,  }\item[{}]{vis = {\ttfamily False} }\end{DoxyParamCaption})}
+
+
+
+test\+\_\+env Method for Testing the model against the single instance of the environment. 
+
+This will allow the model to be verified if trained properly. User can validate the performance of the model by calling this function and pass the environment and model through it. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_low-_cost-_platform_1_1include_1_1agent_1_1_agent_af81fe9b1192cb08215512c0dc0421c62}\label{class_low-_cost-_platform_1_1include_1_1agent_1_1_agent_af81fe9b1192cb08215512c0dc0421c62}} 
+\index{Low-\/Cost-\/Platform.include.agent.Agent@{Low-\/Cost-\/Platform.include.agent.Agent}!debugger@{debugger}}
+\index{debugger@{debugger}!Low-\/Cost-\/Platform.include.agent.Agent@{Low-\/Cost-\/Platform.include.agent.Agent}}
+\doxysubsubsection{\texorpdfstring{debugger}{debugger}}
+{\footnotesize\ttfamily Low-\/Cost-\/Platform.\+include.\+agent.\+Agent.\+debugger}
+
+\mbox{\Hypertarget{class_low-_cost-_platform_1_1include_1_1agent_1_1_agent_ae11e1229128b635400adcc234a2e975f}\label{class_low-_cost-_platform_1_1include_1_1agent_1_1_agent_ae11e1229128b635400adcc234a2e975f}} 
+\index{Low-\/Cost-\/Platform.include.agent.Agent@{Low-\/Cost-\/Platform.include.agent.Agent}!ep\_num@{ep\_num}}
+\index{ep\_num@{ep\_num}!Low-\/Cost-\/Platform.include.agent.Agent@{Low-\/Cost-\/Platform.include.agent.Agent}}
+\doxysubsubsection{\texorpdfstring{ep\_num}{ep\_num}}
+{\footnotesize\ttfamily Low-\/Cost-\/Platform.\+include.\+agent.\+Agent.\+ep\+\_\+num}
+
+\mbox{\Hypertarget{class_low-_cost-_platform_1_1include_1_1agent_1_1_agent_a0000a1a24fbd5cf46337080f57a77017}\label{class_low-_cost-_platform_1_1include_1_1agent_1_1_agent_a0000a1a24fbd5cf46337080f57a77017}} 
+\index{Low-\/Cost-\/Platform.include.agent.Agent@{Low-\/Cost-\/Platform.include.agent.Agent}!frame\_idx@{frame\_idx}}
+\index{frame\_idx@{frame\_idx}!Low-\/Cost-\/Platform.include.agent.Agent@{Low-\/Cost-\/Platform.include.agent.Agent}}
+\doxysubsubsection{\texorpdfstring{frame\_idx}{frame\_idx}}
+{\footnotesize\ttfamily Low-\/Cost-\/Platform.\+include.\+agent.\+Agent.\+frame\+\_\+idx}
+
+\mbox{\Hypertarget{class_low-_cost-_platform_1_1include_1_1agent_1_1_agent_a257aee587c52141f4ef3bfec5a5f3d8e}\label{class_low-_cost-_platform_1_1include_1_1agent_1_1_agent_a257aee587c52141f4ef3bfec5a5f3d8e}} 
+\index{Low-\/Cost-\/Platform.include.agent.Agent@{Low-\/Cost-\/Platform.include.agent.Agent}!loss@{loss}}
+\index{loss@{loss}!Low-\/Cost-\/Platform.include.agent.Agent@{Low-\/Cost-\/Platform.include.agent.Agent}}
+\doxysubsubsection{\texorpdfstring{loss}{loss}}
+{\footnotesize\ttfamily Low-\/Cost-\/Platform.\+include.\+agent.\+Agent.\+loss}
+
+\mbox{\Hypertarget{class_low-_cost-_platform_1_1include_1_1agent_1_1_agent_a760ce823a975886cb747dff0c2a1b799}\label{class_low-_cost-_platform_1_1include_1_1agent_1_1_agent_a760ce823a975886cb747dff0c2a1b799}} 
+\index{Low-\/Cost-\/Platform.include.agent.Agent@{Low-\/Cost-\/Platform.include.agent.Agent}!rewards@{rewards}}
+\index{rewards@{rewards}!Low-\/Cost-\/Platform.include.agent.Agent@{Low-\/Cost-\/Platform.include.agent.Agent}}
+\doxysubsubsection{\texorpdfstring{rewards}{rewards}}
+{\footnotesize\ttfamily Low-\/Cost-\/Platform.\+include.\+agent.\+Agent.\+rewards}
+
+\mbox{\Hypertarget{class_low-_cost-_platform_1_1include_1_1agent_1_1_agent_a46bc96d8828b0ff3a2f7c36cac243b12}\label{class_low-_cost-_platform_1_1include_1_1agent_1_1_agent_a46bc96d8828b0ff3a2f7c36cac243b12}} 
+\index{Low-\/Cost-\/Platform.include.agent.Agent@{Low-\/Cost-\/Platform.include.agent.Agent}!test\_rewards@{test\_rewards}}
+\index{test\_rewards@{test\_rewards}!Low-\/Cost-\/Platform.include.agent.Agent@{Low-\/Cost-\/Platform.include.agent.Agent}}
+\doxysubsubsection{\texorpdfstring{test\_rewards}{test\_rewards}}
+{\footnotesize\ttfamily Low-\/Cost-\/Platform.\+include.\+agent.\+Agent.\+test\+\_\+rewards}
+
+\mbox{\Hypertarget{class_low-_cost-_platform_1_1include_1_1agent_1_1_agent_abd4819eb122b5083c123230c04adc01a}\label{class_low-_cost-_platform_1_1include_1_1agent_1_1_agent_abd4819eb122b5083c123230c04adc01a}} 
+\index{Low-\/Cost-\/Platform.include.agent.Agent@{Low-\/Cost-\/Platform.include.agent.Agent}!time\_step@{time\_step}}
+\index{time\_step@{time\_step}!Low-\/Cost-\/Platform.include.agent.Agent@{Low-\/Cost-\/Platform.include.agent.Agent}}
+\doxysubsubsection{\texorpdfstring{time\_step}{time\_step}}
+{\footnotesize\ttfamily Low-\/Cost-\/Platform.\+include.\+agent.\+Agent.\+time\+\_\+step}
+
+\mbox{\Hypertarget{class_low-_cost-_platform_1_1include_1_1agent_1_1_agent_af2131d218ff168aaea16df08dc6d226c}\label{class_low-_cost-_platform_1_1include_1_1agent_1_1_agent_af2131d218ff168aaea16df08dc6d226c}} 
+\index{Low-\/Cost-\/Platform.include.agent.Agent@{Low-\/Cost-\/Platform.include.agent.Agent}!training@{training}}
+\index{training@{training}!Low-\/Cost-\/Platform.include.agent.Agent@{Low-\/Cost-\/Platform.include.agent.Agent}}
+\doxysubsubsection{\texorpdfstring{training}{training}}
+{\footnotesize\ttfamily Low-\/Cost-\/Platform.\+include.\+agent.\+Agent.\+training}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dell/git/\+Low-\/\+Cost-\/\+Platform/include/\mbox{\hyperlink{agent_8py}{agent.\+py}}\end{DoxyCompactItemize}
