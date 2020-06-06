@@ -13,10 +13,10 @@ from robot_platform import RobotPlatform
 #from environment import KernelAPI
 
 class Agent(RobotPlatform):
-    def __init__(self, model_architecture, servo_control_pins):
-        super(Agent, self).__init__()
-        self.model = model_architecture
-        self.robot = RobotPlatform.__init__(self, servo_control_pins)
+    def __init__(self, servo_control_pins, camera_resolution):
+        super(Agent, self).__init__(servo_control_pins, camera_resolution)
+        self.model = 0
+        self.robot = RobotPlatform.__init__(self, servo_control_pins, camera_resolution)
         self.done = False
     def _initRobotPlatform(self):
         self._init_servos()
@@ -27,9 +27,19 @@ class Agent(RobotPlatform):
         model_path = os.path.join(os.getcwd(), path, file_name)    
         self.model = torch.load(model_path)
     
+    def convert(self):
+        pass
+    
+    # Used for testing API for agent and platform
     def evaluate(self):
+        assert self.model == 0, "No Architecture found on Agent."
+        rewards = []
         self.robot.reset()
         while not done:
             position = self.robot.readSensor("S3003")
             action = self.model(position)
-            next_state, reward, done, info = self.robot.step(servo_pin, signal)
+            signal = convert(action)
+            next_state, reward, done,_ = self.robot.step(servo_pin, signal)
+            rewards.append(reward)
+        
+        return rewards

@@ -5,16 +5,18 @@
 import numpy as np
 import math
 import cv2
+import time
 
 # packages for kernel operations
+import threading
 import wiringpi
-import picamera
+from picamera import PiCamera
 from PIL import Image
-from kalman_filter import Kalman
+from include.filters import Kalman
 
 class ServoControl:
     def __init__(self, servo_pins_list):
-        super(ServoControl, self).__init__(servo_pins_list)
+        super(ServoControl, self).__init__()
         self.output = 1
         self.input = 0
         self._servo_pins = servo_pins_list
@@ -101,6 +103,8 @@ class MPU6050Control:
             exit(0)
             
     def _initPosition(self):
+        self._getAccData()
+        self._getGyroData()
         self.getPlatformAngle()
     
     # MPU6050 Sensor methods:
@@ -136,7 +140,7 @@ class MPU6050Control:
         #filteredData = kf_update(self.roll_list)
         return filteredData
     
-    def getplatformAngle(self):
+    def getPlatformAngle(self):
         self.roll = math.atan2(self.acc_y, self.acc_z)
         self.pitch = math.atan(-self.acc_x/math.sqrt((self.acc_y**2)+(self.acc_z**2)))
     
@@ -164,19 +168,23 @@ class MPU6050Control:
         
 class PiCameraControl:
     def __init__(self, camera_resolution):
-        super(PiCameraControl, self).__init__(camera_resolution)
-        with picamera.PiCamera() as camera:
-            self.camera = camera
+        super(PiCameraControl, self).__init__()
+        camera_resolution_h, camera_resolution_w = camera_resolution
+        self.camera = Picamera()
         self._initCamera()
         self.image = np.empty(camera_resolution_h, camera_resolution_w)
         
     def _initCamera(self):
         try:
             self.camera.start_preview()
+            time.sleep(5)
+            self.camera.stop_preview()
         except AttributeError:
             print("Could not start the camera, please check the connections. Exiting.\n")
             print("Tip:\t You may need to initialize the camera using raspi-config.\n")
             exit(0)
+        finally:
+            self.camera.close()
     # todo: Verify capture images and feed to network.
     def captureImage(self):
         return self.camera.capture(self.image, 'rgb')
