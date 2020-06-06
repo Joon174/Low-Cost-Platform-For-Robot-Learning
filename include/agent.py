@@ -124,6 +124,22 @@ class Agent:
             directory = "modelWeights" 
         model_path = os.path.join(os.getcwd(), directory, file_name).replace("\\", "/")
         torch.save(model, model_path)
+    
+    def loadWeights(self, directory, file_name):
+        if file_name is None:
+            file_name = "proof_of_concept_model.pt"
+        if directory is None:
+            directory = "modelWeights" 
+        model_path = os.path.join(os.getcwd(), directory, file_name).replace("\\", "/")
+        self.model.load_state_dict(torch.load(model_path))
+        
+    def loadModel(self, directory, file_name):
+        if file_name is None:
+            file_name = "proof_of_concept_model.pt"
+        if directory is None:
+            directory = "modelWeights" 
+        model_path = os.path.join(os.getcwd(), directory, file_name).replace("\\", "/")
+        self.model = torch.load(model_path)
 
     def plotResults(self, results):
         plt.figure(figsize=(12,8))

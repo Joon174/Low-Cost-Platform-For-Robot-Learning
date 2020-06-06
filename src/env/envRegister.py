@@ -59,9 +59,6 @@ class ProofOfConceptModel(mujoco_env.MujocoEnv, utils.EzPickle):
     def add_trajectory(self, list_of_angles):
         self._target_leg_pos = list_of_angles
 
-    def _get_current_target(self):
-        return self._target_leg_pos[self._idx]
-
     def _get_next_target(self):
         if (self._idx + 1) <= len(self._target_leg_pos):
             state =  self._target_leg_pos[self._idx+1]
@@ -148,7 +145,7 @@ class LowCostPlatform(mujoco_env.MujocoEnv, utils.EzPickle):
 
     # Methods for envrionment interaction
     def step(self, action):
-	    #Carry out one step of action
+        #Carry out one step of action
         xy_position_before = self.get_body_com("QUEEN_Chasis")[:2].copy()
         self.do_simulation(action, self.frame_skip)
         xy_position_after = self.get_body_com("QUEEN_Chasis")[:2].copy()
@@ -156,7 +153,7 @@ class LowCostPlatform(mujoco_env.MujocoEnv, utils.EzPickle):
         xy_velocity = (xy_position_after - xy_position_before) / self.dt
         x_velocity, y_velocity = xy_velocity
 
-        rewards = x_velocity	
+        rewards = x_velocity    
         done = False
         observation = self._get_obs()
         info = {'Rewards': rewards,

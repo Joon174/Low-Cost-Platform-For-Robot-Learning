@@ -72,20 +72,29 @@ class DQNAgent(Agent):
 ## PPOAgent
 #  @brief Example PPO Agent; inherited properties from the Agent parent class
 class PPOAgent(Agent):
-    def __init__(self, envs, env, batch_size=512, config_file="include/config.txt"):
+    def __init__(self, batch_size=512, config_file="include/config.txt"):
         Agent.__init__(self)
+        self.env = 0
+        self.envs = 0
+        self.model = 0
+        self.optimizer = 0
         self.config_params = self._getParameters(config_file)
-        self.env = env
-        self.envs = envs
-        self.model = ActorCritic(self.envs).to(self.device)
-        self.optimizer = optim.Adam(self.model.parameters(), lr=self.config_params["PPO"]["l_r"])
-        self.model.getOptimizer(self.optimizer)
         self.max_frames = self.config_params["PPO"]["m_f"]
         self.num_steps = self.config_params["PPO"]["n_s"]
         self.threshold_reward = self.config_params["PPO"]["t_r"]
         self.ppo_epochs = self.config_params["PPO"]["p_e"]
         self.batch_size = batch_size
 
+    def defineEnv(self, env, envs=0):
+        self.env = env
+        self.envs = envs
+        if envs == 0:
+            self.model = ActorCritic(self.envs).to(self.device)
+        else:
+            self.model = ActorCritic(self.env).to(self.device)
+        self.optimizer = optim.Adam(self.model.parameters(), lr=self.config_params["PPO"]["l_r"])
+        self.model.getOptimizer(self.optimizer)
+        
     def train(self):
         state = self.envs.reset()
         early_stop = False

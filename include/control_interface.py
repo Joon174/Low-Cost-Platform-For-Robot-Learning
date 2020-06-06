@@ -21,10 +21,11 @@ class ServoControl:
         self.input = 0
         self._servo_pins = servo_pins_list
         self.servo_pos = 0
-        self._servo_pwm_min = 550
-        self._servo_pwm_max = 3000
+        self.servo_pwm_min = 550
+        self.servo_pwm_max = 3000
         self._init_pos_signal = 11;
         self._init_servos()
+        self.dt = 0.1
 
     def _init_servos(self):
         for i in range(len(self._servo_pins)):
@@ -48,10 +49,10 @@ class ServoControl:
     
     # Returns Sensor in radians 
     def readSensor(self):
-        deltaIn = self.servo_pos - self._servo_pwn_min
-        rangeIn = self._servo_pwm_max - self._servo_pwm_min
+        deltaIn = self.servo_pos - self.servo_pwm_min
+        rangeIn = self.servo_pwm_max - self.servo_pwm_min
         rangeOut = 3.1459
-        return (deltaIn * rangeOut) / rangeIn
+        return (deltaIn * rangeOut) / rangeIn, self.servo_pos*self.dt
 
 class MPU6050Control:
     def __init__(self):
