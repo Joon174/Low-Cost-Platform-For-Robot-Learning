@@ -1,0 +1,115 @@
+\hypertarget{classenv_register_1_1_proof_of_concept_model}{}\doxysection{env\+Register.\+Proof\+Of\+Concept\+Model Class Reference}
+\label{classenv_register_1_1_proof_of_concept_model}\index{envRegister.ProofOfConceptModel@{envRegister.ProofOfConceptModel}}
+
+
+\mbox{\hyperlink{classenv_register_1_1_proof_of_concept_model}{Proof\+Of\+Concept\+Model}}.  
+
+
+Inheritance diagram for env\+Register.\+Proof\+Of\+Concept\+Model\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classenv_register_1_1_proof_of_concept_model}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classenv_register_1_1_proof_of_concept_model_a863de41d86b580f5e723c806529d2d87}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, healthy\+\_\+reward=1.\+0, terminate\+\_\+when\+\_\+unhealthy=True, error\+\_\+range=(0.\+05, 0.\+1))
+\begin{DoxyCompactList}\small\item\em Constructor Instantiates variables necessary for operation; includes the permissible error between the target and current position, rewards and the index of the target in the trajectory. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classenv_register_1_1_proof_of_concept_model_a4f05038089ae193c5cd99d5981786cdf}{is\+\_\+healthy}} (self)
+\begin{DoxyCompactList}\small\item\em Decorators for training. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classenv_register_1_1_proof_of_concept_model_af6c53450fb182e5057d0c2c8285111e4}{done}} (self)
+\item 
+def \mbox{\hyperlink{classenv_register_1_1_proof_of_concept_model_a384db2fe1423b965a5b9afd0b654585e}{add\+\_\+trajectory}} (self, list\+\_\+of\+\_\+angles)
+\item 
+def \mbox{\hyperlink{classenv_register_1_1_proof_of_concept_model_aad8097cf1d9324e2ec08350fca169bd3}{quat\+\_\+to\+\_\+euler}} (self, quat\+\_\+array)
+\item 
+def \mbox{\hyperlink{classenv_register_1_1_proof_of_concept_model_a7ab8b1bf1e10551935a25a1de546883f}{step}} (self, action)
+\item 
+def \mbox{\hyperlink{classenv_register_1_1_proof_of_concept_model_a1124cdbf16f72385d54d9e84822b0290}{reset\+\_\+model}} (self)
+\item 
+def \mbox{\hyperlink{classenv_register_1_1_proof_of_concept_model_afb18a22314a4bba12825ed28c55029ed}{viewer\+\_\+setup}} (self)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classenv_register_1_1_proof_of_concept_model}{Proof\+Of\+Concept\+Model}}. 
+
+Creates an environment for one leg of the Robotic Platform The following class creates an instance of one robotic leg of the platform. The environment is mainly used for unit testing for validation. The rewards of this environment are designed for the accuracy following a specified trajectory input. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classenv_register_1_1_proof_of_concept_model_a863de41d86b580f5e723c806529d2d87}\label{classenv_register_1_1_proof_of_concept_model_a863de41d86b580f5e723c806529d2d87}} 
+\index{envRegister.ProofOfConceptModel@{envRegister.ProofOfConceptModel}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!envRegister.ProofOfConceptModel@{envRegister.ProofOfConceptModel}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def env\+Register.\+Proof\+Of\+Concept\+Model.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{healthy\+\_\+reward = {\ttfamily 1.0},  }\item[{}]{terminate\+\_\+when\+\_\+unhealthy = {\ttfamily True},  }\item[{}]{error\+\_\+range = {\ttfamily (0.05,~0.1)} }\end{DoxyParamCaption})}
+
+
+
+Constructor Instantiates variables necessary for operation; includes the permissible error between the target and current position, rewards and the index of the target in the trajectory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em xml\+\_\+file} & The mujoco X\+ML file created by the end user. \\
+\hline
+{\em is\+\_\+healthy} & Ensure servo motor is within limits (does not go over and break the leg) \\
+\hline
+{\em terminate\+\_\+when\+\_\+unhealthy} & Prevent robot from farming rewards and not complete the task \\
+\hline
+{\em error\+\_\+range} & Return true only if conditions are met (undecided as of now) \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classenv_register_1_1_proof_of_concept_model_a384db2fe1423b965a5b9afd0b654585e}\label{classenv_register_1_1_proof_of_concept_model_a384db2fe1423b965a5b9afd0b654585e}} 
+\index{envRegister.ProofOfConceptModel@{envRegister.ProofOfConceptModel}!add\_trajectory@{add\_trajectory}}
+\index{add\_trajectory@{add\_trajectory}!envRegister.ProofOfConceptModel@{envRegister.ProofOfConceptModel}}
+\doxysubsubsection{\texorpdfstring{add\_trajectory()}{add\_trajectory()}}
+{\footnotesize\ttfamily def env\+Register.\+Proof\+Of\+Concept\+Model.\+add\+\_\+trajectory (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{list\+\_\+of\+\_\+angles }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classenv_register_1_1_proof_of_concept_model_af6c53450fb182e5057d0c2c8285111e4}\label{classenv_register_1_1_proof_of_concept_model_af6c53450fb182e5057d0c2c8285111e4}} 
+\index{envRegister.ProofOfConceptModel@{envRegister.ProofOfConceptModel}!done@{done}}
+\index{done@{done}!envRegister.ProofOfConceptModel@{envRegister.ProofOfConceptModel}}
+\doxysubsubsection{\texorpdfstring{done()}{done()}}
+{\footnotesize\ttfamily def env\+Register.\+Proof\+Of\+Concept\+Model.\+done (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classenv_register_1_1_proof_of_concept_model_a4f05038089ae193c5cd99d5981786cdf}\label{classenv_register_1_1_proof_of_concept_model_a4f05038089ae193c5cd99d5981786cdf}} 
+\index{envRegister.ProofOfConceptModel@{envRegister.ProofOfConceptModel}!is\_healthy@{is\_healthy}}
+\index{is\_healthy@{is\_healthy}!envRegister.ProofOfConceptModel@{envRegister.ProofOfConceptModel}}
+\doxysubsubsection{\texorpdfstring{is\_healthy()}{is\_healthy()}}
+{\footnotesize\ttfamily def env\+Register.\+Proof\+Of\+Concept\+Model.\+is\+\_\+healthy (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Decorators for training. 
+
+\mbox{\Hypertarget{classenv_register_1_1_proof_of_concept_model_aad8097cf1d9324e2ec08350fca169bd3}\label{classenv_register_1_1_proof_of_concept_model_aad8097cf1d9324e2ec08350fca169bd3}} 
+\index{envRegister.ProofOfConceptModel@{envRegister.ProofOfConceptModel}!quat\_to\_euler@{quat\_to\_euler}}
+\index{quat\_to\_euler@{quat\_to\_euler}!envRegister.ProofOfConceptModel@{envRegister.ProofOfConceptModel}}
+\doxysubsubsection{\texorpdfstring{quat\_to\_euler()}{quat\_to\_euler()}}
+{\footnotesize\ttfamily def env\+Register.\+Proof\+Of\+Concept\+Model.\+quat\+\_\+to\+\_\+euler (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{quat\+\_\+array }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classenv_register_1_1_proof_of_concept_model_a1124cdbf16f72385d54d9e84822b0290}\label{classenv_register_1_1_proof_of_concept_model_a1124cdbf16f72385d54d9e84822b0290}} 
+\index{envRegister.ProofOfConceptModel@{envRegister.ProofOfConceptModel}!reset\_model@{reset\_model}}
+\index{reset\_model@{reset\_model}!envRegister.ProofOfConceptModel@{envRegister.ProofOfConceptModel}}
+\doxysubsubsection{\texorpdfstring{reset\_model()}{reset\_model()}}
+{\footnotesize\ttfamily def env\+Register.\+Proof\+Of\+Concept\+Model.\+reset\+\_\+model (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classenv_register_1_1_proof_of_concept_model_a7ab8b1bf1e10551935a25a1de546883f}\label{classenv_register_1_1_proof_of_concept_model_a7ab8b1bf1e10551935a25a1de546883f}} 
+\index{envRegister.ProofOfConceptModel@{envRegister.ProofOfConceptModel}!step@{step}}
+\index{step@{step}!envRegister.ProofOfConceptModel@{envRegister.ProofOfConceptModel}}
+\doxysubsubsection{\texorpdfstring{step()}{step()}}
+{\footnotesize\ttfamily def env\+Register.\+Proof\+Of\+Concept\+Model.\+step (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{action }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classenv_register_1_1_proof_of_concept_model_afb18a22314a4bba12825ed28c55029ed}\label{classenv_register_1_1_proof_of_concept_model_afb18a22314a4bba12825ed28c55029ed}} 
+\index{envRegister.ProofOfConceptModel@{envRegister.ProofOfConceptModel}!viewer\_setup@{viewer\_setup}}
+\index{viewer\_setup@{viewer\_setup}!envRegister.ProofOfConceptModel@{envRegister.ProofOfConceptModel}}
+\doxysubsubsection{\texorpdfstring{viewer\_setup()}{viewer\_setup()}}
+{\footnotesize\ttfamily def env\+Register.\+Proof\+Of\+Concept\+Model.\+viewer\+\_\+setup (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dell/git/\+Low-\/\+Cost-\/\+Platform/src/env/\mbox{\hyperlink{env_register_8py}{env\+Register.\+py}}\end{DoxyCompactItemize}

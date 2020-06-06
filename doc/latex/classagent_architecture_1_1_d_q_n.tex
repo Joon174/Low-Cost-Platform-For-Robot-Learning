@@ -1,0 +1,71 @@
+\hypertarget{classagent_architecture_1_1_d_q_n}{}\doxysection{agent\+Architecture.\+D\+QN Class Reference}
+\label{classagent_architecture_1_1_d_q_n}\index{agentArchitecture.DQN@{agentArchitecture.DQN}}
+
+
+\mbox{\hyperlink{classagent_architecture_1_1_d_q_n}{D\+QN}} A Linear Model with the Deep Q-\/\+Network (\mbox{\hyperlink{classagent_architecture_1_1_d_q_n}{D\+QN}}) architecture.  
+
+
+Inheritance diagram for agent\+Architecture.\+D\+QN\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classagent_architecture_1_1_d_q_n}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classagent_architecture_1_1_d_q_n_a4bac411fa4fae442882c9b72646e3a4a}\label{classagent_architecture_1_1_d_q_n_a4bac411fa4fae442882c9b72646e3a4a}} 
+def {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, env)
+\item 
+\mbox{\Hypertarget{classagent_architecture_1_1_d_q_n_a4f7a4fdb78886aa138f4bc45e1f8ab23}\label{classagent_architecture_1_1_d_q_n_a4f7a4fdb78886aa138f4bc45e1f8ab23}} 
+def {\bfseries forward} (self, x)
+\item 
+def \mbox{\hyperlink{classagent_architecture_1_1_d_q_n_a7a51a6f241848db104aeb3ee024fb0ea}{get\+\_\+action}} (self, state, epsilon)
+\begin{DoxyCompactList}\small\item\em get\+\_\+action evaluates the action the agent based on Epsilon Greedy Strategy \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classagent_architecture_1_1_d_q_n_ac54f6a55e7325c86ce8fcf4d42ddf9c7}\label{classagent_architecture_1_1_d_q_n_ac54f6a55e7325c86ce8fcf4d42ddf9c7}} 
+{\bfseries input\+\_\+dim}
+\item 
+\mbox{\Hypertarget{classagent_architecture_1_1_d_q_n_a7463cd17e1002f2f6de7938e6c155f97}\label{classagent_architecture_1_1_d_q_n_a7463cd17e1002f2f6de7938e6c155f97}} 
+{\bfseries num\+\_\+actions}
+\item 
+\mbox{\Hypertarget{classagent_architecture_1_1_d_q_n_a347b0c89621144c6587da904e590d9aa}\label{classagent_architecture_1_1_d_q_n_a347b0c89621144c6587da904e590d9aa}} 
+{\bfseries layers}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classagent_architecture_1_1_d_q_n}{D\+QN}} A Linear Model with the Deep Q-\/\+Network (\mbox{\hyperlink{classagent_architecture_1_1_d_q_n}{D\+QN}}) architecture. 
+
+This model can be modified using the XX tool The following is the default architecture for this agent\+: Layer 1\+: Linear, (in\+\_\+channels = environment = 128) -\/$>$ Re\+LU Layer 2\+: Linear, (in\+\_\+channels = 128, out\+\_\+channels = 128) Layer 3\+: Linear, (in\+\_\+channels = 128, out\+\_\+channels = number of actions available for agent) The actions for this model are evaluated using the Epsilon Greedy Strategy 
+\begin{DoxyParams}{Parameters}
+{\em } & env The environment in which the agent will be interacting with (must be gym compatible) \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classagent_architecture_1_1_d_q_n_a7a51a6f241848db104aeb3ee024fb0ea}\label{classagent_architecture_1_1_d_q_n_a7a51a6f241848db104aeb3ee024fb0ea}} 
+\index{agentArchitecture.DQN@{agentArchitecture.DQN}!get\_action@{get\_action}}
+\index{get\_action@{get\_action}!agentArchitecture.DQN@{agentArchitecture.DQN}}
+\doxysubsubsection{\texorpdfstring{get\_action()}{get\_action()}}
+{\footnotesize\ttfamily def agent\+Architecture.\+D\+Q\+N.\+get\+\_\+action (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{state,  }\item[{}]{epsilon }\end{DoxyParamCaption})}
+
+
+
+get\+\_\+action evaluates the action the agent based on Epsilon Greedy Strategy 
+
+
+\begin{DoxyParams}{Parameters}
+{\em } & state Current state of the environment the agent is observing \\
+\hline
+{\em } & epsilon Current Epsilon value w.\+r.\+t. the Epsilon Greedy Strategy \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+agent\+Architecture.\+py\end{DoxyCompactItemize}

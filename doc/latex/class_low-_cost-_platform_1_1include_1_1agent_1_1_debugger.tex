@@ -1,0 +1,90 @@
+\hypertarget{class_low-_cost-_platform_1_1include_1_1agent_1_1_debugger}{}\doxysection{Low-\/\+Cost-\/\+Platform.include.\+agent.\+Debugger Class Reference}
+\label{class_low-_cost-_platform_1_1include_1_1agent_1_1_debugger}\index{Low-\/Cost-\/Platform.include.agent.Debugger@{Low-\/Cost-\/Platform.include.agent.Debugger}}
+
+
+\mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_1_1_debugger}{Debugger}} If the test rewards need to be plot out, the debugger can called in the \mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_1_1_agent}{Agent}} class for visualization.  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_1_1_debugger_a2934b478ef170aa245b97761ff13c2d1}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, xlabel=\char`\"{}Time Step\char`\"{}, ylabel=\char`\"{}Angle Of System\char`\"{})
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_1_1_debugger_aa83f8588b6495e3f715c38ee2e918ead}{plot\+Values}} (self, x\+\_\+value, y\+\_\+value)
+\begin{DoxyCompactList}\small\item\em plot\+Values \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_1_1_debugger_acc9b923958b4b0c3dbf59ad01d62fa41}{show\+Plot}} (self)
+\begin{DoxyCompactList}\small\item\em show\+Plot \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_1_1_debugger_adfe611c78729d33148a20ffe5577e7ab}{matplot}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_1_1_debugger}{Debugger}} If the test rewards need to be plot out, the debugger can called in the \mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_1_1_agent}{Agent}} class for visualization. 
+
+Visualization is done using the matplotlib python package. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_low-_cost-_platform_1_1include_1_1agent_1_1_debugger_a2934b478ef170aa245b97761ff13c2d1}\label{class_low-_cost-_platform_1_1include_1_1agent_1_1_debugger_a2934b478ef170aa245b97761ff13c2d1}} 
+\index{Low-\/Cost-\/Platform.include.agent.Debugger@{Low-\/Cost-\/Platform.include.agent.Debugger}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!Low-\/Cost-\/Platform.include.agent.Debugger@{Low-\/Cost-\/Platform.include.agent.Debugger}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def Low-\/Cost-\/Platform.\+include.\+agent.\+Debugger.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{xlabel = {\ttfamily \char`\"{}Time~Step\char`\"{}},  }\item[{}]{ylabel = {\ttfamily \char`\"{}Angle~Of~System\char`\"{}} }\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em xlabel} & Labels the x-\/axis with xlabel. \\
+\hline
+{\em ylabel} & Labels the y-\/axis with ylabel. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_low-_cost-_platform_1_1include_1_1agent_1_1_debugger_aa83f8588b6495e3f715c38ee2e918ead}\label{class_low-_cost-_platform_1_1include_1_1agent_1_1_debugger_aa83f8588b6495e3f715c38ee2e918ead}} 
+\index{Low-\/Cost-\/Platform.include.agent.Debugger@{Low-\/Cost-\/Platform.include.agent.Debugger}!plotValues@{plotValues}}
+\index{plotValues@{plotValues}!Low-\/Cost-\/Platform.include.agent.Debugger@{Low-\/Cost-\/Platform.include.agent.Debugger}}
+\doxysubsubsection{\texorpdfstring{plotValues()}{plotValues()}}
+{\footnotesize\ttfamily def Low-\/Cost-\/Platform.\+include.\+agent.\+Debugger.\+plot\+Values (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{x\+\_\+value,  }\item[{}]{y\+\_\+value }\end{DoxyParamCaption})}
+
+
+
+plot\+Values 
+
+Plots the reward and target of the model for the current episode. Defaults as a scatter plot. 
+\begin{DoxyParams}{Parameters}
+{\em x\+\_\+value} & Plots the input value on the x-\/axis \\
+\hline
+{\em y\+\_\+value} & Plots the input value on the y-\/axis \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_low-_cost-_platform_1_1include_1_1agent_1_1_debugger_acc9b923958b4b0c3dbf59ad01d62fa41}\label{class_low-_cost-_platform_1_1include_1_1agent_1_1_debugger_acc9b923958b4b0c3dbf59ad01d62fa41}} 
+\index{Low-\/Cost-\/Platform.include.agent.Debugger@{Low-\/Cost-\/Platform.include.agent.Debugger}!showPlot@{showPlot}}
+\index{showPlot@{showPlot}!Low-\/Cost-\/Platform.include.agent.Debugger@{Low-\/Cost-\/Platform.include.agent.Debugger}}
+\doxysubsubsection{\texorpdfstring{showPlot()}{showPlot()}}
+{\footnotesize\ttfamily def Low-\/Cost-\/Platform.\+include.\+agent.\+Debugger.\+show\+Plot (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+show\+Plot 
+
+Opens a window to illustrate the plot generated from the \mbox{\hyperlink{class_low-_cost-_platform_1_1include_1_1agent_1_1_debugger}{Debugger}} class. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_low-_cost-_platform_1_1include_1_1agent_1_1_debugger_adfe611c78729d33148a20ffe5577e7ab}\label{class_low-_cost-_platform_1_1include_1_1agent_1_1_debugger_adfe611c78729d33148a20ffe5577e7ab}} 
+\index{Low-\/Cost-\/Platform.include.agent.Debugger@{Low-\/Cost-\/Platform.include.agent.Debugger}!matplot@{matplot}}
+\index{matplot@{matplot}!Low-\/Cost-\/Platform.include.agent.Debugger@{Low-\/Cost-\/Platform.include.agent.Debugger}}
+\doxysubsubsection{\texorpdfstring{matplot}{matplot}}
+{\footnotesize\ttfamily Low-\/Cost-\/Platform.\+include.\+agent.\+Debugger.\+matplot}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dell/git/\+Low-\/\+Cost-\/\+Platform/include/\mbox{\hyperlink{agent_8py}{agent.\+py}}\end{DoxyCompactItemize}

@@ -1,0 +1,42 @@
+<mujoco>
+  <option gravity="0 0 -9.81" timestep="0.01"/>
+  <asset>
+	<texture type="skybox" builtin="gradient" rgb1="1 1 1" rgb2=".6 .8 1" width="256" height="256"/>
+	<material name="MatPlane" reflectance="0.5" shininess="1" specular="1" texrepeat="60 60"/>
+	
+	<mesh name = "LinkageCAM" file = "stl_prototype3/LinkageCAM.stl"/>
+	<mesh name = "LinkageCAM_m" file = "stl_prototype3/LinkBoiCAM_m.stl"/> 
+	<mesh name = "EndEffector" file = "stl_prototype3/EndLeg.stl"/>
+	<mesh name = "MiddleLinkage" file = "stl_prototype3/MiddleLink.stl"/>
+	<mesh name = "LinkageGuide" file = "stl_prototype3/NormalGuide.stl"/>
+	<mesh name = "ServoLinkage" file = "stl_prototype3/ServoGuide.stl"/> 
+	<mesh name = "ServoMount" file = "stl_prototype3/ServoMount.stl"/>
+	<mesh name = "ChasisBase" file = "stl_prototype3/ChasisBase.stl"/>
+  </asset>
+	<worldbody>
+	<geom conaffinity="1" condim="3" material="MatPlane" name="floor" pos="0 0 0" rgba="0.8 0.9 0.8 1" size="40 40 40" type="plane"/>
+	<!-- <body name="chasis" pos="0 0 0.75">
+		<geom name = "Bruh_1" type = "mesh" mesh = "ChasisBase"/>
+	    <joint armature="0" damping="0" limited="false" margin="0.01" name="chasis_thing" pos="0 0 0" type="free"/>
+		<body name="hip" pos = "0 0 20">
+			<geom name = "lmao_wut" type="mesh" mesh="ServoMount" pos = "0 1.5 0"/>
+			<joint name = "hip_1" type="hinge" pos = "0 0 0" axis = "0 0 1"/>
+		</body>
+	  </body> -->
+	<body name="torso" pos="0 0 0.75">
+      <camera name="track" mode="trackcom" pos="0 -3 0.3" xyaxes="1 0 0 0 0 1"/>
+      <geom name="torso_geom" pos="0 0 0" size="0.25" type="sphere"/>
+      <joint armature="0" damping="0" limited="false" margin="0.01" name="root" pos="0 0 0" type="free"/>
+      <body name="front_left_leg" pos="0 0 0">
+        <geom fromto="0.0 0.0 0.0 2 2 0.0" name="aux_1_geom" size="0.8" type="capsule"/>
+        <body name="aux_1" pos="2 2 0">
+          <joint axis="0 0 1" name="hip_1" pos="0.0 0.0 0.0" range="-30 30" type="hinge"/>
+          <geom fromto="0.0 0.0 0.0 2 2 0.0" name="left_leg_geom" size="0.8" type="capsule"/>
+        </body>
+      </body>
+	</body>
+	</worldbody>
+	<actuator>
+	  <position ctrllimited="true" ctrlrange="-1.0 1.0" joint="hip_1" kp = "3"/>
+	</actuator>
+</mujoco>

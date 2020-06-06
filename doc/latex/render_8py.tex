@@ -1,0 +1,43 @@
+\hypertarget{render_8py}{}\doxysection{C\+:/\+Users/dell/git/\+Low-\/\+Cost-\/\+Platform/render.py File Reference}
+\label{render_8py}\index{C:/Users/dell/git/Low-\/Cost-\/Platform/render.py@{C:/Users/dell/git/Low-\/Cost-\/Platform/render.py}}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespace_low-_cost-_platform_1_1render}{Low-\/\+Cost-\/\+Platform.\+render}}
+\item 
+ \mbox{\hyperlink{namespacerender_1_1py}{render.\+py}}
+\begin{DoxyCompactList}\small\item\em Used to test if the algorithm can render the environment and train properly. Render.\+py is a script used during T\+DD for training simple agents with in order to port the weights to the Raspberry Pi Model 4 for unit testing. Instances of D\+QN and P\+PO agents are present to illustrate the flexibilty of the program on differen types of agent architectures. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_a3f963b79b99849571cbc876b960a2dde}{Low-\/\+Cost-\/\+Platform.\+render.\+make\+\_\+env}} (env\+\_\+name, trajectory\+\_\+angles)
+\begin{DoxyCompactList}\small\item\em make\+\_\+env A simple function utilising Open\+Ai\textquotesingle{}s Baseline code for creating multiple environments for multiprocessing. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_aef937d96e3dff3a702172364b123ff84}{Low-\/\+Cost-\/\+Platform.\+render.\+id}}
+\begin{DoxyCompactList}\small\item\em Environment Registration To register custom environments to the Open\+AI Gym\textquotesingle{}s package, the registration kit from the Gym package is utilised. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_aa7d3534d237fef9e48bc0db0bddfe428}{Low-\/\+Cost-\/\+Platform.\+render.\+entry\+\_\+point}}
+\item 
+\mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_acd160382e1639524eeec8a1c6b9e233d}{Low-\/\+Cost-\/\+Platform.\+render.\+max\+\_\+episode\+\_\+steps}}
+\item 
+\mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_a762a05cb8cbd87684cc715167be5c174}{Low-\/\+Cost-\/\+Platform.\+render.\+reward\+\_\+threshold}}
+\item 
+tuple \mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_af5136fe2af3d2d66a5f8c34f426dec4c}{Low-\/\+Cost-\/\+Platform.\+render.\+servo\+\_\+range\+\_\+radians}} = (-\/0.\+5, -\/1.\+5)
+\item 
+int \mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_a3045a88b2a6bf6be6728a840e37d3b7a}{Low-\/\+Cost-\/\+Platform.\+render.\+total\+\_\+time\+\_\+steps}} = 100
+\item 
+\mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_a506f0d6bdf02f61e6bccf3aeab5c9ffe}{Low-\/\+Cost-\/\+Platform.\+render.\+front}} = np.\+linspace(servo\+\_\+range\+\_\+radians\mbox{[}0\mbox{]}, servo\+\_\+range\+\_\+radians\mbox{[}1\mbox{]}, total\+\_\+time\+\_\+steps)
+\item 
+\mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_a7f201cec0aa1616f91b99ae122651ce1}{Low-\/\+Cost-\/\+Platform.\+render.\+back}} = np.\+linspace(servo\+\_\+range\+\_\+radians\mbox{[}1\mbox{]}, servo\+\_\+range\+\_\+radians\mbox{[}0\mbox{]}, total\+\_\+time\+\_\+steps)
+\item 
+\mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_affa8ea9b4585acdd8abf98724d2aed7f}{Low-\/\+Cost-\/\+Platform.\+render.\+trajectory\+\_\+angles}} = np.\+concatenate(\mbox{[}front, back, front, back, front, back\mbox{]})
+\item 
+int \mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_a31cd9e97409ae3f3761086a6d352cc79}{Low-\/\+Cost-\/\+Platform.\+render.\+num\+\_\+envs}} = 16
+\item 
+list \mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_a9c4c466cda0ebed45650dac1ffb33d18}{Low-\/\+Cost-\/\+Platform.\+render.\+envs}} = \mbox{[}make\+\_\+env(\textquotesingle{}Proof\+Of\+Concept\+Model-\/v0\textquotesingle{}, trajectory\+\_\+angles) for i in range(num\+\_\+envs)\mbox{]}
+\item 
+\mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_aeda28ee44a56d26e1cb6f60d0305fc19}{Low-\/\+Cost-\/\+Platform.\+render.\+env}} = gym.\+make(\textquotesingle{}Proof\+Of\+Concept\+Model-\/v0\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespace_low-_cost-_platform_1_1render_ab0b45e844736ff4d5b87f34f9f2b5901}{Low-\/\+Cost-\/\+Platform.\+render.\+sample\+\_\+agent}} = D\+Q\+N\+Agent(env)
+\end{DoxyCompactItemize}

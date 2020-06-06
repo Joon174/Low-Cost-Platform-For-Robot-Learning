@@ -1,0 +1,101 @@
+\hypertarget{classagent_architecture_1_1_replay_memory}{}\doxysection{agent\+Architecture.\+Replay\+Memory Class Reference}
+\label{classagent_architecture_1_1_replay_memory}\index{agentArchitecture.ReplayMemory@{agentArchitecture.ReplayMemory}}
+
+
+Replay Memory Stores the Tuples Agent observes from the environment.  
+
+
+Inheritance diagram for agent\+Architecture.\+Replay\+Memory\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classagent_architecture_1_1_replay_memory}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classagent_architecture_1_1_replay_memory_aa697619f5a550fa442854d691a5b7fdf}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, memory\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classagent_architecture_1_1_replay_memory_a3bad5bb72008d902985b0a5f205aa9f1}{sample\+\_\+batch}} (self, batch\+\_\+size=32)
+\begin{DoxyCompactList}\small\item\em sample\+\_\+batch Extracts out batch\+\_\+size number of random tuples from the queue. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classagent_architecture_1_1_replay_memory_ac70410e5351e8311145635a7123318af}{append}} (self, state, action, reward, done, next\+\_\+state)
+\begin{DoxyCompactList}\small\item\em append \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classagent_architecture_1_1_replay_memory_a513351a39cc6bf9ec0c5caec8b492405}\label{classagent_architecture_1_1_replay_memory_a513351a39cc6bf9ec0c5caec8b492405}} 
+def {\bfseries \+\_\+\+\_\+len\+\_\+\+\_\+} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classagent_architecture_1_1_replay_memory_a30d813d09591e18bc69274fc1fad5571}\label{classagent_architecture_1_1_replay_memory_a30d813d09591e18bc69274fc1fad5571}} 
+{\bfseries memory\+\_\+size}
+\item 
+\mbox{\Hypertarget{classagent_architecture_1_1_replay_memory_aec82838e0821c2c9cdae89af961518e7}\label{classagent_architecture_1_1_replay_memory_aec82838e0821c2c9cdae89af961518e7}} 
+{\bfseries replay\+\_\+memory}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Replay Memory Stores the Tuples Agent observes from the environment. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classagent_architecture_1_1_replay_memory_aa697619f5a550fa442854d691a5b7fdf}\label{classagent_architecture_1_1_replay_memory_aa697619f5a550fa442854d691a5b7fdf}} 
+\index{agentArchitecture.ReplayMemory@{agentArchitecture.ReplayMemory}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!agentArchitecture.ReplayMemory@{agentArchitecture.ReplayMemory}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def agent\+Architecture.\+Replay\+Memory.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{memory\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em memory\+\_\+size} & Arguement to create a double-\/ended queue of that size. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classagent_architecture_1_1_replay_memory_ac70410e5351e8311145635a7123318af}\label{classagent_architecture_1_1_replay_memory_ac70410e5351e8311145635a7123318af}} 
+\index{agentArchitecture.ReplayMemory@{agentArchitecture.ReplayMemory}!append@{append}}
+\index{append@{append}!agentArchitecture.ReplayMemory@{agentArchitecture.ReplayMemory}}
+\doxysubsubsection{\texorpdfstring{append()}{append()}}
+{\footnotesize\ttfamily def agent\+Architecture.\+Replay\+Memory.\+append (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{state,  }\item[{}]{action,  }\item[{}]{reward,  }\item[{}]{done,  }\item[{}]{next\+\_\+state }\end{DoxyParamCaption})}
+
+
+
+append 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & Current environment state observed by the agent \\
+\hline
+{\em action} & Action taken by agent in that state \\
+\hline
+{\em reward} & Reward returned to agent \\
+\hline
+{\em done} & Indicator if the current episode is complete \\
+\hline
+{\em next\+\_\+state} & Expected state which agent will be observing next \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classagent_architecture_1_1_replay_memory_a3bad5bb72008d902985b0a5f205aa9f1}\label{classagent_architecture_1_1_replay_memory_a3bad5bb72008d902985b0a5f205aa9f1}} 
+\index{agentArchitecture.ReplayMemory@{agentArchitecture.ReplayMemory}!sample\_batch@{sample\_batch}}
+\index{sample\_batch@{sample\_batch}!agentArchitecture.ReplayMemory@{agentArchitecture.ReplayMemory}}
+\doxysubsubsection{\texorpdfstring{sample\_batch()}{sample\_batch()}}
+{\footnotesize\ttfamily def agent\+Architecture.\+Replay\+Memory.\+sample\+\_\+batch (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{batch\+\_\+size = {\ttfamily 32} }\end{DoxyParamCaption})}
+
+
+
+sample\+\_\+batch Extracts out batch\+\_\+size number of random tuples from the queue. 
+
+batch\+\_\+size is default to be 32. 
+\begin{DoxyParams}{Parameters}
+{\em batch\+\_\+size} & Number of samples to extract from the queue for processing \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+agent\+Architecture.\+py\end{DoxyCompactItemize}
