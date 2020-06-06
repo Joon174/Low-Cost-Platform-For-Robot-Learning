@@ -1,8 +1,9 @@
 import gym
 import numpy as np
+import torch
+import matplotlib.pyplot as plt
 from gym.envs.registration import register
 from common.multiprocessing_env import SubprocVecEnv
-import matplotlib.pyplot as plt
 
 register(
     id='ProofOfConceptModel-v0', 

@@ -5,7 +5,7 @@ from include.control_interface import ServoControl, MPU6050Control, PiCameraCont
 from include.event_thread_handler import ThreadEvent
 
 class RobotPlatform(ServoControl, MPU6050Control, PiCameraControl, ThreadEvent):
-    def __init__(self, servo_output_pins, camera_resolution = [328, 168]):
+    def __init__(self, servo_output_pins, camera_resolution=[328, 168]):
         super(RobotPlatform, self).__init__()
         wiringpi.wiringPiSetup()
         self.servo = ServoControl.__init__(self, servo_output_pins)

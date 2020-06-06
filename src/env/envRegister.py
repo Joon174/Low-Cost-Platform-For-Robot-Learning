@@ -93,7 +93,7 @@ class ProofOfConceptModel(mujoco_env.MujocoEnv, utils.EzPickle):
     def _get_obs(self):
         return np.concatenate([
             self.sim.data.qpos.flat[5:].copy(),
-            [self._get_current_target(), self._get_next_target()],
+            [self._get_next_target()],
             self.sim.data.qvel.flat[5:].copy()
         ])
 

@@ -12,7 +12,6 @@ import numpy as np
 from gym.envs.registration import register
 from common.multiprocessing_env import SubprocVecEnv
 from include.exampleAgents import DQNAgent, PPOAgent
-from include.agent import Agent
 
 ## make_env
 #  A simple function utilising OpenAi's Baseline code for creating multiple environments for multiprocessing.
@@ -23,12 +22,6 @@ def make_env(env_name, trajectory_angles):
 		env.add_trajectory(trajectory_angles)
 		return env
 	return _thunk
-
-# def make_env(env_name):
-# 	def _thunk():
-# 		env = gym.make(env_name)
-# 		return env
-# 	return _thunk
 
 ## Environment Registration
 #  To register custom environments to the OpenAI Gym's package, the registration kit from the Gym package is utilised. 
@@ -60,19 +53,17 @@ trajectory_angles = np.concatenate([front, back, front, back, front, back])
 # ==================================================================
 # Main guard for multiprocessing environment
 if __name__ == '__main__':
-	if True:
-		env = gym.make('ProofOfConceptModel-v0')
-		env.add_trajectory(trajectory_angles)
-	if True:
-		num_envs = 16
-		envs = [make_env('ProofOfConceptModel-v0', trajectory_angles) for i in range(num_envs)]
-		envs = SubprocVecEnv(envs)
+	env = gym.make('ProofOfConceptModel-v0')
+	env.add_trajectory(trajectory_angles)
+	num_envs = 16
+	envs = [make_env('ProofOfConceptModel-v0', trajectory_angles) for i in range(num_envs)]
+	envs = SubprocVecEnv(envs)
 		
-	# if True:
-	# 	num_envs = 16
-	# 	envs = [make_env('LCP-v1') for i in range(num_envs)]
-	# 	envs = SubprocVecEnv(envs)
-	# 	env = gym.make('LCP-v1')
+	if False:
+		num_envs = 16
+		envs = [make_env('LCP-v1') for i in range(num_envs)]
+		envs = SubprocVecEnv(envs)
+		env = gym.make('LCP-v1')
 
 	# Set to true to run the DQN Example
 	if False:
@@ -80,16 +71,16 @@ if __name__ == '__main__':
 		sample_agent.train()
 		
 	# Set to true to run the DQN Example
-	if True:
+	if False:
 		sample_agent = PPOAgent(envs, env)
 		sample_agent.train()
 
 	if True:
 		directory = r"modelWeights"
-		file_name = r"proof_of_concept_model_PPO.pt"
+		file_name = r"proof_of_concept_PPO_weights.pt"
 		model_path = os.path.join(os.getcwd(), directory, file_name).replace("\\", "/")
-		test = torch.load(model_path)
-		sample = Agent()
+		validate = PPOAgent(envs, env)
+		validate.model.load_state_dict(torch.load(model_path))
 		for i in range(9):
-			sample.test_env(env, test, True, False)
-		sample.test_env(env, test, True, True)
+			validate.test_env(env, validate.model, True, False)
+		validate.test_env(env, validate.model, True, True)

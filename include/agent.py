@@ -42,7 +42,7 @@ class Agent:
     #  Upon constructing the class, the Agent class will search for CUDA cores on the computer to determine if GPU compitation
     #  is possbile.
     def __init__(self):
-        self._testCUDAAvailable()
+        self.device = self._testCUDAAvailable()
         self.debugger = Debugger()
 
         # Common Training Parameters
@@ -74,6 +74,7 @@ class Agent:
         try:
             device = torch.device("cuda" if use_cuda else "cpu")
             print("Current Training is attached to device: {}\r".format(device))
+            return device
         except AttributeError:
             print("Pytorch cannot find any cpu or cuda chips available for training.\n This class uses cuda cores to create the model. To use cpu, \
                 set arguement 'use_cuda' to false.")
@@ -90,7 +91,7 @@ class Agent:
         total_reward = 0
         time_step = 0
         while not done:
-            state = torch.cuda.FloatTensor(state).unsqueeze(0)
+            state = torch.FloatTensor(state).unsqueeze(0).to(self.device)
             dist, _ = model(state)
             next_state, reward, done, info = env.step(dist.sample().cpu().numpy()[0])
             state = next_state
@@ -109,6 +110,14 @@ class Agent:
     #  @param directory Folder the model will be saved to
     #  @param file_name Name of the file which the model will be saved. 
     def saveWeights(self, directory, file_name, model):
+        if file_name is None:
+            file_name = "proof_of_concept_model.pt"
+        if directory is None:
+            directory = "modelWeights" 
+        model_path = os.path.join(os.getcwd(), directory, file_name).replace("\\", "/")
+        torch.save(model.state_dict(), model_path)
+    
+    def saveModel(self, directory, file_name, model):
         if file_name is None:
             file_name = "proof_of_concept_model.pt"
         if directory is None:
