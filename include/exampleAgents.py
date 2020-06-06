@@ -77,7 +77,7 @@ class PPOAgent(Agent):
         self.config_params = self._getParameters(config_file)
         self.env = env
         self.envs = envs
-        self.model = ActorCritic(self.envs).cuda()
+        self.model = ActorCritic(self.envs).to(self.device)
         self.optimizer = optim.Adam(self.model.parameters(), lr=self.config_params["PPO"]["l_r"])
         self.model.getOptimizer(self.optimizer)
         self.max_frames = self.config_params["PPO"]["m_f"]
@@ -98,7 +98,7 @@ class PPOAgent(Agent):
             masks = []
             entropy = 0
             for _ in range(self.num_steps):
-                state = torch.cuda.FloatTensor(state)
+                state = torch.FloatTensor(state).to(self.device)
                 dist, value = self.model(state)
 
                 action = dist.sample()
@@ -109,8 +109,8 @@ class PPOAgent(Agent):
                 
                 log_probs.append(log_prob)
                 values.append(value)
-                rewards.append(torch.cuda.FloatTensor(reward).unsqueeze(1))
-                masks.append(torch.cuda.FloatTensor(1 - done).unsqueeze(1))
+                rewards.append(torch.FloatTensor(reward).to(self.device).unsqueeze(1))
+                masks.append(torch.FloatTensor(1 - done).to(self.device).unsqueeze(1))
                 
                 states.append(state)
                 actions.append(action)
@@ -122,7 +122,7 @@ class PPOAgent(Agent):
                     self.test_rewards.append(test_reward)
                     if test_reward > self.threshold_reward: early_stop = True
 
-            next_state = torch.cuda.FloatTensor(next_state)
+            next_state = torch.FloatTensor(next_state).to(self.device)
             _, next_value = self.model(next_state)
             returns = compute_gae(next_value, rewards, masks, values)
 
@@ -134,4 +134,4 @@ class PPOAgent(Agent):
             advantage = returns - values
             self.model.ppo_update(self.ppo_epochs, self.batch_size, states, actions, log_probs, returns, advantage)
         self.plotResults(self.test_rewards)
-        self.saveWeights(directory = r"modelWeights", file_name = r"proof_of_concept_model_PPO.pt", model=self.model)
+        self.saveWeights(directory = r"modelWeights", file_name = r"proof_of_concept_PPO_weights.pt", model=self.model)

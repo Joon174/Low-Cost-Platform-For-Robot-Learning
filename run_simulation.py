@@ -17,11 +17,11 @@ from include.exampleAgents import DQNAgent, PPOAgent
 #  A simple function utilising OpenAi's Baseline code for creating multiple environments for multiprocessing.
 #  (view common file for link to original folder)
 def make_env(env_name, trajectory_angles):
-	def _thunk():
-		env = gym.make(env_name)
-		env.add_trajectory(trajectory_angles)
-		return env
-	return _thunk
+    def _thunk():
+        env = gym.make(env_name)
+        env.add_trajectory(trajectory_angles)
+        return env
+    return _thunk
 
 ## Environment Registration
 #  To register custom environments to the OpenAI Gym's package, the registration kit from the Gym package is utilised. 
@@ -29,17 +29,17 @@ def make_env(env_name, trajectory_angles):
 
 # Set to true to use the full Robotic Platform
 if True:
-	register(id='LCP-v1',
-	 	entry_point='src.env.envRegister:LowCostPlatform', 
-		reward_threshold=4800.0
-		)
+    register(id='LCP-v1',
+        entry_point='src.env.envRegister:LowCostPlatform', 
+        reward_threshold=4800.0
+        )
 # Set to true to test on a single leg of the Robotic Platform
 if True:
-	register(
-		id='ProofOfConceptModel-v0', 
-		entry_point='src.env.envRegister:ProofOfConceptModel',
-		reward_threshold=4800.0,
-		)
+    register(
+        id='ProofOfConceptModel-v0', 
+        entry_point='src.env.envRegister:ProofOfConceptModel',
+        reward_threshold=4800.0,
+        )
 
 # Create trajectory joint angles (radians) for trainng
 # Note that the change in time (dt) is 0.05
@@ -49,38 +49,40 @@ front = np.linspace(servo_range_radians[0], servo_range_radians[1], total_time_s
 back = np.linspace(servo_range_radians[1], servo_range_radians[0], total_time_steps)
 trajectory_angles = np.concatenate([front, back, front, back, front, back])
 # ==================================================================
-# 							Main Function
+#                           Main Function
 # ==================================================================
 # Main guard for multiprocessing environment
 if __name__ == '__main__':
-	env = gym.make('ProofOfConceptModel-v0')
-	env.add_trajectory(trajectory_angles)
-	num_envs = 16
-	envs = [make_env('ProofOfConceptModel-v0', trajectory_angles) for i in range(num_envs)]
-	envs = SubprocVecEnv(envs)
-		
-	if False:
-		num_envs = 16
-		envs = [make_env('LCP-v1') for i in range(num_envs)]
-		envs = SubprocVecEnv(envs)
-		env = gym.make('LCP-v1')
+    if True:
+        env = gym.make('ProofOfConceptModel-v0')
+        env.add_trajectory(trajectory_angles)
+    if True:
+        num_envs = 16
+        envs = [make_env('ProofOfConceptModel-v0', trajectory_angles) for i in range(num_envs)]
+        envs = SubprocVecEnv(envs)
+        
+    # if True:
+    #   num_envs = 16
+    #   envs = [make_env('LCP-v1') for i in range(num_envs)]
+    #   envs = SubprocVecEnv(envs)
+    #   env = gym.make('LCP-v1')
 
-	# Set to true to run the DQN Example
-	if False:
-		sample_agent = DQNAgent(env)
-		sample_agent.train()
-		
-	# Set to true to run the DQN Example
-	if False:
-		sample_agent = PPOAgent(envs, env)
-		sample_agent.train()
+    # Set to true to run the DQN Example
+    if False:
+        sample_agent = DQNAgent(env)
+        sample_agent.train()
+        
+    # Set to true to run the DQN Example
+    if True:
+        sample_agent = PPOAgent(envs, env)
+        sample_agent.train()
 
-	if True:
-		directory = r"modelWeights"
-		file_name = r"proof_of_concept_PPO_weights.pt"
-		model_path = os.path.join(os.getcwd(), directory, file_name).replace("\\", "/")
-		validate = PPOAgent(envs, env)
-		validate.model.load_state_dict(torch.load(model_path))
-		for i in range(9):
-			validate.test_env(env, validate.model, True, False)
-		validate.test_env(env, validate.model, True, True)
+    if True:
+        directory = r"modelWeights"
+        file_name = r"proof_of_concept_model_PPO.pt"
+        model_path = os.path.join(os.getcwd(), directory, file_name).replace("\\", "/")
+        test = torch.load(model_path)
+        sample = Agent()
+        for i in range(9):
+            sample.test_env(env, test, True, False)
+        sample.test_env(env, test, True, True)
