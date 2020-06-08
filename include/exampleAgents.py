@@ -143,4 +143,4 @@ class PPOAgent(Agent):
             advantage = returns - values
             self.model.ppo_update(self.ppo_epochs, self.batch_size, states, actions, log_probs, returns, advantage)
         self.plotResults(self.test_rewards)
-        self.saveWeights(directory = r"modelWeights", file_name = r"proof_of_concept_PPO_weights.pt", model=self.model)
+        self.saveWeights(directory=r"modelWeights", file_name=r"proof_of_concept_PPO_weights.pt", model=self.model)

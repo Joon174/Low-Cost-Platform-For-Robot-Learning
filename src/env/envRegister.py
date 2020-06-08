@@ -59,6 +59,9 @@ class ProofOfConceptModel(mujoco_env.MujocoEnv, utils.EzPickle):
     def add_trajectory(self, list_of_angles):
         self._target_leg_pos = list_of_angles
 
+    def _get_current_target(self):
+        return self._target_leg_pos[self._idx]
+
     def _get_next_target(self):
         if (self._idx + 1) <= len(self._target_leg_pos):
             state =  self._target_leg_pos[self._idx+1]

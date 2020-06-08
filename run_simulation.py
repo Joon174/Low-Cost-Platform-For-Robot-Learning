@@ -74,15 +74,17 @@ if __name__ == '__main__':
         
     # Set to true to run the DQN Example
     if True:
-        sample_agent = PPOAgent(envs, env)
+        sample_agent = PPOAgent()
+        sample_agent.defineEnv(env, envs)
         sample_agent.train()
 
-    if True:
+    if False:
         directory = r"modelWeights"
-        file_name = r"proof_of_concept_model_PPO.pt"
+        file_name = r"proof_of_concept_PPO_weights.pt"
         model_path = os.path.join(os.getcwd(), directory, file_name).replace("\\", "/")
-        test = torch.load(model_path)
-        sample = Agent()
+        sample = PPOAgent()
+        sample.defineEnv(env)
+        sample.loadWeights(directory, file_name)
         for i in range(9):
-            sample.test_env(env, test, True, False)
-        sample.test_env(env, test, True, True)
+            sample.test_env(env, sample, True, False)
+        sample.test_env(env, sample, True, True)
