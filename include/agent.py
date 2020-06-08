@@ -131,7 +131,7 @@ class Agent:
         if directory is None:
             directory = "modelWeights" 
         model_path = os.path.join(os.getcwd(), directory, file_name).replace("\\", "/")
-        self.model.load_state_dict(torch.load(model_path))
+        self.model.load_state_dict(torch.load(model_path, map_location=self.device))
         
     def loadModel(self, directory, file_name):
         if file_name is None:

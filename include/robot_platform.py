@@ -33,7 +33,7 @@ class RobotPlatform(ServoControl, MPU6050Control, ThreadEvent, TrajectoryHandler
         self.sensors = {"S3003", self.servo,
                         "MPU6050", self.mpu6050}
         self.observation_space = self.step(1, 1750)
-        self.action_space = len(servo_output_pins)
+        self.action_space = np.array(servo_output_pins)
         self.done = False
         
     def getData(self, sensorName):
@@ -52,7 +52,7 @@ class RobotPlatform(ServoControl, MPU6050Control, ThreadEvent, TrajectoryHandler
             
         if True:
             servo_pos, servo_vel = self.servo.readSensor()
-            result = np.concatenate([servo_pos], [self.trajectory._get_next_target()], [servo_vel])
+            result = np.concatenate([[servo_pos], [self.trajectory._get_next_target()], [servo_vel]])
         
         return result
     

@@ -89,9 +89,9 @@ class PPOAgent(Agent):
         self.env = env
         self.envs = envs
         if envs == 0:
-            self.model = ActorCritic(self.envs).to(self.device)
-        else:
             self.model = ActorCritic(self.env).to(self.device)
+        else:
+            self.model = ActorCritic(self.envs).to(self.device)
         self.optimizer = optim.Adam(self.model.parameters(), lr=self.config_params["PPO"]["l_r"])
         self.model.getOptimizer(self.optimizer)
         
