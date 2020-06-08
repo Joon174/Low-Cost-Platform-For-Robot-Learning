@@ -22,3 +22,12 @@ class TestServoControl(unittest.TestCase):
         for i in range(len(pwmSignal_list)):
             angle = self.test._sendSignal(self.S3003, pwmSignal_list[i])
             self.assertEqual(angle, groundTruth_list[i])
+            
+    def test_mapAgentActon(self):
+        agent_action = [-5, -1, 0.1, 4, 5]
+        groundTruth_list = []
+        for i in range(len(agent_action)):
+            angle = self.test._convertToPwm(self.S3003, agent_action[i])
+    
+if __name__ == '__main__':
+    unittest.main()

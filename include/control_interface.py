@@ -12,6 +12,7 @@ import threading
 import wiringpi
 from picamera import PiCamera
 from PIL import Image
+from include.servo_interface import *
 from include.filters import Kalman
 
 class ServoControl:
@@ -20,39 +21,48 @@ class ServoControl:
         self.output = 1
         self.input = 0
         self._servo_pins = servo_pins_list
-        self.servo_pos = 0
+        self.servo_pos_before = 0
+        self.servo_pos_after = 0
         self.servo_pwm_min = 550
         self.servo_pwm_max = 3000
-        self._init_pos_signal = 11;
+        self._init_pos_angle = 5
         self._init_servos()
-        self.dt = 0.1
+        self.dt = 0.01
+        self.mujoco_range = [-5, 5]
 
     def _init_servos(self):
         for i in range(len(self._servo_pins)):
-            wiringpi.pinMode(self._servo_pins[i], self.output)
-            wiringpi.softPwmCreate(self._servo_pins[i], 0, 200)
-            wiringpi.softPwmWrite(self._servo_pins[i], self._init_pos_signal)
-    
+            servo_configure(self._servo_pins[i], self.servo_pwm_min, self.servo_pwm_max, -90, 90)
+        self._init_servo_pos()
+        
     def _init_servo_pos(self):
         for i in range(len(self._servo_pins)):
-            wiringpi.softPwmCreate(self._servo_pins[i], 0, 200)
-            wiringpi.softPwmWrite(self._servo_pins[i], self._init_pos_signal)        
+            servo_set_angle(self._servo_pins[i], self._init_pos_angle)
     
     ## Motor Functions
-    def _actuate_Motor(self, servo_num, signal):
-        self.servo_pos = signal
-        wiringpi.softPwmWrite(self._servo_pins[servo_num], signal)
-        wiringpi.delay(1)
-            
+    def _convertToPwm(self, control_sig):
+        oldMin = self.mujoco_range[0]
+        oldMax = self.mujoco_range[1]
+        newMin = -10
+        newMax = 25
+        return ((control_sig-oldMin)*(newMax-newMin)/(oldMax-oldMin)+newMin)
+    
+    def _actuate_Motor(self, servo_num, control_sig):
+        signal = self._convertToPwm(control_sig)
+        print(signal)
+        servo_set_angle(self._servo_pins[servo_num], signal)  
+           
     def moveMotor(self, servo_num, signal_pwm):
         self._actuate_Motor(servo_num, signal_pwm)
     
     # Returns Sensor in radians 
     def readSensor(self):
-        deltaIn = self.servo_pos - self.servo_pwm_min
+        deltaIn = self.servo_pos_after - self.servo_pwm_min
         rangeIn = self.servo_pwm_max - self.servo_pwm_min
         rangeOut = 3.1459
-        return (deltaIn * rangeOut) / rangeIn, self.servo_pos*self.dt
+        vel = (self.servo_pos_after - self.servo_pos_before)*self.dt
+        self.servo_pos_before = self.servo_pos_after
+        return (deltaIn * rangeOut) / rangeIn, vel
 
 class MPU6050Control:
     def __init__(self):

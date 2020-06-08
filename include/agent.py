@@ -84,20 +84,19 @@ class Agent:
     #  Method for Testing the model against the single instance of the environment. This will allow the model to be verified
     #  if trained properly. User can validate the performance of the model by calling this function and pass the environment
     #  and model through it.
-    def test_env(self, env, model, vis=False, plot=False):
+    def test_env(self, env, vis=False, plot=False):
         state = env.reset()
-        if vis: env.render()
         done = False
         total_reward = 0
         time_step = 0
         while not done:
+            if vis: env.render()
             state = torch.FloatTensor(state).unsqueeze(0).to(self.device)
-            dist, _ = model(state)
+            dist, _ = self.model(state)
             next_state, reward, done, info = env.step(dist.sample().cpu().numpy()[0])
             state = next_state
             if plot:
                 self.debugger.plotValues(time_step, [info['Model Leg Pos (radians)'], info['Target Leg Pos (radians)']])
-            if vis: env.render()
             total_reward += reward
             time_step += 1
         self.debugger.showPlot()

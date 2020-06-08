@@ -2,6 +2,7 @@
 ## RobotPlatform.py
 
 # import packages for API
+import time
 import numpy as np
 import wiringpi
 from picamera import PiCamera
@@ -12,6 +13,7 @@ from include.event_thread_handler import ThreadEvent
 
 class TrajectoryHandler:
     def __init__(self, trajectory_list):
+        super(TrajectoryHandler, self).__init__()
         self._trajectory_list = trajectory_list
         self.max_size = len(self._trajectory_list)
         self._idx = 0
@@ -22,41 +24,39 @@ class TrajectoryHandler:
         else:
             state = self._trajectory_list[self._idx]
         return state
-
+    
 class RobotPlatform(ServoControl, MPU6050Control, ThreadEvent, TrajectoryHandler):
-    def __init__(self, servo_output_pins):
+    def __init__(self, servo_output_pins, trajectory):
         wiringpi.wiringPiSetup()
-        test = [1, 2]
         self.servo = ServoControl(servo_output_pins)
         self.mpu6050 = MPU6050Control()
-        self.trajectory = TrajectoryHandler(test)
-        self.sensors = {"S3003", self.servo,
-                        "MPU6050", self.mpu6050}
-        self.observation_space = self.step(1, 1750)
+        self.trajectory = TrajectoryHandler(trajectory)
+        self.observation_space, _, _, _ = self.step(np.array([0]), 0)
         self.action_space = np.array(servo_output_pins)
         self.done = False
-        
-    def getData(self, sensorName):
-        return self.sensors[sensorName].readSensor()
+        self.accuracy
     
     def addTrajectory(self, trajectory_list):
         self.trajectory = TrajectoryHandler(trajectory_list)
         
-    def step(self, servo_idx, pwm_signal):
-        if False:
-            #todo: Fix the logic for observation_space of the robot
-            self.servo.moveMotor(servo_idx, pwm_signal)
-            servo_pos, _ = self.getData("S3003")
-            body_pos = self.getData("MPU6050")
-            result = np.concatenate([servo_pos], [body_pos])
-            
-        if True:
-            servo_pos, servo_vel = self.servo.readSensor()
-            result = np.concatenate([[servo_pos], [self.trajectory._get_next_target()], [servo_vel]])
+    def step(self, action, servo_idx=0):
+        #todo: Fix the logic for observation_space of the robot
+        self.servo.moveMotor(servo_idx, action[0])
+        servo_pos, servo_vel = self.servo.readSensor()
+        self.accuracy = self.trajectory._get_next_target() - servo_pos
+        rewards = -self.accuracy**2
+        new_state = np.concatenate([[servo_pos], [self.trajectory._get_next_target()], [servo_vel]])
+        self.trajectory._idx += 1
+        self.done = self.trajectory._idx >= (np.shape(self.trajectory._trajectory_list)[0] - 1)
+        info = {"Some Dict": 0}
+        time.sleep(0.01)
         
-        return result
+        return new_state, rewards, self.done, info
     
     def reset(self):
         self.servo._init_servo_pos()
-        self.mpu6050._init_pos()
+        self.mpu6050._initPosition()
+        servo_pos,_ = self.servo.readSensor()
+        servo_vel = 0
+        return np.concatenate([[servo_pos], [self.trajectory._get_next_target()], [servo_vel]]) 
         
