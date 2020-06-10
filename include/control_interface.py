@@ -16,7 +16,8 @@ import time
 import wiringpi
 from picamera import PiCamera
 from PIL import Image
-from include.servo_interface import *
+from include.servo_daemon_interface import *
+from include.i2c_handler import PCA9685
 from include.filters import Kalman
 
 ## ServoControl
@@ -39,6 +40,7 @@ class ServoControl:
         self._init_servos()
         self.dt = 0.01
         self.mujoco_range = [-5, 5]
+        self.pca = PCA9685()
 
     ## init_servos
     #  Initiates the GPIO pins to the relevant servos used in the platform currently.
@@ -60,7 +62,7 @@ class ServoControl:
         oldMin = self.mujoco_range[0]
         oldMax = self.mujoco_range[1]
         newMin = -10
-        newMax = 25
+        newMax = 20
         return ((control_sig-oldMin)*(newMax-newMin)/(oldMax-oldMin)+newMin)
     
     ## actuate_motor
@@ -72,8 +74,9 @@ class ServoControl:
     #  of user).
     def _actuate_Motor(self, servo_num, control_sig):
         signal = self._convert_to_pwm(control_sig)
-        print(signal)
-        servo_set_angle(self._servo_pins[servo_num], signal)  
+        analog = servo_map(signal, 0, 180, self.servo_pwm_min, self.servo_pwm_max)
+        self.pca.servo_set_angle(servo_num, signal)
+        #servo_set_angle(self._servo_pins[servo_num], signal)  
            
     def moveMotor(self, servo_num, signal_pwm):
         self._actuate_Motor(servo_num, signal_pwm)
@@ -118,14 +121,14 @@ class MPU6050Control:
                   }
         self.device = self._initConnection()
         self._initMPU()
-        self.dt = 0.1 #Threaded at 100ms
+        self.dt = 0.01 #Threaded at 100ms
         self.kalman_X = Kalman()
         self.kalman_Y = Kalman()
         self._initPosition()
         self.kalman_X.setAngle(self.roll)
         self.kalman_Y.setAngle(self.pitch)
-        self.kalmanAngleX = 0
-        self.kalmanAngleY = 0
+        self.kalAngleX = 0
+        self.kalAngleY = 0
 
     ## initConnection
     #  Checks for a return from the MPU6050 in the I2C bus. Should there be no gyroscope
@@ -220,26 +223,27 @@ class MPU6050Control:
     ## kf_update
     #  Updates the angles as according to the structure of the Kalman Filter.
     def kf_update(self):
+        self._initPosition()
         if((self.pitch < -90 and self.kalAngleY >90) or (self.pitch > 90 and self.kalAngleY < -90)):
-            self.kalmanY.setAngle(self.pitch)
+            self.kalman_Y.setAngle(self.pitch)
             self.kalAngleY   = self.pitch
             self.gyroYAngle  = self.pitch
         else:
-            kalAngleY = kalmanY.getAngle(pitch,gyroYRate,dt)
+            self.kalAngleY = self.kalman_Y.getAngle(self.pitch,self.gyro_y,self.dt)
 
-        if(abs(kalAngleY)>90):
+        if(abs(self.kalAngleY)>90):
             self.gyro_x  = -self.gyro_x
-            kalAngleX = kalmanX.getAngle(roll,gyroXRate,dt)
+            self.kalAngleX = self.kalman_X.getAngle(self.roll,self.gyro_x,self.dt)
 
         self.gyroXAngle = self.gyro_x*self.dt
         self.gyroYAngle = self.gyro_y*self.dt
         
         if (self.gyroXAngle < -180) or (self.gyroXAngle > 180):
-            self.gyroXAngle = kalAngleX
+            self.gyroXAngle = self.kalAngleX
         if (self.gyroYAngle < -180) or (self.gyroYAngle > 180):
-            self.gyroYAngle = kalAngleY
+            self.gyroYAngle = self.kalAngleY
         
-        return kalAngleX, kalAngleY
+        return self.kalAngleX, self.kalAngleY
         
 class PiCameraControl:
     def __init__(self, camera_resolution):
