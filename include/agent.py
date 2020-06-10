@@ -1,5 +1,9 @@
 ## @package agent.py
 #  @brief Script containing the parent class Agent which bridges the PyTorch package and Matplotlib for testing the model
+#  The following script serves as a bridge between the 
+#  @date 28-May-2020
+#  @author Joon You Tan
+#  @version 02.03.01
 
 import os
 import json
@@ -7,8 +11,8 @@ import torch
 import matplotlib.pyplot as plt
 
 ## Debugger
-#  If the test rewards need to be plot out, the debugger can called in the Agent class for visualization. Visualization
-#  is done using the matplotlib python package.
+#  If the test rewards need to be plot out, the debugger can be called in the Agent class for visualization. 
+#  Visualization is done using the matplotlib python package.
 class Debugger:
     ## Constructor
     # @param xlabel Labels the x-axis with xlabel.
@@ -106,8 +110,8 @@ class Agent:
     ## saveWeights
     #  Method for saving weights of the model into the local directory. For unit testing, this function will save the entire
     #  model architecture in addition to the weights.
-    #  @param directory Folder the model will be saved to
-    #  @param file_name Name of the file which the model will be saved. 
+    #  @param directory Folder the weights of the model will be saved to
+    #  @param file_name Name of the file which the weights will be saved.
     def saveWeights(self, directory, file_name, model):
         if file_name is None:
             file_name = "proof_of_concept_model.pt"
@@ -116,6 +120,12 @@ class Agent:
         model_path = os.path.join(os.getcwd(), directory, file_name).replace("\\", "/")
         torch.save(model.state_dict(), model_path)
     
+    ## saveModel
+    #  Method for saving the entire model architecture used to train the model. 
+    #  @note  This method is unrecommended as issues may rise for the API when interfacing with
+    #  the Raspberry Pi Controller.
+    #  @param directory Folder the model will be saved to
+    #  @param file_name Name of the file which the model will be saved.
     def saveModel(self, directory, file_name, model):
         if file_name is None:
             file_name = "proof_of_concept_model.pt"
@@ -124,6 +134,11 @@ class Agent:
         model_path = os.path.join(os.getcwd(), directory, file_name).replace("\\", "/")
         torch.save(model, model_path)
     
+    ## loadWeights
+    #  Method for loading previously saved weights of a given model.
+    #  @note the architecture for the agent must match the weights loaded onto the model.
+    #  @param directory Folder the weights will loaded from
+    #  @param file_name Name of the file containing model weights.
     def loadWeights(self, directory, file_name):
         if file_name is None:
             file_name = "proof_of_concept_model.pt"
@@ -131,7 +146,12 @@ class Agent:
             directory = "modelWeights" 
         model_path = os.path.join(os.getcwd(), directory, file_name).replace("\\", "/")
         self.model.load_state_dict(torch.load(model_path, map_location=self.device))
-        
+
+    ## loadModel
+    #  Method for overriding the current model in the Agent class to the model in the 
+    #  directory provided.
+    #  @param directory Folder the model will be loaded from
+    #  @param file_name Name of the file containing model properties
     def loadModel(self, directory, file_name):
         if file_name is None:
             file_name = "proof_of_concept_model.pt"
@@ -140,6 +160,9 @@ class Agent:
         model_path = os.path.join(os.getcwd(), directory, file_name).replace("\\", "/")
         self.model = torch.load(model_path)
 
+    ## plotResults
+    #  Sanity checks and delivers feedback to user on the training of the robot. 
+    #  @param results a list of rewards / parameter readings to be plotted.
     def plotResults(self, results):
         plt.figure(figsize=(12,8))
         plt.plot(results, label='Rewards')

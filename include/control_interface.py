@@ -1,25 +1,35 @@
-## @package torch_api
-#  API between pytorch package and Raspberry Pi
+## @package control_interface
+#  @brief API linking the agent's control signals to the raspberry pi on a interface layer.
+#  Contains the all relevant controls needed for the robot to actuate and walk. Should
+#  further sensors or controllers be added to the system, they can be added here to be
+#  used with the Agent.
+#  @note Each new control layer should be designed as a parent class when added to this
+#  script.
 
-# packages for processing
+# Packages for processing
 import numpy as np
 import math
 import cv2
 import time
 
-# packages for kernel operations
-import threading
+# Packages for kernel operations
 import wiringpi
 from picamera import PiCamera
 from PIL import Image
 from include.servo_interface import *
 from include.filters import Kalman
 
+## ServoControl
+#  Parent class used to control the servos on the platform. The class is instantiated with
+#  the control pins for the relevant servos used. Once the pins have been selected, the
+#  interface will reset the position of the servo back to 0 degrees. Customisations of servo
+#  characteristics can be implemented into the sytem. 
 class ServoControl:
     def __init__(self, servo_pins_list):
+    ## Constructor
+    #  Upon constructing the class, the ServoControl class will set the relevant GPIO pins
+    #  for servo control. Then initiate them to the starting position of 0.
         super(ServoControl, self).__init__()
-        self.output = 1
-        self.input = 0
         self._servo_pins = servo_pins_list
         self.servo_pos_before = 0
         self.servo_pos_after = 0
@@ -30,32 +40,46 @@ class ServoControl:
         self.dt = 0.01
         self.mujoco_range = [-5, 5]
 
+    ## init_servos
+    #  Initiates the GPIO pins to the relevant servos used in the platform currently.
     def _init_servos(self):
         for i in range(len(self._servo_pins)):
             servo_configure(self._servo_pins[i], self.servo_pwm_min, self.servo_pwm_max, -90, 90)
         self._init_servo_pos()
-        
+    
+    ## init_servo_pos
+    #  Sets the servo position back to the initial state. Defaults to 0 degrees (1500us).   
     def _init_servo_pos(self):
         for i in range(len(self._servo_pins)):
             servo_set_angle(self._servo_pins[i], self._init_pos_angle)
     
-    ## Motor Functions
-    def _convertToPwm(self, control_sig):
+    ## convert_to_pwm
+    #  Maps the agent's actions to the pwm control signals
+    #  @param control_sig Action evaluated by the agent, relevant to the training.
+    def _convert_to_pwm(self, control_sig):
         oldMin = self.mujoco_range[0]
         oldMax = self.mujoco_range[1]
         newMin = -10
         newMax = 25
         return ((control_sig-oldMin)*(newMax-newMin)/(oldMax-oldMin)+newMin)
     
+    ## actuate_motor
+    #  Sends the relevant commands to the daemon process to actuate PWMs on a physical
+    #  layer.
+    #  @param servo_num The index of the corresponding servo to be controlled in the
+    #  list ServoControl was instantiated with
+    #  @param control_sig The control signal provided by the agent. (Dependent on training
+    #  of user).
     def _actuate_Motor(self, servo_num, control_sig):
-        signal = self._convertToPwm(control_sig)
+        signal = self._convert_to_pwm(control_sig)
         print(signal)
         servo_set_angle(self._servo_pins[servo_num], signal)  
            
     def moveMotor(self, servo_num, signal_pwm):
         self._actuate_Motor(servo_num, signal_pwm)
     
-    # Returns Sensor in radians 
+    ## readSensor
+    #  Returns the servo's angle in radians 
     def readSensor(self):
         deltaIn = self.servo_pos_after - self.servo_pwm_min
         rangeIn = self.servo_pwm_max - self.servo_pwm_min
@@ -64,8 +88,19 @@ class ServoControl:
         self.servo_pos_before = self.servo_pos_after
         return (deltaIn * rangeOut) / rangeIn, vel
 
+## MPU6050Control
+#  Parent class used to read the orientation of the device. Originally created to be used for 
+#  walking but due to the lack of resources remains untested on the final control algorithm.
+#  Class has been unit tested on a higher level to function fine. 
 class MPU6050Control:
     def __init__(self):
+    ## Constructor
+    #  Upon constructing the class, MPU6050Control will source out a MPU6050 in the I2C bus
+    #  Should there be an instance where the gyroscope is not found during initialization,
+    #  an error is asserted an halts the program. All registers and values in this class are
+    #  relative to the MPU6050. Any other orientation-measuring devices with different
+    #  properties or communication channel will have to be implemented separately. Kalman
+    #  filters are used in this control class.
         super(MPU6050Control, self).__init__()
         self.address = 0x68
         self.channel = 1
@@ -91,7 +126,10 @@ class MPU6050Control:
         self.kalman_Y.setAngle(self.pitch)
         self.kalmanAngleX = 0
         self.kalmanAngleY = 0
-        
+
+    ## initConnection
+    #  Checks for a return from the MPU6050 in the I2C bus. Should there be no gyroscope
+    #  found, the class will assert an error and exit the program.   
     def _initConnection(self):
         try:
             device = wiringpi.wiringPiI2CSetup(self.address)
@@ -102,6 +140,9 @@ class MPU6050Control:
             print("Tip:\t You may need to initialize the I2C bus using raspi-config.\n")
             exit(0)
     
+    ## initMPU
+    #  Sends I2C command to configure the MPU6050 accoridng to specifications. Enables
+    #  feedback of the sensor to read gyroscope and accelerometer messages.
     def _initMPU(self):
         try:
             self._writeData16bit("SMPLRT_DIV", 7)
@@ -112,50 +153,73 @@ class MPU6050Control:
         except AttributeError:
             print("Cannot write to config registers. Exiting...\n")
             exit(0)
-            
+
+    ## initPosition
+    #  Gets the current position of the platform during initialization for localization.     
     def _initPosition(self):
         self._getAccData()
         self._getGyroData()
         self.getPlatformAngle()
     
-    # MPU6050 Sensor methods:
+    ## readData8bit 
+    #  Reads the given register name for a 8-bit resolution.
+    #  @param register_name string input of the relevant register to be read.
     def _readData8bit(self, register_name):
         high = wiringpi.wiringPiI2CReadReg8(self.device, self.registers[register_name])
         low = wiringpi.wiringPiI2CReadReg8(self.device, self.registers[register_name]+1)
         value = ((high << 8) | low) 
         return value if value > 32786 else value - 65546
-        
+
+    ## readData16bit 
+    #  Reads the given register name for a 16-bit resolution.
+    #  @param register_name string input of the relevant register to be read.   
     def _readData16bit(self, register_name):
         high = wiringpi.wiringPiI2CReadReg16(self.device, self.registers[register_name])
         low = wiringpi.wiringPiI2CReadReg16(self.device, self.registers[register_name]+1)
         value = ((high << 8) | low) 
         return value if value > 32786 else value - 65546
     
+    ## writedData8bit 
+    #  Writes to the given register name of 8-bit resolution.
+    #  @param register_name string input of the relevant register to be written.   
     def _writeData8bit(self, register_name, data):
         return wiringpi.wiringPiI2CWriteReg8(self.device, self.registers[register_name], data)
     
+    ## writedData16bit 
+    #  Writes to the given register name of 16-bit resolution.
+    #  @param register_name string input of the relevant register to be written.  
     def _writeData16bit(self, register_name, data):
         return wiringpi.wiringPiI2CWriteReg16(self.device, self.registers[register_name], data)
     
+    ## getAccData 
+    #  Reads the accelerometer values and returns the messages converted to their raw states.   
     def _getAccData(self):
         self.acc_x = self._readData16bit("ACCEL_XOUT_H")/16384
         self.acc_y = self._readData16bit("ACCEL_YOUT_H")/16384
         self.acc_z = self._readData16bit("ACCEL_ZOUT_H")/16384
     
+    ## getGyrocData 
+    #  Reads the gyroscope values and returns the messages converted to their raw states. 
     def _getGyroData(self):
         self.gyro_x = self._readData16bit("GYRO_XOUT_H")/131
         self.gyro_y = self._readData16bit("GYRO_YOUT_H")/131
         self.gyro_z = self._readData16bit("GYRO_ZOUT_H")/131
     
+    ## kalmanFilter 
+    #  Applies the kalman filter to the roll angles observed by the platform.
     def kalmanFilter(self):
         #filteredData = kf_update(self.roll_list)
         return filteredData
     
+    ## getPlatformAngle 
+    #  Converts the accelerometer and gyroscope values to valid radian form.
     def getPlatformAngle(self):
         self.roll = math.atan2(self.acc_y, self.acc_z)
         self.pitch = math.atan(-self.acc_x/math.sqrt((self.acc_y**2)+(self.acc_z**2)))
     
-    def processAngle(self):
+    ## kf_update
+    #  Updates the angles as according to the structure of the Kalman Filter.
+    def kf_update(self):
         if((self.pitch < -90 and self.kalAngleY >90) or (self.pitch > 90 and self.kalAngleY < -90)):
             self.kalmanY.setAngle(self.pitch)
             self.kalAngleY   = self.pitch
@@ -199,4 +263,3 @@ class PiCameraControl:
     # todo: Verify capture images and feed to network.
     def captureImage(self):
         return self.camera.capture(self.image, 'rgb')
-        

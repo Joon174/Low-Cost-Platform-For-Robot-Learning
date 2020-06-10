@@ -58,20 +58,20 @@
 		<!-- Light Render -->
 		<light cutoff="100" diffuse="1 1 1" dir="-0 0 -1.3" directional="true" exponent="1" pos="0 0 1.3" specular=".1 .1 .1"/>
 		<!-- Plane Property -->
-		<geom name='floor' material="floor_mat" pos='0 0 0' size='10 10 10'  type='plane' />
+		<geom name='floor' material="floor_mat" pos='0 0 0' size='50 50 50'  type='plane' />
 		
 		<!-- QUEEN Robot -->
-		<body name = "QUEEN_Chasis" pos = "0 0 1.5" quat = "0 0 1 0">
+		<body name = "Chasis" pos = "0 0 1.5" quat = "0 0 1 0">
 			<geom type = "mesh" mesh = "ChasisBase"/>
 			<inertial pos = "0 0 0" mass = "0.06677" diaginertia = "0.007751589 0.015043022 0.007751589"/>
 			<joint armature="0" damping="0" limited="false" margin="0.01" name="root" pos="0 0 0" type="free"/>
 			<!-- LEG 1 -->
 			<body name = "ServoMount_LEG1" pos = "0.7775 0.30 -0.305" quat = "0 0 0 1">
 				<geom type = "mesh" mesh = "ServoMount"/>
-				<inertial pos = "0 0 0" mass = "0.04476" diaginertia = "0.00972502 0.03012071 0.03375679"/>
+				<inertial pos = "0 0 0" mass = "0.06476" diaginertia = "0.00972502 0.03012071 0.03375679"/>
 				<body name = "ServoLink1_LEG1" pos = "-0.04 0.345 0.36" quat = "0.5 0.5 0.5 0.5">
 					<geom type = "mesh" mesh = "ServoLink"/>
-					<inertial pos = "0 0 0" mass = "0.00229" diaginertia = "0.00003682 0.00040776 0.00043909" />
+					<inertial pos = "0 0 0" mass = "0.02229" diaginertia = "0.00003682 0.00040776 0.00043909" />
 					<joint name = "SG1_L1_1" pos = "0.076 0.4 0"/>					
 					<body name = "ServoML1_LEG1" pos = "0.965 -0.09 0.14" quat = "0.2876062 -0.2876062 -0.6459742 0.6459742">
 						<geom type = "mesh" mesh = "MiddleLinkage"/>
@@ -83,7 +83,7 @@
 				</body>
 				<body name = "ServoLink2_LEG1" pos = "0.35 0.345 0.36" quat = "0.5 0.5 0.5 0.5">
 					<geom type = "mesh" mesh = "ServoLink"/>
-					<inertial pos = "0 0 0" mass = "0.00229" diaginertia = "0.00003682 0.00040776 0.00043909"/>
+					<inertial pos = "0 0 0" mass = "0.02229" diaginertia = "0.00003682 0.00040776 0.00043909"/>
 					<joint name = "SG1_L1_2" pos = "0.076 0.4 0"/>
 					<body name = "ServoML2_LEG1" pos = "0.85 -0.188 -0.1" quat = "0.2876062 0.2876062 0.6459742 0.6459742">
 						<geom type = "mesh" mesh = "MiddleLinkage"/>
@@ -96,13 +96,13 @@
 				</body>
 				<body name = "ServoHornMount_LEG1" pos = "0.45 0.86 0.53" quat = "-0.4055798 -0.579228 0.4055798 0.579228">
 					<geom type = "mesh" mesh = "ServoHornMount"/>
-					<joint name = "SG1_HM_1" pos = "0.38 0.075 0"/>
+					<joint name = "SG1_HM_1" pos = "0.38 0.075 0" damping = "100"/>
 					<body name = "ServoHornLink_LEG1" pos = "0.34 -0.32 0.1" quat = "0 0 1 0">
 						<geom type = "mesh" mesh = "ServoHornLink"/>
 					</body>
 				</body>
 			</body>
-			<!-- LEG 2 -->
+			<!-- LEG 2
 	 		<body name = "ServoMount_LEG2" pos = "0.4 0.315 -0.305" quat = "0.5 0 0 0.8660254">
 				<geom type = "mesh" mesh = "ServoMount"/>
 				<inertial pos = "0 0 0" mass = "0.04476" diaginertia = "0.00972502 0.03012071 0.03375679"/>
@@ -133,19 +133,19 @@
 				</body>
 				<body name = "ServoHornMount_LEG2" pos = "0.45 0.86 0.53" quat = "-0.4055798 -0.579228 0.4055798 0.579228">
 					<geom type = "mesh" mesh = "ServoHornMount"/>
-					<joint name = "SG2_HM_1" pos = "0.38 0.075 0"/>
+					<joint name = "SG2_HM_1" pos = "0.38 0.075 0" damping = "100"/>
 					<body name = "ServoHornLink_LEG2" pos = "0.34 -0.32 0.1" quat = "0 0 1 0">
 						<geom type = "mesh" mesh = "ServoHornLink"/>
 					</body>
 				</body>
-			</body>
+			</body> -->
 			<!-- LEG 3 -->
 			<body name = "ServoMount_LEG3" pos = "0.225 0.65 -0.305" quat = "0.8660254 0 0 0.5">
 				<geom type = "mesh" mesh = "ServoMount"/>
-				<inertial pos = "0 0 0" mass = "0.04476" diaginertia = "0.00972502 0.03012071 0.03375679"/>
+				<inertial pos = "0 0 0" mass = "0.06476" diaginertia = "0.00972502 0.03012071 0.03375679"/>
 				<body name = "ServoLink1_LEG3" pos = "-0.04 0.345 0.36" quat = "0.5 0.5 0.5 0.5">
 					<geom type = "mesh" mesh = "ServoLink"/>
-					<inertial pos = "0 0 0" mass = "0.00229" diaginertia = "0.00003682 0.00040776 0.00043909" />
+					<inertial pos = "0 0 0" mass = "0.02229" diaginertia = "0.00003682 0.00040776 0.00043909" />
 					<joint name = "SG3_L2_1" pos = "0.076 0.4 0"/> 
 					<body name = "ServoML1_LEG3" pos = "0.965 -0.09 0.14" quat = "0.2876062 -0.2876062 -0.6459742 0.6459742">
 						<geom type = "mesh" mesh = "MiddleLinkage"/>
@@ -157,7 +157,7 @@
 				</body>
 				<body name = "ServoLink2_LEG3" pos = "0.35 0.345 0.36" quat = "0.5 0.5 0.5 0.5">
 					<geom type = "mesh" mesh = "ServoLink"/>
-					<inertial pos = "0 0 0" mass = "0.00229" diaginertia = "0.00003682 0.00040776 0.00043909" />
+					<inertial pos = "0 0 0" mass = "0.02229" diaginertia = "0.00003682 0.00040776 0.00043909" />
 					<joint name = "SG3_L2_2" pos = "0.076 0.4 0"/>
 					<body name = "ServoML2_LEG3" pos = "0.85 -0.188 -0.1" quat = "0.2876062 0.2876062 0.6459742 0.6459742">
 						<geom type = "mesh" mesh = "MiddleLinkage"/>
@@ -170,13 +170,13 @@
 				</body>
 				<body name = "ServoHornMount_LEG3" pos = "0.45 0.86 0.53" quat = "-0.4055798 -0.579228 0.4055798 0.579228">
 					<geom type = "mesh" mesh = "ServoHornMount"/>
-					<joint name = "SG3_HM_1" pos = "0.38 0.075 0"/>
+					<joint name = "SG3_HM_1" pos = "0.38 0.075 0" damping = "100"/>
 					<body name = "ServoHornLink_LEG3" pos = "0.34 -0.32 0.1" quat = "0 0 1 0">
 						<geom type = "mesh" mesh = "ServoHornLink"/>
 					</body>
 				</body>
 			</body>
-			<!-- LEG 4 -->
+			<!-- LEG 4
 			<body name = "ServoMount_LEG4" pos = "0.43 0.97 -0.305" quat = "1 0 0 0">
 				<geom type = "mesh" mesh = "ServoMount"/>
 				<inertial pos = "0 0 0" mass = "0.04476" diaginertia = "0.00972502 0.03012071 0.03375679"/>
@@ -207,19 +207,19 @@
 				</body>
 				<body name = "ServoHornMount_LEG4" pos = "0.45 0.86 0.53" quat = "-0.4055798 -0.579228 0.4055798 0.579228">
 					<geom type = "mesh" mesh = "ServoHornMount"/>
-					<joint name = "SG4_HM_1" pos = "0.38 0.075 0"/>
+					<joint name = "SG4_HM_1" pos = "0.38 0.075 0" damping = "100"/>
 					<body name = "ServoHornLink_LEG4" pos = "0.34 -0.32 0.1" quat = "0 0 1 0">
 						<geom type = "mesh" mesh = "ServoHornLink"/>
 					</body>
 				</body>
-			</body>
+			</body> -->
 			<!-- LEG 5 -->
 			<body name = "ServoMount_LEG5" pos = "0.80 0.95 -0.305" quat = "-0.8660254 0 0 0.5">
 				<geom type = "mesh" mesh = "ServoMount"/>
-				<inertial pos = "0 0 0" mass = "0.04476" diaginertia = "0.00972502 0.03012071 0.03375679"/>
+				<inertial pos = "0 0 0" mass = "0.06476" diaginertia = "0.00972502 0.03012071 0.03375679"/>
 				<body name = "ServoLink1_LEG5" pos = "-0.04 0.345 0.36" quat = "0.5 0.5 0.5 0.5">
 					<geom type = "mesh" mesh = "ServoLink"/>
-					<inertial pos = "0 0 0" mass = "0.00229" diaginertia = "0.00003682 0.00040776 0.00043909" />
+					<inertial pos = "0 0 0" mass = "0.02229" diaginertia = "0.00003682 0.00040776 0.00043909" />
 					<joint name = "SG5_L2_1" pos = "0.076 0.4 0"/> 
 					<body name = "ServoML1_LEG5" pos = "0.965 -0.09 0.14" quat = "0.2876062 -0.2876062 -0.6459742 0.6459742">
 						<geom type = "mesh" mesh = "MiddleLinkage"/>
@@ -231,7 +231,7 @@
 				</body>
 				<body name = "ServoLink2_LEG5" pos = "0.35 0.345 0.36" quat = "0.5 0.5 0.5 0.5">
 					<geom type = "mesh" mesh = "ServoLink"/>
-					<inertial pos = "0 0 0" mass = "0.00229" diaginertia = "0.00003682 0.00040776 0.00043909" />
+					<inertial pos = "0 0 0" mass = "0.02229" diaginertia = "0.00003682 0.00040776 0.00043909" />
 					<joint name = "SG5_L2_2" pos = "0.076 0.4 0"/>
 					<body name = "ServoML2_LEG5" pos = "0.85 -0.188 -0.1" quat = "0.2876062 0.2876062 0.6459742 0.6459742">
 						<geom type = "mesh" mesh = "MiddleLinkage"/>
@@ -244,13 +244,13 @@
 				</body>
 				<body name = "ServoHornMount_LEG5" pos = "0.45 0.86 0.53" quat = "-0.4055798 -0.579228 0.4055798 0.579228">
 					<geom type = "mesh" mesh = "ServoHornMount"/>
-					<joint name = "SG5_HM_1" pos = "0.38 0.075 0"/>
+					<joint name = "SG5_HM_1" pos = "0.38 0.075 0" damping = "100"/>
 					<body name = "ServoHornLink_LEG5" pos = "0.34 -0.32 0.1" quat = "0 0 1 0">
 						<geom type = "mesh" mesh = "ServoHornLink"/>
 					</body>
 				</body>
 			</body>
-			<!-- LEG 6 -->
+			<!-- LEG 6
 			<body name = "ServoMount_LEG6" pos = "0.98 0.62 -0.305" quat = "-0.5 0 0 0.8660254">
 				<geom type = "mesh" mesh = "ServoMount"/>
 				<inertial pos = "0 0 0" mass = "0.04476" diaginertia = "0.00972502 0.03012071 0.03375679"/>
@@ -281,12 +281,12 @@
 				</body>
 				<body name = "ServoHornMount_LEG6" pos = "0.45 0.86 0.53" quat = "-0.4055798 -0.579228 0.4055798 0.579228">
 					<geom type = "mesh" mesh = "ServoHornMount"/>
-					<joint name = "SG6_HM_1" pos = "0.38 0.075 0"/>
+					<joint name = "SG6_HM_1" pos = "0.38 0.075 0" damping = "100"/>
 					<body name = "ServoHornLink_LEG6" pos = "0.34 -0.32 0.1" quat = "0 0 1 0">
 						<geom type = "mesh" mesh = "ServoHornLink"/>
 					</body>
 				</body>
-			</body>
+			</body> -->
 		</body>
 	</worldbody>
 	
@@ -299,39 +299,39 @@
 		<connect name = "ML1_EE1_L1" body1 = "ServoML1_LEG1" body2 = "EndEffector_LEG1" anchor = "0.075 -0.076 0.076"/>
 		<connect name = "LB1_EE1_L1" body1 = "ServoLinkBetween_LEG1" body2 = "EndEffector_LEG1" anchor = "0.5 2.05 0.1"/>
 		
-		<!-- Leg 2 -->
+		<!-- Leg 2
 		<connect name = "SHM1_ML2_L2" body1 = "ServoHornMount_LEG2" body2 = "ServoML2_LEG2" anchor = "-0.07 0.075 0.05"/>
 		<connect name = "ML1_EE1_L2" body1 = "ServoML1_LEG2" body2 = "EndEffector_LEG2" anchor = "0.075 -0.076 0.076"/>
-		<connect name = "LB1_EE1_L2" body1 = "ServoLinkBetween_LEG2" body2 = "EndEffector_LEG2" anchor = "0.5 2.05 0.1"/>
+		<connect name = "LB1_EE1_L2" body1 = "ServoLinkBetween_LEG2" body2 = "EndEffector_LEG2" anchor = "0.5 2.05 0.1"/> -->
 		
 		<!-- Leg 3 -->
 		<connect name = "SHM1_ML2_L3" body1 = "ServoHornMount_LEG3" body2 = "ServoML2_LEG3" anchor = "-0.07 0.075 0.05"/>
 		<connect name = "ML1_EE1_L3" body1 = "ServoML1_LEG3" body2 = "EndEffector_LEG3" anchor = "0.075 -0.076 0.076"/>
 		<connect name = "LB1_EE1_L3" body1 = "ServoLinkBetween_LEG3" body2 = "EndEffector_LEG3" anchor = "0.5 2.05 0.1"/>
 		
-		<!-- Leg 4 -->
+		<!-- Leg 4
 		<connect name = "SHM1_ML2_L4" body1 = "ServoHornMount_LEG4" body2 = "ServoML2_LEG4" anchor = "-0.07 0.075 0.05"/>
 		<connect name = "ML1_EE1_L4" body1 = "ServoML1_LEG4" body2 = "EndEffector_LEG4" anchor = "0.075 -0.076 0.076"/>
-		<connect name = "LB1_EE1_L4" body1 = "ServoLinkBetween_LEG4" body2 = "EndEffector_LEG4" anchor = "0.5 2.05 0.1"/>
+		<connect name = "LB1_EE1_L4" body1 = "ServoLinkBetween_LEG4" body2 = "EndEffector_LEG4" anchor = "0.5 2.05 0.1"/> -->
 		
 		<!-- Leg 5 -->
 		<connect name = "SHM1_ML2_L5" body1 = "ServoHornMount_LEG5" body2 = "ServoML2_LEG5" anchor = "-0.07 0.075 0.05"/>
 		<connect name = "ML1_EE1_L5" body1 = "ServoML1_LEG5" body2 = "EndEffector_LEG5" anchor = "0.075 -0.076 0.076"/>
 		<connect name = "LB1_EE1_L5" body1 = "ServoLinkBetween_LEG5" body2 = "EndEffector_LEG5" anchor = "0.5 2.05 0.1"/>
 		
-		<!-- Leg 6 -->
+		<!-- Leg 6
 		<connect name = "SHM1_ML2_L6" body1 = "ServoHornMount_LEG6" body2 = "ServoML2_LEG6" anchor = "-0.07 0.075 0.05"/>
 		<connect name = "ML1_EE1_L6" body1 = "ServoML1_LEG6" body2 = "EndEffector_LEG6" anchor = "0.075 -0.076 0.076"/>
-		<connect name = "LB1_EE1_L6" body1 = "ServoLinkBetween_LEG6" body2 = "EndEffector_LEG6" anchor = "0.5 2.05 0.1"/>
+		<connect name = "LB1_EE1_L6" body1 = "ServoLinkBetween_LEG6" body2 = "EndEffector_LEG6" anchor = "0.5 2.05 0.1"/> -->
 	</equality>
 	
 	<!-- Actuators -->
 	<actuator>
-		<motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="SG1_HM_1" gear="750"/>
-		<motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="SG2_HM_1" gear="750"/>
-		<motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="SG3_HM_1" gear="750"/>
-		<motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="SG4_HM_1" gear="750"/>
-		<motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="SG5_HM_1" gear="750"/>
-		<motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="SG6_HM_1" gear="750"/>
+		<motor ctrllimited="true" ctrlrange="-5.0 5.0" joint="SG1_HM_1" gear="480"/>
+		<!-- motor ctrllimited="true" ctrlrange="-5.0 5.0" joint="SG2_HM_1" gear="480"/ -->
+		<motor ctrllimited="true" ctrlrange="-5.0 5.0" joint="SG3_HM_1" gear="480"/>
+		<!-- motor ctrllimited="true" ctrlrange="-5.0 5.0" joint="SG4_HM_1" gear="480"/ -->
+		<motor ctrllimited="true" ctrlrange="-5.0 5.0" joint="SG5_HM_1" gear="480"/>
+		<!-- motor ctrllimited="true" ctrlrange="-5.0 5.0" joint="SG6_HM_1" gear="480"/ -->
 	</actuator>
 </mujoco>

@@ -9,12 +9,22 @@ Please note that the projcet requires the following packages to run:
 1. [Pytorch ver 1.4 (stable) and above](https://pytorch.org/)
 2. [Mujoco_py (wrapper)](https://github.com/openai/mujoco-py) and [Mujoco (core)](https://www.roboti.us/license.html)
 3. [OpenAI Gym ver 14.0 and above](https://github.com/openai/gym)
+4. [WiringPi-Python](https://github.com/WiringPi/WiringPi-Python)
+5. [Servoblaster](https://github.com/richardghirst/PiBits/tree/master/ServoBlaster)
+
+## Documentation
+### Application Programming Interface (API)
+Refer to this [link](doc/index.html) for full description of the python package and API procedure
+
+### Assembly Instructions
+Refer to this [link](doc/assembly.pdf) for full instructions on the assembly of the platform.
 
 ## Getting Started
-Download the repository with the follwing command:
+Download the repository with the following command:
 ```
 git clone https://github.com/Joon174/Low-Cost-Platform-For-Robot-Learning
 ```
+Sample the scripts in the include file into your working folder and import robot_platform.py to get started.
 
 ## Participants
 **Joon You Tan** - *Mechatronics Engineering Student - Project Member*  

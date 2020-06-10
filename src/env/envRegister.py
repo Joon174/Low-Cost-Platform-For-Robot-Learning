@@ -9,6 +9,7 @@ import math
 import os
 import numpy as np
 
+# 
 from gym import utils
 from gym.envs.mujoco import mujoco_env
 
@@ -116,28 +117,68 @@ class LowCostPlatform(mujoco_env.MujocoEnv, utils.EzPickle):
     #  @param healthy_reward Prevent robot from farming rewards and not complete the task
     #  @param done Return true only if conditions are met (undecided as of now)
     def __init__(self, 
-                healthy_reward=1.0,
-                terminate_when_unhealthy=True,
-                error_range=(0.05, 0.1)
-                ):
-        file_path = os.path.join(os.path.dirname(__file__), 'assets', 'SimpleLeg.xml')
+                ctrl_cost_weight=0.5,
+                 contact_cost_weight=5e-4,
+                 healthy_reward=1.0,
+                 terminate_when_unhealthy=True,
+                 healthy_z_range=(1.0, 1.55),
+                 contact_force_range=(-1.0, 1.0),
+                 reset_noise_scale=0.1,
+                 exclude_current_positions_from_observation=True):
+        file_path = os.path.join(os.path.dirname(__file__), 'assets', 'PlatformV2.xml')
         utils.EzPickle.__init__(self)
 
         # Local define variables and other data
-        self._target_leg_pos = [0, 1, 2]
-        self._idx = 0
+        self._ctrl_cost_weight = ctrl_cost_weight
+        self._contact_cost_weight = contact_cost_weight
+
         self._healthy_reward = healthy_reward
         self._terminate_when_unhealthy = terminate_when_unhealthy
-        self._error_range = error_range
+        self._healthy_z_range = healthy_z_range
+
+        self._contact_force_range = contact_force_range
+
+        self._reset_noise_scale = reset_noise_scale
+
+        self._exclude_current_positions_from_observation = (
+            exclude_current_positions_from_observation)
+
+        self.xy_pos_before = 0
+        self.xy_pos_after = 0
+        self.total_time = 0
 
         mujoco_env.MujocoEnv.__init__(self, file_path, 5)
 
-    ## Decorators for training
+    @property
+    def healthy_reward(self):
+        return float(
+            self.is_healthy
+            or self._terminate_when_unhealthy
+        ) * self._healthy_reward
+
+    def control_cost(self, action):
+        control_cost = self._ctrl_cost_weight * np.sum(np.square(action))
+        return control_cost
+
+    @property
+    def contact_cost(self):
+        contact_cost = self._contact_cost_weight * np.sum(
+            np.square(self.contact_forces))
+        return contact_cost
+
     @property
     def is_healthy(self):
-        min_error, max_error = self._error_range
-        is_healthy = min_error < self.accuracy < max_error
+        state = self.state_vector()
+        min_z, max_z = self._healthy_z_range
+        is_healthy = (np.isfinite(state).all() and min_z <= state[2] <= max_z)
         return is_healthy
+
+    @property
+    def contact_forces(self):
+        raw_contact_forces = self.sim.data.cfrc_ext
+        min_value, max_value = self._contact_force_range
+        contact_forces = np.clip(raw_contact_forces, min_value, max_value)
+        return contact_forces
 
     @property 
     def done(self):
@@ -148,28 +189,39 @@ class LowCostPlatform(mujoco_env.MujocoEnv, utils.EzPickle):
 
     # Methods for envrionment interaction
     def step(self, action):
-        #Carry out one step of action
-        xy_position_before = self.get_body_com("QUEEN_Chasis")[:2].copy()
+        self.xy_pos_before = self.get_body_com("Chasis")[:2].copy()
         self.do_simulation(action, self.frame_skip)
-        xy_position_after = self.get_body_com("QUEEN_Chasis")[:2].copy()
+        self.xy_pos_after = self.get_body_com("Chasis")[:2].copy()
 
-        xy_velocity = (xy_position_after - xy_position_before) / self.dt
+        xy_velocity = (self.xy_pos_after - self.xy_pos_before) / self.dt
         x_velocity, y_velocity = xy_velocity
+        
+        self.total_time += self.dt
 
-        rewards = x_velocity    
-        done = False
+        reward = (x_velocity + self.healthy_reward) - (self.contact_cost + self.control_cost(action))   
+        done = self.done or (self.total_time > 30)
         observation = self._get_obs()
-        info = {'Rewards': rewards,
+        info = {'Rewards': reward,
                 'X_velocity': x_velocity,
                 'Y_velocity': y_velocity
                 }
+        
+        # Seconds
+        if self.total_time > 120:
+            self.total_time = 0
 
-        return observation, rewards, done, info
+        return observation, reward, done, info
 
     def _get_obs(self):
         return np.concatenate([
-            self.sim.data.qpos.flat[1:],
-            self.sim.data.qvel.flat
+            [self.sim.data.qpos.flat[0]],
+            [self.sim.data.qpos.flat[6]],
+            [self.sim.data.qpos.flat[12]],
+            [self.sim.data.qpos.flat[18]],
+            [self.sim.data.qvel.flat[0]],
+            [self.sim.data.qvel.flat[6]],
+            [self.sim.data.qvel.flat[12]],
+            [self.sim.data.qvel.flat[18]]
         ])
 
     def reset_model(self):

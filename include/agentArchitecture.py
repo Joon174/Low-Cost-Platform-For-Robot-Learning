@@ -44,7 +44,7 @@ class ReplayMemory(object):
         return len(self.replay_memory)
 
 ## DQN
-#  A Linear Model with the Deep Q-Network (DQN) architecture. This model can be modified using the XX tool
+#  A Linear Model with the Deep Q-Network (DQN) architecture.
 #  @author: Joon You Tan
 #  @date: 8-May-2020
 #  @note The following is the default architecture for this agent:
@@ -72,10 +72,13 @@ class DQN(nn.Module):
             nn.Linear(128, self.num_actions)
         )
     
+    ## epsilon_greed_strat
+    #  Method to return the epsilon based on the time step the agent is currently in
+    #  @param time_step index of time with respect to the agent itself.
     def epsilon_greed_strat(self, time_step):
         return self.epsilon_final + (self.epsilon_start + self.epsilon_final) * math.exp(-1. * time_step / self.epsilon_decay)
 
-    ## Model arguement handler
+    ## forward
     #  @brief Passes the inputs into the agent's Linear Model
     #  @param x Input for the model. The data type will be dependent on the model architecture itself.
     def forward(self, x):
@@ -132,21 +135,15 @@ def cal_TD_Loss(batch_size, model, target_model, optimizer, discount_factor, exp
 
     return loss
 
-## Actor Crtiic
-#  A Linear Model with the Actor-Crtitc (A2C) architecture. This model can be modified using the XX tool
-#  @author: Joon You Tan
-#  @date: 20-May-2020
-#  @note The following is the default architecture for this agent:
-#  @note Layer 1: Linear, (in_channels = environment = 128) -> ReLU
-#  @note Layer 2: Linear, (in_channels = 128, out_channels = 128)
-#  @note Layer 3: Linear, (in_channels = 128, out_channels = number of actions available for agent)
-#  @note The actions for this model are evaluated using the Epsilon Greedy Strategy
-
+##  init_weights
+#   Instantiates the weights of the model on a normal distribution range
 def init_weights(m):
     if isinstance(m, nn.Linear):
         nn.init.normal_(m.weight, mean=0., std=0.1)
         nn.init.constant_(m.bias, 0.1)
 
+## compute_gae
+#  Returns the Generalized Advantage Estimation based on the PPO algorithm
 def compute_gae(next_value, rewards, masks, values, gamma=0.99, tau=0.95):
     values = values + [next_value]
     gae = 0
@@ -158,15 +155,13 @@ def compute_gae(next_value, rewards, masks, values, gamma=0.99, tau=0.95):
     return returns
 
 ## Actor Crtiic
-#  A Linear Model with the Actor-Crtitc (A2C) architecture. This model can be modified using the XX tool
+#  A Linear Model with the Actor-Crtitc (A2C) architecture.
 #  @author: Joon You Tan
 #  @date: 20-May-2020
 #  @note The following is the default architecture for this agent:
-#  @note Layer 1: Linear, (in_channels = environment = 128) -> ReLU
-#  @note Layer 2: Linear, (in_channels = 128, out_channels = 128)
-#  @note Layer 3: Linear, (in_channels = 128, out_channels = number of actions available for agent)
-#  @note The actions for this model are evaluated using the Epsilon Greedy Strategy
-
+#  @note Layer 1: Linear, (in_channels = environment = 256) -> ReLU
+#  @note Layer 2: Linear, (in_channels = 256, out_channels = 256) -> ReLU
+#  @note Layer 3: Linear, (in_channels = 256, out_channels = number of actions available for agent)
 class ActorCritic(nn.Module):
     def __init__(self, env, hidden_size=256, std=0.0):
         super(ActorCritic, self).__init__()

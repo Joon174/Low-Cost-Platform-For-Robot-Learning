@@ -16,10 +16,10 @@ from include.exampleAgents import DQNAgent, PPOAgent
 ## make_env
 #  A simple function utilising OpenAi's Baseline code for creating multiple environments for multiprocessing.
 #  (view common file for link to original folder)
-def make_env(env_name, trajectory_angles):
+def make_env(env_name):
     def _thunk():
         env = gym.make(env_name)
-        env.add_trajectory(trajectory_angles)
+        #env.add_trajectory(trajectory_angles)
         return env
     return _thunk
 
@@ -48,24 +48,24 @@ total_time_steps = 200 # For 10 second sample
 front = np.linspace(servo_range_radians[0], servo_range_radians[1], total_time_steps)
 back = np.linspace(servo_range_radians[1], servo_range_radians[0], total_time_steps)
 trajectory_angles = np.concatenate([front, back, front, back, front, back])
+
 # ==================================================================
 #                           Main Function
 # ==================================================================
 # Main guard for multiprocessing environment
 if __name__ == '__main__':
-    if True:
+    if False:
         env = gym.make('ProofOfConceptModel-v0')
         env.add_trajectory(trajectory_angles)
-    if True:
         num_envs = 16
         envs = [make_env('ProofOfConceptModel-v0', trajectory_angles) for i in range(num_envs)]
         envs = SubprocVecEnv(envs)
         
-    # if True:
-    #   num_envs = 16
-    #   envs = [make_env('LCP-v1') for i in range(num_envs)]
-    #   envs = SubprocVecEnv(envs)
-    #   env = gym.make('LCP-v1')
+    if True:
+      num_envs = 16
+      envs = [make_env('LCP-v1') for i in range(num_envs)]
+      envs = SubprocVecEnv(envs)
+      env = gym.make('LCP-v1')
 
     # Set to true to run the DQN Example
     if False:
@@ -78,13 +78,14 @@ if __name__ == '__main__':
         sample_agent.defineEnv(env, envs)
         sample_agent.train()
 
+    # Test and sanity check the model
     if False:
         directory = r"modelWeights"
-        file_name = r"proof_of_concept_PPO_weights.pt"
+        file_name = r"platform_PPO_weights.pt"
         model_path = os.path.join(os.getcwd(), directory, file_name).replace("\\", "/")
         sample = PPOAgent()
         sample.defineEnv(env)
         sample.loadWeights(directory, file_name)
         for i in range(9):
-            sample.test_env(env, sample, True, False)
-        sample.test_env(env, sample, True, True)
+            sample.test_env(env, True, False)
+        sample.test_env(env, True, True)

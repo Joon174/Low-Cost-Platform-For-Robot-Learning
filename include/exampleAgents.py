@@ -34,7 +34,6 @@ class DQNAgent(Agent):
         state = self.env.reset()
         self.time_step = 0
         while self.training:
-            self.env.render()
             action = self.model.get_action(state, self.frame_idx)
             action = self.action_space[action]
             next_state, reward, done, info = self.env.step(action)
@@ -127,7 +126,7 @@ class PPOAgent(Agent):
                 state = next_state
                 self.frame_idx += 1
                 if self.frame_idx % 1000 == 0:
-                    test_reward = np.mean([self.test_env(self.env, self.model) for _ in range(10)])
+                    test_reward = np.mean([self.test_env(self.env) for _ in range(10)])
                     self.test_rewards.append(test_reward)
                     if test_reward > self.threshold_reward: early_stop = True
 
@@ -142,5 +141,7 @@ class PPOAgent(Agent):
             actions = torch.cat(actions)
             advantage = returns - values
             self.model.ppo_update(self.ppo_epochs, self.batch_size, states, actions, log_probs, returns, advantage)
+            if (test_reward < -30000):
+                break
         self.plotResults(self.test_rewards)
-        self.saveWeights(directory=r"modelWeights", file_name=r"proof_of_concept_PPO_weights.pt", model=self.model)
+        self.saveWeights(directory=r"modelWeights", file_name=r"platform_PPO_weights.pt", model=self.model)
