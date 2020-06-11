@@ -38,7 +38,7 @@ class RobotPlatform(ServoControl, MPU6050Control, TrajectoryHandler):
     def addTrajectory(self, trajectory_list):
         self.trajectory = TrajectoryHandler(trajectory_list)
         
-    def step(self, action, servo_idx=1):
+    def step(self, action, servo_idx=0):
         #todo: Fix the logic for observation_space of the robot
         self.servo.moveMotor(servo_idx, action[0])
         servo_pos, servo_vel = self.servo.readSensor()
@@ -48,8 +48,9 @@ class RobotPlatform(ServoControl, MPU6050Control, TrajectoryHandler):
         new_state = np.concatenate([[servo_pos], [self.trajectory._get_next_target()], [servo_vel]])
         self.trajectory._idx += 1
         self.done = self.trajectory._idx >= (np.shape(self.trajectory._trajectory_list)[0] - 1)
-        info = {"Current Joint Position (rad)": new_state,
-                "Reward Accumulated": rewards
+        info = {'Model Leg Pos (radians)': servo_pos,
+                'Target Leg Pos (radians)': self.trajectory._get_next_target(),
+                'Reward Accumulated': rewards
                 }
         time.sleep(0.01)
         

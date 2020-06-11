@@ -61,8 +61,8 @@ class ServoControl:
     def _convert_to_pwm(self, control_sig):
         oldMin = self.mujoco_range[0]
         oldMax = self.mujoco_range[1]
-        newMin = -10
-        newMax = 20
+        newMin = -15
+        newMax = 30
         return ((control_sig-oldMin)*(newMax-newMin)/(oldMax-oldMin)+newMin)
     
     ## actuate_motor
@@ -75,8 +75,9 @@ class ServoControl:
     def _actuate_Motor(self, servo_num, control_sig):
         signal = self._convert_to_pwm(control_sig)
         analog = servo_map(signal, 0, 180, self.servo_pwm_min, self.servo_pwm_max)
-        self.pca.servo_set_angle(servo_num, signal)
-        #servo_set_angle(self._servo_pins[servo_num], signal)  
+        #self.pca.servo_set_angle(servo_num, signal)
+        servo_set_angle(self._servo_pins[servo_num], signal)
+        self.servo_pos_after = signal
            
     def moveMotor(self, servo_num, signal_pwm):
         self._actuate_Motor(servo_num, signal_pwm)
@@ -84,12 +85,9 @@ class ServoControl:
     ## readSensor
     #  Returns the servo's angle in radians 
     def readSensor(self):
-        deltaIn = self.servo_pos_after - self.servo_pwm_min
-        rangeIn = self.servo_pwm_max - self.servo_pwm_min
-        rangeOut = 3.1459
         vel = (self.servo_pos_after - self.servo_pos_before)*self.dt
         self.servo_pos_before = self.servo_pos_after
-        return (deltaIn * rangeOut) / rangeIn, vel
+        return (self.servo_pos_after*3.1459/180), vel
 
 ## MPU6050Control
 #  Parent class used to read the orientation of the device. Originally created to be used for 

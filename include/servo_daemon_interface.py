@@ -10,7 +10,7 @@ def servo_set(servoPin, servoOutput):
     os.system("echo " + "P1-" + str(servoPin) + "=" + servoOutput + " > /dev/servoblaster")
 
 def servo_map(value, oldMin, oldMax, newMin, newMax):
-    return ((value-oldMin)*(newMax-newMin)/(oldMax-oldMin)+newMin) / 11
+    return ((value-oldMin)*(newMax-newMin)/(oldMax-oldMin)+newMin) / 10
 
 def servo_configure(servoPin, minPulse=1000, maxPulse=2000, minAngle=-90, maxAngle=90):
     servo_minPulse[servoPin] = minPulse

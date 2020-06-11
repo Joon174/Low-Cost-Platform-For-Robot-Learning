@@ -13,9 +13,7 @@ from include.exampleAgents import PPOAgent
 servo_pin_list = [12]
 
 # Reinitiate the sequence of the trajectory for the Agent
-min_new_rad = ((0)*(-0.84-0.056)/(25+10)+0.056)
-max_new_rad = ((35)*(-0.84-0.056)/(25+10)+0.056)
-servo_range_radians = (min_new_rad, max_new_rad)
+servo_range_radians = (0.349, -0.175)
 total_time_steps = 200
 front = np.linspace(servo_range_radians[0], servo_range_radians[1], total_time_steps)
 back = np.linspace(servo_range_radians[1], servo_range_radians[0], total_time_steps)
